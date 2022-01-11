@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>JustDeclare</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Main\ValidationChecks\" />
+  </ItemGroup>
 
 </Project>

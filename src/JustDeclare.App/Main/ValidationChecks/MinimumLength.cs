@@ -10,7 +10,7 @@ namespace JustDeclare.Main.ValidationChecks
             _minLength = minLength;
         }
 
-        private int _minLength;
+        private readonly int _minLength;
 
         protected override string DefaultRuleBreakDescription
             => GetRuleBreakMessage();

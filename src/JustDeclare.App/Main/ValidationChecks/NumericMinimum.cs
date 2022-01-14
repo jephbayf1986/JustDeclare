@@ -12,7 +12,7 @@ namespace JustDeclare.Main.ValidationChecks
             _minValue = minValue;
         }
 
-        private IComparable _minValue;
+        private readonly IComparable _minValue;
 
         protected override string DefaultRuleBreakDescription
             => $"A value of {ValueProvided} was provided for {PropertyName}, but the lowest allowed value is {_minValue}.";

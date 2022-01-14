@@ -12,7 +12,7 @@ namespace JustDeclare.Main.ValidationChecks
             _maxValue = maxValue;
         }
 
-        private IComparable _maxValue;
+        private readonly IComparable _maxValue;
 
         protected override string DefaultRuleBreakDescription
             => $"A value of {ValueProvided} was provided for {PropertyName}, but the highest allowed value is {_maxValue}.";

@@ -2,7 +2,7 @@
 
 namespace JustDeclare.Main.ValidationChecks
 {
-    public class MaximumLength : ValidationCheck<string>
+    internal class MaximumLength : ValidationCheck<string>
     {
         public MaximumLength(string value, int maxLength)
             : base(value)
@@ -10,7 +10,7 @@ namespace JustDeclare.Main.ValidationChecks
             _maxLength = maxLength;
         }
 
-        private int _maxLength;
+        private readonly int _maxLength;
 
         protected override string DefaultRuleBreakDescription
             => GetRuleBreakMessage();

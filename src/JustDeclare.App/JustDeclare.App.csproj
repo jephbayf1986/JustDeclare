@@ -5,8 +5,4 @@
     <RootNamespace>JustDeclare</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Main\ValidationChecks\" />
-  </ItemGroup>
-
 </Project>

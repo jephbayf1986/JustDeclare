@@ -1,6 +1,4 @@
-﻿using JustDeclare.Models;
-
-namespace JustDeclare.Main.ValidationChecks
+﻿namespace JustDeclare.Main.ValidationChecks
 {
     internal class MinimumLength : ValidationCheck<string>
     {

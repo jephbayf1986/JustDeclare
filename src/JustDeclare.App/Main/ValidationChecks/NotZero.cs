@@ -1,5 +1,4 @@
-﻿using JustDeclare.Models;
-using System;
+﻿using System;
 
 namespace JustDeclare.Main.ValidationChecks
 {

@@ -1,4 +1,8 @@
-﻿namespace JustDeclare.Conditions
+﻿using JustDeclare.Main.ValidationChecks;
+using JustDeclare.Models;
+using System;
+
+namespace JustDeclare.Conditions
 {
     public class NotNullCondition<TValue>
     {
@@ -7,6 +11,14 @@
             CarryOverValue = carryOverValue;
         }
 
-        public TValue CarryOverValue { get; private set; }
+        private readonly TValue CarryOverValue;
+
+        internal ValidationCheck CreateValidationCheck(Func<TValue, ValidationCheck> validationCheck)
+        {
+            if (CarryOverValue == null)
+                return new Dummy();
+
+            return validationCheck(CarryOverValue);
+        }
     }
 }

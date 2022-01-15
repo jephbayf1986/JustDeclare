@@ -1,8 +1,8 @@
 ﻿namespace JustDeclare.Main.ValidationChecks
 {
-    internal class MinimumLength : ValidationCheck<string>
+    internal class StringMinimumLength : ValidationCheck<string>
     {
-        public MinimumLength(string value, int minLength)
+        public StringMinimumLength(string value, int minLength)
             : base(value)
         {
             _minLength = minLength;

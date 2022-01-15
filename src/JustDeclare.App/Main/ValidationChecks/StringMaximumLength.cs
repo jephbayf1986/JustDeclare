@@ -1,8 +1,8 @@
 ﻿namespace JustDeclare.Main.ValidationChecks
 {
-    internal class MaximumLength : ValidationCheck<string>
+    internal class StringMaximumLength : ValidationCheck<string>
     {
-        public MaximumLength(string value, int maxLength)
+        public StringMaximumLength(string value, int maxLength)
             : base(value)
         {
             _maxLength = maxLength;

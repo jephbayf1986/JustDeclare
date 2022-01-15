@@ -11,6 +11,11 @@
             PropertyName = propertyName;
         }
 
+        internal void InvertResult()
+        {
+            Invert = true;
+        }
+
         internal void SetCustomMessage(string customMessage)
         {
             _customMessage = customMessage;
@@ -28,6 +33,9 @@
         {
             get
             {
+                if (Invert)
+                    return !GetTestResult();
+
                 return GetTestResult();
             }
         }
@@ -55,6 +63,7 @@
         private string _customMessage;
         private bool _stopOnFailure = false;
 
+        protected bool Invert = false;
         protected string PropertyName;
 
         private ValidationFailure GetFailureDetails()

@@ -2,9 +2,9 @@
 
 namespace JustDeclare.Main.ValidationChecks
 {
-    internal class RegexMatch : ValidationCheck<string>
+    internal class StringRegexMatch : ValidationCheck<string>
     {
-        public RegexMatch(string value, string pattern)
+        public StringRegexMatch(string value, string pattern)
             : base(value)
         {
             _regex = new Regex(pattern);

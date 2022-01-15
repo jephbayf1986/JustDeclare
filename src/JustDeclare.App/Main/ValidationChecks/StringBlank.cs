@@ -1,8 +1,8 @@
 ﻿namespace JustDeclare.Main.ValidationChecks
 {
-    internal class NotBlank : ValidationCheck<string>
+    internal class StringBlank : ValidationCheck<string>
     {
-        public NotBlank(string value)
+        public StringBlank(string value)
             : base(value)
         {
         }

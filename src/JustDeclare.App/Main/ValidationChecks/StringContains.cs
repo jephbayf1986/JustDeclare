@@ -3,17 +3,15 @@ using System.Text;
 
 namespace JustDeclare.Main.ValidationChecks
 {
-    internal class Contains : ValidationCheck<string>
+    internal class StringContains : ValidationCheck<string>
     {
-        public Contains(string value, string targetValue, StringComparison stringComparison = StringComparison.CurrentCultureIgnoreCase, bool invert = false)
+        public StringContains(string value, string targetValue, StringComparison stringComparison = StringComparison.CurrentCultureIgnoreCase)
             : base(value)
         {
             _targetValue = targetValue;
-            _invert = invert;
             _stringComparison = stringComparison;
         }
 
-        private readonly bool _invert;
         private readonly string _targetValue;
         private readonly StringComparison _stringComparison;
 
@@ -30,9 +28,9 @@ namespace JustDeclare.Main.ValidationChecks
                 messageBuilder.Append(ValueProvided);
 
             messageBuilder.Append($"' was provided for {PropertyName}, which ");
-            messageBuilder.Append(_invert ? "should" : "should not");
+            messageBuilder.Append(Invert ? "should" : "should not");
             messageBuilder.Append($"contain the text '{_targetValue}' but ");
-            messageBuilder.Append(_invert ? "does not" : "does");
+            messageBuilder.Append(Invert ? "does not" : "does");
 
             return messageBuilder.ToString();
         }
@@ -40,14 +38,9 @@ namespace JustDeclare.Main.ValidationChecks
         protected override bool GetTestResult()
         {
             if (ValueProvided == null)
-                return _invert;
+                return false;
 
-            var index = ValueProvided.IndexOf(_targetValue, _stringComparison);
-
-            if (_invert)
-                return index < 0;
-
-            return index >= 0;
+            return ValueProvided.IndexOf(_targetValue, _stringComparison) >= 0;
         }
     }
 }

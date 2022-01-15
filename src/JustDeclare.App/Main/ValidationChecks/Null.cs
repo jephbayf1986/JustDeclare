@@ -1,8 +1,8 @@
 ﻿namespace JustDeclare.Main.ValidationChecks
 {
-    internal class NotNull : ValidationCheck<object>
+    internal class Null : ValidationCheck<object>
     {
-        public NotNull(object value)
+        public Null(object value)
             : base(value)
         {
         }
@@ -11,6 +11,6 @@
             => $"No value was provided for {PropertyName}, which is a required field.";
 
         protected override bool GetTestResult()
-            => ValueProvided != null;
+            => ValueProvided == null;
     }
 }

@@ -7,9 +7,9 @@ using System.Linq.Expressions;
 
 namespace JustDeclare.Main.ValidationChecks
 {
-    internal class NestedConditions<TSubEntity> : ValidationCheck<TSubEntity>
+    internal class NestedRules<TSubEntity> : ValidationCheck<TSubEntity>
     {
-        public NestedConditions(TSubEntity value, IEnumerable<Expression<Func<TSubEntity, ValidationCheck>>> nestedRules)
+        public NestedRules(TSubEntity value, IEnumerable<Expression<Func<TSubEntity, ValidationCheck>>> nestedRules)
             : base(value)
         {
             _nestedTestFuncs = nestedRules.CreateValidationTestFuncs();

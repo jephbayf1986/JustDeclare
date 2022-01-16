@@ -54,7 +54,7 @@ namespace JustDeclare
 
         public static ValidationCheck DeclareConditions<TSubEntity>(this NotNullCondition<TSubEntity> conditional, params Expression<Func<TSubEntity, ValidationCheck>>[] rules)
         {
-            return conditional.CreateValidationCheck(x => x.DeclareConditions(rules));
+            return conditional.CreateValidationCheck(x => x.MustObeyRules(rules));
         }
     }
 }

@@ -3,15 +3,15 @@ using System.Collections.Generic;
 
 namespace JustDeclare.Main.ValidationChecks
 {
-    internal class EnumerableCountMinimum<T> : ValidationCheck<IEnumerable<T>>
+    internal class EnumerableCountEqual<T> : ValidationCheck<IEnumerable<T>>
     {
-        public EnumerableCountMinimum(IEnumerable<T> value, int minCount)
+        public EnumerableCountEqual(IEnumerable<T> value, int target)
             : base(value)
         {
-            _minCount = minCount;
+            _target = target;
         }
 
-        private readonly int _minCount;
+        private readonly int _target;
 
         protected override string DefaultRuleBreakDescription => throw new NotImplementedException();
 

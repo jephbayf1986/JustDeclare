@@ -11,7 +11,7 @@ namespace JustDeclare.Main.ValidationChecks
             _maxCount = maxCount;
         }
 
-        private readonly IComparable _maxCount;
+        private readonly int _maxCount;
 
         protected override string DefaultRuleBreakDescription => throw new NotImplementedException();
 

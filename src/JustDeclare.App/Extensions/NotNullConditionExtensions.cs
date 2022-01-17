@@ -52,9 +52,9 @@ namespace JustDeclare
             return conditional.CreateValidationCheck(x => x.MustMatchPattern(pattern));
         }
 
-        public static ValidationCheck DeclareConditions<TSubEntity>(this NotNullCondition<TSubEntity> conditional, params Expression<Func<TSubEntity, ValidationCheck>>[] rules)
+        public static ValidationCheck MustObeyTheseRules<TSubEntity>(this NotNullCondition<TSubEntity> conditional, params Expression<Func<TSubEntity, ValidationCheck>>[] rules)
         {
-            return conditional.CreateValidationCheck(x => x.MustObeyRules(rules));
+            return conditional.CreateValidationCheck(x => x.MustObeyTheseRules(rules));
         }
     }
 }

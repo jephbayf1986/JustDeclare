@@ -12,15 +12,11 @@ namespace JustDeclare
         #region General
 
         public static ValidationCheck MustBeNull(this object value)
-        {
-            return new Null(value);
-        }
+            => new Null(value);
 
         public static ValidationCheck MustNotBeNull(this object value)
-        {
-            return value.MustBeNull()
-                        .Inverted();
-        }
+            => value.MustBeNull()
+                    .Inverted();
 
         #endregion
 

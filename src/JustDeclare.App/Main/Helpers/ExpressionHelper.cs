@@ -39,6 +39,14 @@ namespace JustDeclare.Main.Helpers
             if (firstNonConditionalArgument is MethodCallExpression)
                 return GetFirstMemberExpression((MethodCallExpression)firstNonConditionalArgument);
 
+            if (firstNonConditionalArgument is UnaryExpression)
+            {
+                var unaryInput = ((UnaryExpression)firstNonConditionalArgument).Operand;
+
+                if (unaryInput is MemberExpression)
+                    return (MemberExpression)unaryInput;
+            }
+
             if (firstNonConditionalArgument is LambdaExpression)
             {
                 var firstArgLambda = (LambdaExpression)firstNonConditionalArgument;

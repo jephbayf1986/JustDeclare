@@ -2,7 +2,7 @@
 
 namespace JustDeclare.Main.ValidationChecks
 {
-    internal abstract class ValidationCheck<T> : ValidationCheck
+    internal abstract partial class ValidationCheck<T> : ValidationCheck
     {
         public ValidationCheck(T value)
         {

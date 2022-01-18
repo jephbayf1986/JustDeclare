@@ -5,8 +5,8 @@ using Xunit;
 
 namespace JustDeclare.Tests.IsolatedRuleTests
 {
-    public class MustNotBeNull
-    { 
+    public class MustBeNull
+    {
         internal class TestClass
         {
             public int? TestInteger { get; set; }
@@ -27,18 +27,18 @@ namespace JustDeclare.Tests.IsolatedRuleTests
             public TestClassValidationRules()
             {
                 DeclareRules(
-                        x => x.TestInteger.MustNotBeNull(),
-                        x => x.TestString.MustNotBeNull(),
-                        X => X.TestDouble.MustNotBeNull(),
-                        X => X.TestDecimal.MustNotBeNull(),
-                        x => x.TestDateTime.MustNotBeNull(),
-                        x => x.ChildObject.MustNotBeNull()
+                        x => x.TestInteger.MustBeNull(),
+                        x => x.TestString.MustBeNull(),
+                        X => X.TestDouble.MustBeNull(),
+                        X => X.TestDecimal.MustBeNull(),
+                        x => x.TestDateTime.MustBeNull(),
+                        x => x.ChildObject.MustBeNull()
                     );
             }
         }
 
         [Fact]
-        public void GivenAboveRules_WhenAllValuesNotNull_PassTest()
+        public void GivenAboveRules_WhenAllValuesNull_PassTest()
         {
             // Arrange
             var request = GetTestClass();
@@ -52,11 +52,11 @@ namespace JustDeclare.Tests.IsolatedRuleTests
         }
 
         [Fact]
-        public void GivenAboveRules_WhenIntValueNull_FailTestWithPropertyInMessage()
+        public void GivenAboveRules_WhenIntValueNotNull_FailTestWithPropertyInMessage()
         {
             // Arrange
-            var request = GetTestClass();
-            request.TestInteger = null;
+            var testInteger = RandomHelpers.IntBetween(1, 10);
+            var request = GetTestClass(testInteger: testInteger);
 
             var validator = new TestClassValidationRules();
 
@@ -66,15 +66,15 @@ namespace JustDeclare.Tests.IsolatedRuleTests
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
                                               x => x.FailureSummary().ShouldContain(nameof(request.TestInteger), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("required", Case.Insensitive));
+                                              x => x.FailureSummary().ShouldContain("should be null", Case.Insensitive));
         }
 
         [Fact]
-        public void GivenAboveRules_WhenStringValueNull_FailTestWithPropertyInMessage()
+        public void GivenAboveRules_WhenStringValueNotNull_FailTestWithPropertyInMessage()
         {
             // Arrange
-            var request = GetTestClass();
-            request.TestString = null;
+            var testString = RandomHelpers.RandomString();
+            var request = GetTestClass(testString: testString);
 
             var validator = new TestClassValidationRules();
 
@@ -84,15 +84,15 @@ namespace JustDeclare.Tests.IsolatedRuleTests
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
                                               x => x.FailureSummary().ShouldContain(nameof(request.TestString), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("required", Case.Insensitive));
+                                              x => x.FailureSummary().ShouldContain("should be null", Case.Insensitive));
         }
 
         [Fact]
-        public void GivenAboveRules_WhenDoubleValueNull_FailTestWithPropertyInMessage()
+        public void GivenAboveRules_WhenDoubleValueNotNull_FailTestWithPropertyInMessage()
         {
             // Arrange
-            var request = GetTestClass();
-            request.TestDouble = null;
+            var testDouble = RandomHelpers.IntBetween(1, 10);
+            var request = GetTestClass(testDouble: testDouble);
 
             var validator = new TestClassValidationRules();
 
@@ -102,15 +102,15 @@ namespace JustDeclare.Tests.IsolatedRuleTests
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
                                               x => x.FailureSummary().ShouldContain(nameof(request.TestDouble), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("required", Case.Insensitive));
+                                              x => x.FailureSummary().ShouldContain("should be null", Case.Insensitive));
         }
 
         [Fact]
-        public void GivenAboveRules_WhenDecimalValueNull_FailTestWithPropertyInMessage()
+        public void GivenAboveRules_WhenDecimalValueNotNull_FailTestWithPropertyInMessage()
         {
             // Arrange
-            var request = GetTestClass();
-            request.TestDecimal = null;
+            var testDecimal = RandomHelpers.IntBetween(1, 10);
+            var request = GetTestClass(testDecimal: testDecimal);
 
             var validator = new TestClassValidationRules();
 
@@ -120,15 +120,15 @@ namespace JustDeclare.Tests.IsolatedRuleTests
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
                                               x => x.FailureSummary().ShouldContain(nameof(request.TestDecimal), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("required", Case.Insensitive));
+                                              x => x.FailureSummary().ShouldContain("should be null", Case.Insensitive));
         }
 
         [Fact]
-        public void GivenAboveRules_WhenDateTimeValueNull_FailTestWithPropertyInMessage()
+        public void GivenAboveRules_WhenDateTimeValueNotNull_FailTestWithPropertyInMessage()
         {
             // Arrange
-            var request = GetTestClass();
-            request.TestDateTime = null;
+            var testDateTime = RandomHelpers.DateInPast(100);
+            var request = GetTestClass(testDateTime: testDateTime);
 
             var validator = new TestClassValidationRules();
 
@@ -138,15 +138,15 @@ namespace JustDeclare.Tests.IsolatedRuleTests
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
                                               x => x.FailureSummary().ShouldContain(nameof(request.TestDateTime), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("required", Case.Insensitive));
+                                              x => x.FailureSummary().ShouldContain("should be null", Case.Insensitive));
         }
 
         [Fact]
-        public void GivenAboveRules_WhenObjectValueNull_FailTestWithPropertyInMessage()
+        public void GivenAboveRules_WhenObjectValueNotNull_FailTestWithPropertyInMessage()
         {
             // Arrange
-            var request = GetTestClass();
-            request.ChildObject = null;
+            var childObject = new TestClass();
+            var request = GetTestClass(childObject: childObject);
 
             var validator = new TestClassValidationRules();
 
@@ -156,19 +156,25 @@ namespace JustDeclare.Tests.IsolatedRuleTests
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
                                               x => x.FailureSummary().ShouldContain(nameof(request.ChildObject), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("required", Case.Insensitive));
+                                              x => x.FailureSummary().ShouldContain("should be null", Case.Insensitive));
         }
 
-        private static TestClass GetTestClass()
+        private static TestClass GetTestClass(
+            int? testInteger = null, 
+            string? testString = null,
+            double? testDouble = null, 
+            decimal? testDecimal = null, 
+            DateTime? testDateTime = null,
+            TestClass? childObject = null)
         {
             return new TestClass()
             {
-                TestInteger = RandomHelpers.IntBetween(1, 10),
-                TestString = RandomHelpers.RandomString(),
-                TestDouble = RandomHelpers.IntBetween(1, 10),
-                TestDecimal = RandomHelpers.IntBetween(1, 10),
-                TestDateTime = RandomHelpers.DateInPast(100),
-                ChildObject = new TestClass()
+                TestInteger = testInteger,
+                TestString = testString,
+                TestDouble = testDouble,
+                TestDecimal = testDecimal,
+                TestDateTime = testDateTime,
+                ChildObject = childObject
             };
         }
     }

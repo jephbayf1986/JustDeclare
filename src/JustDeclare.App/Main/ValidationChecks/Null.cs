@@ -8,7 +8,7 @@
         }
 
         protected override string DefaultRuleBreakDescription
-            => $"No value was provided for {PropertyName}, which is a required field.";
+            => $"A value was provided for {PropertyName}, which should be null";
 
         protected override bool GetTestResult()
             => ValueProvided == null;

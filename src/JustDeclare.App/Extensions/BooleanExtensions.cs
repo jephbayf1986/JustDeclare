@@ -1,7 +1,7 @@
 ﻿using JustDeclare.Main.ValidationChecks;
 using JustDeclare.Models;
 
-namespace JustDeclare.Extensions
+namespace JustDeclare
 {
     public static partial class JustDeclareExtensions
     {

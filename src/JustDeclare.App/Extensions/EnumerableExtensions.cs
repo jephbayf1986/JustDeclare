@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace JustDeclare.Extensions
+namespace JustDeclare
 {
     public static partial class JustDeclareExtensions
     {

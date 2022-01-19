@@ -2,7 +2,7 @@
 using JustDeclare.Models;
 using System;
 
-namespace JustDeclare.Extensions
+namespace JustDeclare
 {
     public static partial class JustDeclareExtensions
     {

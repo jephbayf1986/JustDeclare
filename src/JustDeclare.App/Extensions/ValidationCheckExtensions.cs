@@ -2,7 +2,7 @@
 
 namespace JustDeclare
 {
-    public static class ValidationCheckExtensions
+    public static partial class JustDeclareExtensions
     {
         public static T UseCustomMessage<T>(this T test, string message)
             where T : ValidationCheck

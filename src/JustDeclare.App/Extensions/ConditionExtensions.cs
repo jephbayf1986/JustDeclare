@@ -6,7 +6,7 @@ using System;
 
 namespace JustDeclare
 {
-    public static class ConditionExtensions
+    public static partial class JustDeclareExtensions
     {
         public static NotNullCondition<T> WhenNotNull<T>(this T value)
         {

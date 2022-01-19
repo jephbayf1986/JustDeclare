@@ -2,9 +2,9 @@
 
 namespace JustDeclare.Main.ValidationChecks
 {
-    internal class DateEqual : ValidationCheck<DateTime>
+    internal class DateEqual : ValidationCheck<DateTime?>
     {
-        public DateEqual(DateTime value, DateTime target)
+        public DateEqual(DateTime? value, DateTime target)
             : base(value)
         {
             _target = target;

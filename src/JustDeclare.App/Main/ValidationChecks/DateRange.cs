@@ -2,9 +2,9 @@
 
 namespace JustDeclare.Main.ValidationChecks
 {
-    internal class DateRange : ValidationCheck<DateTime>
+    internal class DateRange : ValidationCheck<DateTime?>
     {
-        public DateRange(DateTime value, DateTime rangeStart, DateTime rangeEnd) 
+        public DateRange(DateTime? value, DateTime rangeStart, DateTime rangeEnd) 
             : base(value)
         {
             _rangeStart = rangeStart;

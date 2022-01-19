@@ -3,9 +3,9 @@ using System;
 
 namespace JustDeclare.Main.ValidationChecks
 {
-    internal class DateMonthRange : ValidationCheck<DateTime>
+    internal class DateMonthRange : ValidationCheck<DateTime?>
     {
-        public DateMonthRange(DateTime value, MonthOfYear rangeStart, MonthOfYear rangeEnd)
+        public DateMonthRange(DateTime? value, MonthOfYear rangeStart, MonthOfYear rangeEnd)
             : base(value)
         {
             _rangeStart = rangeStart;

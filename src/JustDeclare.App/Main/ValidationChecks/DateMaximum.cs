@@ -2,9 +2,9 @@
 
 namespace JustDeclare.Main.ValidationChecks
 {
-    internal class DateMaximum : ValidationCheck<DateTime>
+    internal class DateMaximum : ValidationCheck<DateTime?>
     {
-        public DateMaximum(DateTime value, DateTime maxDate) 
+        public DateMaximum(DateTime? value, DateTime maxDate) 
             : base(value)
         {
             _maxDate = maxDate;

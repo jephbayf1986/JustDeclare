@@ -2,9 +2,9 @@
 
 namespace JustDeclare.Main.ValidationChecks
 {
-    internal class DateYear : ValidationCheck<DateTime>
+    internal class DateYear : ValidationCheck<DateTime?>
     {
-        public DateYear(DateTime value, int year) 
+        public DateYear(DateTime? value, int year) 
             : base(value)
         {
             _year = year;

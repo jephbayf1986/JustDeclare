@@ -2,9 +2,9 @@
 
 namespace JustDeclare.Main.ValidationChecks
 {
-    internal class DateMinimum : ValidationCheck<DateTime>
+    internal class DateMinimum : ValidationCheck<DateTime?>
     {
-        public DateMinimum(DateTime value, DateTime minDate)
+        public DateMinimum(DateTime? value, DateTime minDate)
             : base(value)
         {
             _minDate = minDate;

@@ -3,9 +3,9 @@ using System;
 
 namespace JustDeclare.Main.ValidationChecks
 {
-    internal class DateMonth : ValidationCheck<DateTime>
+    internal class DateMonth : ValidationCheck<DateTime?>
     {
-        public DateMonth(DateTime value, MonthOfYear month)
+        public DateMonth(DateTime? value, MonthOfYear month)
             : base(value)
         {
             _month = month;

@@ -2,9 +2,9 @@
 
 namespace JustDeclare.Main.ValidationChecks
 {
-    internal class DateWeekDay : ValidationCheck<DateTime>
+    internal class DateWeekDay : ValidationCheck<DateTime?>
     {
-        public DateWeekDay(DateTime value) 
+        public DateWeekDay(DateTime? value) 
             : base(value)
         {
         }

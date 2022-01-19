@@ -3,7 +3,7 @@
 namespace JustDeclare.Main.ValidationChecks
 {
     internal class NumericMaximum<TValue> : ValidationCheck<TValue?>
-        where TValue : struct, IComparable
+        where TValue : struct, IComparable, IFormattable
     {
         public NumericMaximum(TValue? value, IComparable maxValue)
             : base(value)

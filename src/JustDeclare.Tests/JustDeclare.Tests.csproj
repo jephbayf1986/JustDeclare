@@ -25,4 +25,8 @@
     <ProjectReference Include="..\JustDeclare.App\JustDeclare.App.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="IsolatedRuleTests\StringBased\" />
+  </ItemGroup>
+
 </Project>

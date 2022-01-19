@@ -3,7 +3,7 @@
 namespace JustDeclare.Main.ValidationChecks
 {
     internal class NumericMinimum<TValue> : ValidationCheck<TValue?>
-        where TValue : struct, IComparable
+        where TValue : struct, IComparable, IFormattable
     {
         public NumericMinimum(TValue? value, IComparable minValue)
             : base(value)

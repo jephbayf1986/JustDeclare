@@ -9,5 +9,16 @@ namespace JustDeclare.Main.ValidationChecks
         protected string Should => Invert ? "should not" : "should";
 
         protected string ShouldBeNull => Invert ? "is required" : "should be null";
+
+        protected string ValueProvidedDisplay 
+        { 
+            get
+            {
+                if (ValueProvided == null)
+                    return "null";
+
+                return ValueProvided.ToString();
+            } 
+        }
     }
 }

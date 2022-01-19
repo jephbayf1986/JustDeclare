@@ -5,20 +5,23 @@ namespace JustDeclare.Main.ValidationChecks
     internal class NumericEqual<TValue> : ValidationCheck<TValue?>
         where TValue : struct, IComparable
     {
-        public NumericEqual(TValue? value, IComparable maxValue)
+        public NumericEqual(TValue? value, IComparable target)
             : base(value)
         {
-            _maxValue = maxValue;
+            _target = target;
         }
 
-        private readonly IComparable _maxValue;
+        private readonly IComparable _target;
 
         protected override string DefaultRuleBreakDescription
-            => throw new NotImplementedException();
+            => $"The Value provided for {PropertyName} was {ValueProvidedDisplay}, but {Should} be equal to {_target}";
 
         protected override bool GetTestResult()
         {
-            throw new NotImplementedException();
+            if (!ValueProvided.HasValue)
+                return false;
+
+            return _target.CompareTo(ValueProvided.Value) == 0;
         }
     }
 }

@@ -20,19 +20,19 @@ namespace JustDeclare
         }
 
         public static ValidationCheck MustBeZero<T>(this NotNullCondition<T?> conditional)
-            where T : struct, IComparable
+            where T : struct, IComparable, IFormattable
         {
             return conditional.CreateValidationCheck(x => new NumericEqual<T>(x, 0));
         }
 
         public static ValidationCheck MustBeNoMoreThan<T>(this NotNullCondition<T?> conditional, IComparable maximum)
-            where T : struct, IComparable
+            where T : struct, IComparable, IFormattable
         {
             return conditional.CreateValidationCheck(x => new NumericMaximum<T>(x, maximum));
         }
 
         public static ValidationCheck MustBeNoLessThan<T>(this NotNullCondition<T?> conditional, IComparable minimum)
-            where T : struct, IComparable
+            where T : struct, IComparable, IFormattable
         {
             return conditional.CreateValidationCheck(x => new NumericMinimum<T>(x, minimum));
         }

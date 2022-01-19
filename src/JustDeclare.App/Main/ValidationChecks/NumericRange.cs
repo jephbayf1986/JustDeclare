@@ -3,9 +3,9 @@
 namespace JustDeclare.Main.ValidationChecks
 {
     internal class NumericRange<TValue> : ValidationCheck<TValue?>
-        where TValue : struct, IComparable
+        where TValue : struct, IComparable, IFormattable
     {
-        public NumericRange(TValue value, IComparable rangeStart, IComparable rangeEnd) 
+        public NumericRange(TValue? value, IComparable rangeStart, IComparable rangeEnd) 
             : base(value)
         {
             _rangeStart = rangeStart;

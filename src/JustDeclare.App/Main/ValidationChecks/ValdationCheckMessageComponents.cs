@@ -10,6 +10,10 @@ namespace JustDeclare.Main.ValidationChecks
 
         protected string ShouldBeNull => Invert ? "is required" : "should be null";
 
+        protected string GreaterThanOrEqualTo => Invert ? "less than" : "greater than or equal to";
+
+        protected string LessThanOrEqualTo => Invert ? "greater than" : "less than or equal to";
+        
         protected string ValueProvidedDisplay 
         { 
             get

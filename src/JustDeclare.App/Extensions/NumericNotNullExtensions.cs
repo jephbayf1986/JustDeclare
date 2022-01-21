@@ -19,13 +19,13 @@ namespace JustDeclare
         }
 
         public static ValidationCheck MustBeZero<T>(this NotNullCondition<T?> conditional)
-            where T : struct, IComparable, IFormattable
+            where T : struct, IComparable, IConvertible, IFormattable
         {
             return conditional.CreateValidationCheck(MustBeZero);
         }
 
         public static ValidationCheck MustNotBeZero<T>(this NotNullCondition<T?> conditional)
-            where T : struct, IComparable, IFormattable
+            where T : struct, IComparable, IConvertible, IFormattable
         {
             return conditional.CreateValidationCheck(MustNotBeZero);
         }

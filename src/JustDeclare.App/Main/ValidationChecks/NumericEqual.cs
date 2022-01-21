@@ -5,7 +5,7 @@ namespace JustDeclare.Main.ValidationChecks
     internal class NumericEqual<TValue> : ValidationCheck<TValue?>
         where TValue : struct, IComparable
     {
-        public NumericEqual(TValue? value, IComparable target)
+        public NumericEqual(TValue? value, TValue target)
             : base(value)
         {
             _target = target;

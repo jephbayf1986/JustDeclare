@@ -20,13 +20,13 @@ namespace JustDeclare
         }
 
         public static ValidationCheck MustBeZero<T>(this T? value)
-            where T : struct, IComparable, IFormattable
+            where T : struct, IComparable, IConvertible, IFormattable
         {
-            return new NumericEqual<T>(value, 0);
+            return new NumericZero<T>(value);
         }
 
         public static ValidationCheck MustNotBeZero<T>(this T? value)
-            where T : struct, IComparable, IFormattable
+            where T : struct, IComparable, IConvertible, IFormattable
         {
             return value.MustBeZero()
                         .Inverted();

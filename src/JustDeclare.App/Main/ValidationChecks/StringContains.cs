@@ -1,19 +1,21 @@
-﻿using System;
+﻿using JustDeclare.Main.Helpers;
+using JustDeclare.Models.Enums;
+using System;
 using System.Text;
 
 namespace JustDeclare.Main.ValidationChecks
 {
     internal class StringContains : ValidationCheck<string>
     {
-        public StringContains(string value, string targetValue, StringComparison stringComparison = StringComparison.CurrentCultureIgnoreCase)
+        public StringContains(string value, string targetValue, MatchCase caseSensitivity = MatchCase.Sensitive)
             : base(value)
         {
             _targetValue = targetValue;
-            _stringComparison = stringComparison;
+            _caseSensitivity = caseSensitivity;
         }
 
         private readonly string _targetValue;
-        private readonly StringComparison _stringComparison;
+        private readonly MatchCase _caseSensitivity;
 
         protected override string DefaultRuleBreakDescription
             => GetRuleBreakMessage();
@@ -40,7 +42,7 @@ namespace JustDeclare.Main.ValidationChecks
             if (ValueProvided == null)
                 return false;
 
-            return ValueProvided.IndexOf(_targetValue, _stringComparison) >= 0;
+            return ValueProvided.IndexOf(_targetValue, _caseSensitivity.ToStringComparison()) >= 0;
         }
     }
 }

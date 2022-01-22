@@ -8,9 +8,9 @@
         }
 
         protected override string DefaultRuleBreakDescription
-            => $"No blank value was provided for {PropertyName}, which is a required field.";
+            => $"A value of {ValueProvidedDisplay} was provided for {PropertyName}, which {ShouldBeBlank}.";
 
         protected override bool GetTestResult()
-            => !string.IsNullOrWhiteSpace(ValueProvided);
+            => string.IsNullOrWhiteSpace(ValueProvided);
     }
 }

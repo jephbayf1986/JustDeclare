@@ -5,6 +5,16 @@ namespace JustDeclare
 {
     public static partial class JustDeclareExtensions
     {
+        public static ValidationCheck MustBeTrue(this bool value)
+        {
+            return new BoolEqual(value, true);
+        }
+
+        public static ValidationCheck MustBeFalse(this bool value)
+        {
+            return new BoolEqual(value, false);
+        }
+
         public static ValidationCheck MustBeTrue(this bool? value)
         {
             return new BoolEqual(value, true);

@@ -12,11 +12,10 @@ namespace JustDeclare.Main.ValidationChecks
 
         private readonly bool _targetValue;
 
-        protected override string DefaultRuleBreakDescription => throw new NotImplementedException();
+        protected override string DefaultRuleBreakDescription
+            => $"The Value provided for {PropertyName} {Should} be {_targetValue} but {(ValueProvided == null ? "was null" : "wasn't")}.";
 
         protected override bool GetTestResult()
-        {
-            throw new NotImplementedException();
-        }
+            => _targetValue == ValueProvided;
     }
 }

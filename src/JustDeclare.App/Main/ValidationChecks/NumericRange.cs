@@ -16,11 +16,17 @@ namespace JustDeclare.Main.ValidationChecks
         private readonly IComparable _rangeEnd;
 
         protected override string DefaultRuleBreakDescription 
-            => throw new NotImplementedException();
+            => $"A value of {ValueProvidedDisplay} was provided for {PropertyName}, but this {Should} fall within the range of between {_rangeStart} and {_rangeEnd}.";
 
         protected override bool GetTestResult()
         {
-            throw new NotImplementedException();
+            if (!ValueProvided.HasValue)
+                return false;
+
+            if (_rangeEnd.CompareTo(ValueProvided.Value) <= 0)
+                return false;
+
+            return _rangeStart.CompareTo(ValueProvided.Value) <= 0;
         }
     }
 }

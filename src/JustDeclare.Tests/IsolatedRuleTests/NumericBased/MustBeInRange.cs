@@ -4,22 +4,23 @@ using Xunit;
 
 namespace JustDeclare.Tests.IsolatedRuleTests.NumericBased
 {
-    public class MustBeGreaterThanOrEqualTo : NumericTestClass
+    public class MustBeInRange : NumericTestClass
     {
         private const int MINIMUM = 10;
+        private const int MAXIMUM = 20;
 
         private class TestClassValidationRules : ValidationRules<TestClass>
         {
             public TestClassValidationRules()
             {
                 DeclareRules(
-                        x => x.TestInteger.MustBeGreaterThanOrEqualTo(MINIMUM),
-                        x => x.TestUint.MustBeGreaterThanOrEqualTo((uint)MINIMUM),
-                        x => x.TestLong.MustBeGreaterThanOrEqualTo(MINIMUM),
-                        x => x.TestShort.MustBeGreaterThanOrEqualTo((short)MINIMUM),
-                        x => x.TestByte.MustBeGreaterThanOrEqualTo((byte)MINIMUM),
-                        X => X.TestDouble.MustBeGreaterThanOrEqualTo(MINIMUM),
-                        X => X.TestDecimal.MustBeGreaterThanOrEqualTo(MINIMUM)
+                        x => x.TestInteger.MustBeInRange(MINIMUM, MAXIMUM),
+                        x => x.TestUint.MustBeInRange((uint)MINIMUM, (uint)MAXIMUM),
+                        x => x.TestLong.MustBeInRange(MINIMUM, MAXIMUM),
+                        x => x.TestShort.MustBeInRange((short)MINIMUM, (short)MAXIMUM),
+                        x => x.TestByte.MustBeInRange((byte)MINIMUM, (byte)MAXIMUM),
+                        X => X.TestDouble.MustBeInRange(MINIMUM, MAXIMUM),
+                        X => X.TestDecimal.MustBeInRange(MINIMUM, MAXIMUM)
                     );
             }
         }
@@ -53,7 +54,7 @@ namespace JustDeclare.Tests.IsolatedRuleTests.NumericBased
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
                                               x => x.FailureSummary().ShouldContain(nameof(request.TestInteger), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("greater than or equal to", Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("fall within", Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain("null", Case.Insensitive));
         }
 
@@ -73,7 +74,27 @@ namespace JustDeclare.Tests.IsolatedRuleTests.NumericBased
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
                                               x => x.FailureSummary().ShouldContain(nameof(request.TestInteger), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("greater than or equal to", Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("fall within", Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(actualValue.ToString()));
+        }
+
+        [Fact]
+        public void GivenAboveRules_WhenIntValueGreaterThanMaximum_FailTestWithPropertyInMessage()
+        {
+            // Arrange
+            var request = GetTestClass();
+            var actualValue = RandomHelpers.IntBetween(MAXIMUM + 1, int.MaxValue);
+            request.TestInteger = actualValue;
+
+            var validator = new TestClassValidationRules();
+
+            // Act
+            var result = validator.Validate(request);
+
+            // Assert
+            result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestInteger), Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("fall within", Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain(actualValue.ToString()));
         }
 
@@ -92,7 +113,7 @@ namespace JustDeclare.Tests.IsolatedRuleTests.NumericBased
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
                                               x => x.FailureSummary().ShouldContain(nameof(request.TestUint), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("greater than or equal to", Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("fall within", Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain("null", Case.Insensitive));
         }
 
@@ -112,7 +133,28 @@ namespace JustDeclare.Tests.IsolatedRuleTests.NumericBased
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
                                               x => x.FailureSummary().ShouldContain(nameof(request.TestUint), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("greater than or equal to", Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("fall within", Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(actualValue.ToString()));
+        }
+
+
+        [Fact]
+        public void GivenAboveRules_WhenUintValueGreaterThanMaximum_FailTestWithPropertyInMessage()
+        {
+            // Arrange
+            var request = GetTestClass();
+            var actualValue = (uint)RandomHelpers.IntBetween(MAXIMUM + 1, int.MaxValue);
+            request.TestUint = actualValue;
+
+            var validator = new TestClassValidationRules();
+
+            // Act
+            var result = validator.Validate(request);
+
+            // Assert
+            result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestUint), Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("fall within", Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain(actualValue.ToString()));
         }
 
@@ -131,7 +173,7 @@ namespace JustDeclare.Tests.IsolatedRuleTests.NumericBased
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
                                               x => x.FailureSummary().ShouldContain(nameof(request.TestLong), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("greater than or equal to", Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("fall within", Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain("null", Case.Insensitive));
         }
 
@@ -151,7 +193,27 @@ namespace JustDeclare.Tests.IsolatedRuleTests.NumericBased
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
                                               x => x.FailureSummary().ShouldContain(nameof(request.TestLong), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("greater than or equal to", Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("fall within", Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(actualValue.ToString()));
+        }
+
+        [Fact]
+        public void GivenAboveRules_WhenLongValueGreaterThanMaximum_FailTestWithPropertyInMessage()
+        {
+            // Arrange
+            var request = GetTestClass();
+            var actualValue = RandomHelpers.IntBetween(MAXIMUM + 1, int.MaxValue);
+            request.TestLong = actualValue;
+
+            var validator = new TestClassValidationRules();
+
+            // Act
+            var result = validator.Validate(request);
+
+            // Assert
+            result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestLong), Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("fall within", Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain(actualValue.ToString()));
         }
 
@@ -170,7 +232,7 @@ namespace JustDeclare.Tests.IsolatedRuleTests.NumericBased
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
                                               x => x.FailureSummary().ShouldContain(nameof(request.TestShort), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("greater than or equal to", Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("fall within", Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain("null", Case.Insensitive));
         }
 
@@ -190,7 +252,27 @@ namespace JustDeclare.Tests.IsolatedRuleTests.NumericBased
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
                                               x => x.FailureSummary().ShouldContain(nameof(request.TestShort), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("greater than or equal to", Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("fall within", Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(actualValue.ToString()));
+        }
+
+        [Fact]
+        public void GivenAboveRules_WhenShortValueGreaterThanMaximum_FailTestWithPropertyInMessage()
+        {
+            // Arrange
+            var request = GetTestClass();
+            short actualValue = (short)RandomHelpers.IntBetween(MAXIMUM + 1, short.MaxValue);
+            request.TestShort = actualValue;
+
+            var validator = new TestClassValidationRules();
+
+            // Act
+            var result = validator.Validate(request);
+
+            // Assert
+            result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestShort), Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("fall within", Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain(actualValue.ToString()));
         }
 
@@ -209,7 +291,7 @@ namespace JustDeclare.Tests.IsolatedRuleTests.NumericBased
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
                                               x => x.FailureSummary().ShouldContain(nameof(request.TestByte), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("greater than or equal to", Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("fall within", Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain("null", Case.Insensitive));
         }
 
@@ -229,7 +311,27 @@ namespace JustDeclare.Tests.IsolatedRuleTests.NumericBased
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
                                               x => x.FailureSummary().ShouldContain(nameof(request.TestByte), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("greater than or equal to", Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("fall within", Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(actualValue.ToString()));
+        }
+
+        [Fact]
+        public void GivenAboveRules_WhenByteValueGreaterThanMaximum_FailTestWithPropertyInMessage()
+        {
+            // Arrange
+            var request = GetTestClass();
+            byte actualValue = (byte)RandomHelpers.IntBetween(MAXIMUM + 1, byte.MaxValue);
+            request.TestByte = actualValue;
+
+            var validator = new TestClassValidationRules();
+
+            // Act
+            var result = validator.Validate(request);
+
+            // Assert
+            result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestByte), Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("fall within", Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain(actualValue.ToString()));
         }
 
@@ -248,7 +350,7 @@ namespace JustDeclare.Tests.IsolatedRuleTests.NumericBased
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
                                               x => x.FailureSummary().ShouldContain(nameof(request.TestDouble), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("greater than or equal to", Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("fall within", Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain("null", Case.Insensitive));
         }
 
@@ -268,7 +370,27 @@ namespace JustDeclare.Tests.IsolatedRuleTests.NumericBased
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
                                               x => x.FailureSummary().ShouldContain(nameof(request.TestDouble), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("greater than or equal to", Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("fall within", Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(actualValue.ToString()));
+        }
+
+        [Fact]
+        public void GivenAboveRules_WhenDoubleValueGreaterThanMaximum_FailTestWithPropertyInMessage()
+        {
+            // Arrange
+            var request = GetTestClass();
+            var actualValue = RandomHelpers.IntBetween(MAXIMUM + 1, int.MaxValue);
+            request.TestDouble = actualValue;
+
+            var validator = new TestClassValidationRules();
+
+            // Act
+            var result = validator.Validate(request);
+
+            // Assert
+            result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestDouble), Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("fall within", Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain(actualValue.ToString()));
         }
 
@@ -287,7 +409,7 @@ namespace JustDeclare.Tests.IsolatedRuleTests.NumericBased
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
                                               x => x.FailureSummary().ShouldContain(nameof(request.TestDecimal), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("greater than or equal to", Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("fall within", Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain("null", Case.Insensitive));
         }
 
@@ -307,7 +429,27 @@ namespace JustDeclare.Tests.IsolatedRuleTests.NumericBased
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
                                               x => x.FailureSummary().ShouldContain(nameof(request.TestDecimal), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("greater than or equal to", Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("fall within", Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(actualValue.ToString()));
+        }
+
+        [Fact]
+        public void GivenAboveRules_WhenDecimalValueGreaterThanMaximum_FailTestWithPropertyInMessage()
+        {
+            // Arrange
+            var request = GetTestClass();
+            var actualValue = RandomHelpers.IntBetween(MAXIMUM + 1, int.MaxValue);
+            request.TestDecimal = actualValue;
+
+            var validator = new TestClassValidationRules();
+
+            // Act
+            var result = validator.Validate(request);
+
+            // Assert
+            result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestDecimal), Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("fall within", Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain(actualValue.ToString()));
         }
 
@@ -315,13 +457,13 @@ namespace JustDeclare.Tests.IsolatedRuleTests.NumericBased
         {
             return new TestClass()
             {
-                TestInteger = RandomHelpers.IntBetween(MINIMUM, int.MaxValue),
-                TestUint = (uint)RandomHelpers.IntBetween(MINIMUM, int.MaxValue),
-                TestLong = RandomHelpers.IntBetween(MINIMUM, int.MaxValue),
-                TestShort = (short)RandomHelpers.IntBetween(MINIMUM, short.MaxValue),
-                TestByte = (byte)RandomHelpers.IntBetween(MINIMUM, byte.MaxValue),
-                TestDouble = RandomHelpers.IntBetween(MINIMUM, int.MaxValue),
-                TestDecimal = RandomHelpers.IntBetween(MINIMUM, int.MaxValue)
+                TestInteger = RandomHelpers.IntBetween(MINIMUM, MAXIMUM),
+                TestUint = (uint)RandomHelpers.IntBetween(MINIMUM, MAXIMUM),
+                TestLong = RandomHelpers.IntBetween(MINIMUM, MAXIMUM),
+                TestShort = (short)RandomHelpers.IntBetween(MINIMUM, MAXIMUM),
+                TestByte = (byte)RandomHelpers.IntBetween(MINIMUM, MAXIMUM),
+                TestDouble = RandomHelpers.IntBetween(MINIMUM, MAXIMUM),
+                TestDecimal = RandomHelpers.IntBetween(MINIMUM, MAXIMUM)
             };
         }
     }

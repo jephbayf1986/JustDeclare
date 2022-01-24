@@ -1,6 +1,5 @@
 ﻿using JustDeclare.Models;
 using JustDeclare.Models.Enums;
-using System;
 
 namespace JustDeclare.Main.ValidationChecks
 {
@@ -29,6 +28,11 @@ namespace JustDeclare.Main.ValidationChecks
                 {
                     if (ValueProvided as string == string.Empty)
                         return "blank";
+
+                    if ((ValueProvided as string).Length > 10)
+                        return $"'{ValueProvided.ToString().Substring(0, 10)}...'";
+
+                    return $"'{ValueProvided}'";
                 }
 
                 return ValueProvided.ToString();

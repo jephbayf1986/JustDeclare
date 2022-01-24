@@ -5,7 +5,7 @@ using Xunit;
 
 namespace JustDeclare.Tests.IsolatedRuleTests.StringBased
 {
-    public class MustBe : StringTestClass
+    public class MustContain : StringTestClass
     {
         private const string TARGET = "FOOBAR";
 
@@ -14,14 +14,14 @@ namespace JustDeclare.Tests.IsolatedRuleTests.StringBased
             public TestClassValidationRules()
             {
                 DeclareRules(
-                        x => x.TestNullable.MustBe(TARGET),
-                        x => x.TestNonNullable.MustBe(TARGET, MatchCase.Insensitve)
+                        x => x.TestNullable.MustContain(TARGET),
+                        x => x.TestNonNullable.MustContain(TARGET, MatchCase.Insensitve)
                     );
             }
         }
 
         [Fact]
-        public void GivenAboveRules_WhenAllValuesAtTarget_PassTest()
+        public void GivenAboveRules_WhenAllValuesContainTarget_PassTest()
         {
             // Arrange
             var request = GetTestClass();
@@ -49,12 +49,13 @@ namespace JustDeclare.Tests.IsolatedRuleTests.StringBased
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
                                               x => x.FailureSummary().ShouldContain(nameof(request.TestNullable), Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("should contain", Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain(TARGET, Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain("null", Case.Insensitive));
         }
 
         [Fact]
-        public void GivenAboveRules_WhenAnyStringIsNotTarget_FailTestWithPropertyInMessage()
+        public void GivenAboveRules_WhenAnyStringDoesNotContainTarget_FailTestWithPropertyInMessage()
         {
             // Arrange
             var request = GetTestClass();
@@ -68,16 +69,17 @@ namespace JustDeclare.Tests.IsolatedRuleTests.StringBased
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
                                               x => x.FailureSummary().ShouldContain(nameof(request.TestNullable), Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("should contain", Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain(request.TestNullable.Substring(0, 10), Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain(TARGET, Case.Insensitive));
         }
 
         [Fact]
-        public void GivenCaseComparisonNotDeclared_WhenStringIsTargetButWrongCase_FailTestWithPropertyInMessage()
+        public void GivenCaseComparisonNotDeclared_WhenStringContainsTargetButWrongCase_FailTestWithPropertyInMessage()
         {
             // Arrange
             var request = GetTestClass();
-            request.TestNullable = TARGET.ToLower();
+            request.TestNullable = TARGET.ToLower() + RandomHelpers.RandomString();
 
             var validator = new TestClassValidationRules();
 
@@ -87,16 +89,17 @@ namespace JustDeclare.Tests.IsolatedRuleTests.StringBased
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
                                               x => x.FailureSummary().ShouldContain(nameof(request.TestNullable), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain(request.TestNullable, Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("should contain", Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(request.TestNullable.Substring(0, 10), Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain(TARGET, Case.Insensitive));
         }
 
         [Fact]
-        public void GivenCaseIgnoreSpecified_WhenStringIsTargetButWrongCase_PassTest()
+        public void GivenCaseIgnoreSpecified_WhenStringContainsTargetButWrongCase_PassTest()
         {
             // Arrange
             var request = GetTestClass();
-            request.TestNonNullable = TARGET.ToLower();
+            request.TestNonNullable = TARGET.ToLower() + RandomHelpers.RandomString();
 
             var validator = new TestClassValidationRules();
 
@@ -111,8 +114,8 @@ namespace JustDeclare.Tests.IsolatedRuleTests.StringBased
         {
             return new TestClass()
             {
-                TestNullable = TARGET,
-                TestNonNullable = TARGET
+                TestNullable = TARGET + RandomHelpers.RandomString(),
+                TestNonNullable = RandomHelpers.RandomString() + TARGET
             };
         }
     }

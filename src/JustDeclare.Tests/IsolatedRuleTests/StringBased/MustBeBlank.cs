@@ -45,7 +45,7 @@ namespace JustDeclare.Tests.IsolatedRuleTests.StringBased
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
                                               x => x.FailureSummary().ShouldContain(nameof(request.TestNullable), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain(request.TestNullable, Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(request.TestNullable.Substring(0, 10), Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain("blank", Case.Insensitive));
         }
 

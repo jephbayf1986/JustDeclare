@@ -16,7 +16,7 @@ namespace JustDeclare.Main.ValidationChecks
         private readonly MatchCase _caseSensitivity;
 
         protected override string DefaultRuleBreakDescription
-            => $"The Value provided for {PropertyName} was '{ValueProvidedDisplay}', but {Should} be '{_targetValue}' {OrWithSensitivity(_caseSensitivity)}.";
+            => $"The Value provided for {PropertyName} was {ValueProvidedDisplay}, but {Should} be '{_targetValue}'{OrWithSensitivity(_caseSensitivity)}.";
 
         protected override bool GetTestResult()
             => _targetValue.Equals(ValueProvided, _caseSensitivity.ToStringComparison());

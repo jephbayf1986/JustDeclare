@@ -1,7 +1,5 @@
 ﻿using JustDeclare.Main.Helpers;
 using JustDeclare.Models.Enums;
-using System;
-using System.Text;
 
 namespace JustDeclare.Main.ValidationChecks
 {
@@ -21,21 +19,7 @@ namespace JustDeclare.Main.ValidationChecks
             => GetRuleBreakMessage();
 
         private string GetRuleBreakMessage()
-        {
-            var messageBuilder = new StringBuilder("A value of '");
-
-            if (ValueProvided.Length > 10)
-                messageBuilder.Append($"{ValueProvided.Substring(0, 10)}...");
-            else
-                messageBuilder.Append(ValueProvided);
-
-            messageBuilder.Append($"' was provided for {PropertyName}, which ");
-            messageBuilder.Append(Invert ? "should" : "should not");
-            messageBuilder.Append($"contain the text '{_targetValue}' but ");
-            messageBuilder.Append(Invert ? "does not" : "does");
-
-            return messageBuilder.ToString();
-        }
+            => $"The Value provided for {PropertyName} was {ValueProvidedDisplay}, but this {Should} contain the text '{_targetValue}'{OrWithSensitivity(_caseSensitivity)}.";
 
         protected override bool GetTestResult()
         {

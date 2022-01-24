@@ -1,5 +1,5 @@
-﻿using JustDeclare.Models.Enums;
-using System;
+﻿using JustDeclare.Main.Helpers;
+using JustDeclare.Models.Enums;
 
 namespace JustDeclare.Main.ValidationChecks
 {
@@ -15,11 +15,15 @@ namespace JustDeclare.Main.ValidationChecks
         private readonly string _targetValue;
         private readonly MatchCase _caseSensitivity;
 
-        protected override string DefaultRuleBreakDescription => throw new NotImplementedException();
+        protected override string DefaultRuleBreakDescription
+            => $"The Value provided for {PropertyName} was {ValueProvidedDisplay}, but this {Should} end with the text '{_targetValue}'{OrWithSensitivity(_caseSensitivity)}.";
 
         protected override bool GetTestResult()
         {
-            throw new NotImplementedException();
+            if (ValueProvided == null)
+                return false;
+
+            return ValueProvided.EndsWith(_targetValue, _caseSensitivity.ToStringComparison());
         }
     }
 }

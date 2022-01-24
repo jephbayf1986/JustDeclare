@@ -125,12 +125,7 @@ namespace JustDeclare
                         .Inverted();
         }
 
-        public static ValidationCheck MustBeAnEmailAddress(this string value)
-        {
-            throw new NotImplementedException();
-        }
-
-        public static ValidationCheck MustBeAPhoneNumber(this string value)
+        private static ValidationCheck MustBeAnEmailAddress(this string value)
         {
             throw new NotImplementedException();
         }

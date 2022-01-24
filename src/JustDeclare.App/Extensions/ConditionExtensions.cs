@@ -29,7 +29,7 @@ namespace JustDeclare
             return currentConditions;
         }
 
-        public static ConditionChain<T> ExceptWhen<T>(this ConditionChain<T> currentConditions, Func<T, bool> condition)
+        private static ConditionChain<T> ExceptWhen<T>(this ConditionChain<T> currentConditions, Func<T, bool> condition)
         {
             throw new NotImplementedException();
         }

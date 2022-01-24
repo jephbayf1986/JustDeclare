@@ -14,14 +14,7 @@
             => GetRuleBreakMessage();
 
         private string GetRuleBreakMessage()
-        {
-            var length = ValueProvided.Length;
-
-            if (length < 11)
-                return $"A value of '{ValueProvided}' ({length} characters) was provided for {PropertyName}, but the longest allowed length is {_maxLength} characters.";
-
-            return $"A value of '{ValueProvided.Substring(0, 10)}...' ({length} characters) was provided for {PropertyName}, but the longest allowed length is {_maxLength} characters.";
-        }
+            => $"A value of {ValueProvidedDisplay}{NumberOfCharacters} was provided for {PropertyName}, but the longest allowed length is {_maxLength} characters.";
 
         protected override bool GetTestResult()
         {

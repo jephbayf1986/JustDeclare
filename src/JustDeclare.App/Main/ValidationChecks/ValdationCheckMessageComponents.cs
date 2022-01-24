@@ -38,6 +38,21 @@ namespace JustDeclare.Main.ValidationChecks
                 return ValueProvided.ToString();
             } 
         }
+        
+        protected string NumberOfCharacters
+        {
+            get
+            {
+                if (!(ValueProvided is string))
+                    return string.Empty;
+
+                if (ValueProvided == null)
+                    return string.Empty;
+
+                return $" ({ValueProvided.ToString().Length} characters)";
+            }
+        }
+            
 
         protected string OrWithSensitivity(MatchCase caseSensitivity)
             => caseSensitivity == MatchCase.Sensitive ? string.Empty : " or any case-insensitive match";

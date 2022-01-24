@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace JustDeclare.Tests.TestHelpers
 {
@@ -20,9 +21,19 @@ namespace JustDeclare.Tests.TestHelpers
             return DateTime.Now.AddDays((0 - daysInPast));
         }
 
-        public static string RandomString()
+        public static string RandomString(int? length = null)
         {
-            return Guid.NewGuid().ToString();
+            if (length == null)
+                return Guid.NewGuid().ToString();
+
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+            var random = new Random();
+
+            return new string(Enumerable.Repeat(chars, length.Value)
+                                        .Select(s => s[random.Next(s.Length)])
+                                        .ToArray());
+
         }
 
         public static string RandomConnectionString()

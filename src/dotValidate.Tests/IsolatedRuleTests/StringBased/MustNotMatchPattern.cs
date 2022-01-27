@@ -1,4 +1,7 @@
-﻿namespace dotValidate.Tests.IsolatedRuleTests.StringBased
+﻿using Shouldly;
+using Xunit;
+
+namespace dotValidate.Tests.IsolatedRuleTests.StringBased
 {
     public class MustNotMatchPattern : StringTestClass
     {
@@ -14,6 +17,56 @@
                         x => x.TestNonNullable.MustNotMatchPattern(EMAIL_PATTERN)
                     );
             }
+        }
+
+        [Fact]
+        public void GivenAboveRules_WhenNoValuesMatchTargetPatterns_PassTest()
+        {
+            // Arrange
+            var request = GetTestClass();
+            var validator = new TestClassValidationRules();
+
+            // Act
+            var result = validator.Validate(request);
+
+            // Assert
+            result.HasFailures.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void GivenAboveRules_WhenNullableStringIsNull_PassTest()
+        {
+            // Arrange
+            var request = GetTestClass();
+            request.TestNullable = null;
+
+            var validator = new TestClassValidationRules();
+
+            // Act
+            var result = validator.Validate(request);
+
+            // Assert
+            result.HasFailures.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void GivenAboveRules_WhenAnyStringMatchesPattern_FailTestWithPropertyInMessage()
+        {
+            // Arrange
+            var request = GetTestClass();
+            request.TestNullable = "4566";
+
+            var validator = new TestClassValidationRules();
+
+            // Act
+            var result = validator.Validate(request);
+
+            // Assert
+            result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestNullable), Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("should not match", Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(request.TestNullable, Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(NUMBERIC_PATTERM, Case.Insensitive));
         }
 
         private static TestClass GetTestClass()

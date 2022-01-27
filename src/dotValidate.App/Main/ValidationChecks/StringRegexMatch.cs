@@ -13,7 +13,7 @@ namespace dotValidate.Main.ValidationChecks
         private Regex _regex;
 
         protected override string DefaultRuleBreakDescription
-            => $"The value was provided for {PropertyName} did not match the expected text pattern";
+            => $"A value of {ValueProvidedDisplay} was provided for {PropertyName}, which {Should} match the following text pattern '{_regex.ToString()}'";
 
         protected override bool GetTestResult()
         {

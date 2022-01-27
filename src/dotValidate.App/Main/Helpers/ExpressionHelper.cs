@@ -1,12 +1,12 @@
-﻿using JustDeclare.Exceptions;
-using JustDeclare.Main.Models;
-using JustDeclare.Models;
+﻿using dotValidate.Exceptions;
+using dotValidate.Main.Models;
+using dotValidate.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace JustDeclare.Main.Helpers
+namespace dotValidate.Main.Helpers
 {
     internal static class ExpressionHelper
     {

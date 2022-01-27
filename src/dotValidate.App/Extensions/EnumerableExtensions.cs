@@ -1,10 +1,10 @@
-﻿using JustDeclare.Main.ValidationChecks;
-using JustDeclare.Models;
+﻿using dotValidate.Main.ValidationChecks;
+using dotValidate.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace JustDeclare
+namespace dotValidate
 {
     public static partial class JustDeclareExtensions
     {

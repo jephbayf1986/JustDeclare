@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace JustDeclare.Exceptions
+namespace dotValidate.Exceptions
 {
     public class ValidationSetupException : Exception
     {

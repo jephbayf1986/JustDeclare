@@ -1,6 +1,6 @@
-﻿using JustDeclare.Models;
+﻿using dotValidate.Models;
 
-namespace JustDeclare.Main.ValidationChecks
+namespace dotValidate.Main.ValidationChecks
 {
     internal abstract partial class ValidationCheck<T> : ValidationCheck
     {

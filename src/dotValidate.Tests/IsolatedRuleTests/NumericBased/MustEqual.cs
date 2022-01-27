@@ -1,7 +1,7 @@
 ﻿using Shouldly;
 using Xunit;
 
-namespace JustDeclare.Tests.IsolatedRuleTests.NumericBased
+namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
 {
     public class MustEqual : NumericTestClass
     {

@@ -1,11 +1,11 @@
-﻿using JustDeclare.Main.Helpers;
-using JustDeclare.Main.Models;
-using JustDeclare.Models;
+﻿using dotValidate.Main.Helpers;
+using dotValidate.Main.Models;
+using dotValidate.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace JustDeclare.Main.ValidationChecks
+namespace dotValidate.Main.ValidationChecks
 {
     internal class NestedRules<TSubEntity> : ValidationCheck<TSubEntity>
     {

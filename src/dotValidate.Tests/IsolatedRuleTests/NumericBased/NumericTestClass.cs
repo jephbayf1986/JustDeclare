@@ -1,4 +1,4 @@
-﻿namespace JustDeclare.Tests.IsolatedRuleTests.NumericBased
+﻿namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
 {
     public abstract class NumericTestClass
     {

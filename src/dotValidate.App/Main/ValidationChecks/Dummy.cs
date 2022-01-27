@@ -1,7 +1,7 @@
-﻿using JustDeclare.Models;
+﻿using dotValidate.Models;
 using System;
 
-namespace JustDeclare.Main.ValidationChecks
+namespace dotValidate.Main.ValidationChecks
 {
     internal class Dummy : ValidationCheck
     {

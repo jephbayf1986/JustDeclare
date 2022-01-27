@@ -1,8 +1,8 @@
-﻿using JustDeclare.Main.ValidationChecks;
-using JustDeclare.Models;
+﻿using dotValidate.Main.ValidationChecks;
+using dotValidate.Models;
 using System;
 
-namespace JustDeclare.Conditions
+namespace dotValidate.Conditions
 {
     public class NotNullCondition<TValue>
     {

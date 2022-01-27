@@ -1,9 +1,9 @@
-﻿using JustDeclare.Conditions;
-using JustDeclare.Models;
+﻿using dotValidate.Conditions;
+using dotValidate.Models;
 using System;
 using System.Linq.Expressions;
 
-namespace JustDeclare
+namespace dotValidate
 {
     public static partial class JustDeclareExtensions
     {

@@ -1,9 +1,9 @@
-﻿using JustDeclare.Tests.TestHelpers;
+﻿using dotValidate.Tests.TestHelpers;
 using Shouldly;
 using System;
 using Xunit;
 
-namespace JustDeclare.Tests.IsolatedRuleTests
+namespace dotValidate.Tests.IsolatedRuleTests
 {
     public class MustNotBeNull
     { 

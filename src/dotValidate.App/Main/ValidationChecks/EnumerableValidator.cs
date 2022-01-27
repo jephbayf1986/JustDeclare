@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace JustDeclare.Main.ValidationChecks
+namespace dotValidate.Main.ValidationChecks
 {
     internal class EnumerableValidator<TSubEntity> : ValidationCheck<IEnumerable<TSubEntity>>
     {

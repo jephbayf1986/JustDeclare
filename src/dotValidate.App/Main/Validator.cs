@@ -1,6 +1,6 @@
-﻿using JustDeclare.Models;
+﻿using dotValidate.Models;
 
-namespace JustDeclare.Main
+namespace dotValidate.Main
 {
     internal class Validator : IValidator
     {

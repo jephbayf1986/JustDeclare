@@ -1,7 +1,7 @@
-﻿using JustDeclare.Enums;
+﻿using dotValidate.Enums;
 using System;
 
-namespace JustDeclare.Main.ValidationChecks
+namespace dotValidate.Main.ValidationChecks
 {
     internal class DateMonth : ValidationCheck<DateTime?>
     {

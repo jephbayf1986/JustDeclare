@@ -1,7 +1,7 @@
-﻿using JustDeclare.Main.ValidationChecks;
-using JustDeclare.Models;
+﻿using dotValidate.Main.ValidationChecks;
+using dotValidate.Models;
 
-namespace JustDeclare
+namespace dotValidate
 {
     public static partial class JustDeclareExtensions
     {

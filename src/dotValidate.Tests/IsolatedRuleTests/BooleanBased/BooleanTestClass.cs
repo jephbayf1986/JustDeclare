@@ -1,4 +1,4 @@
-﻿namespace JustDeclare.Tests.IsolatedRuleTests.BooleanBased
+﻿namespace dotValidate.Tests.IsolatedRuleTests.BooleanBased
 {
     public abstract class BooleanTestClass
     {

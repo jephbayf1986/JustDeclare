@@ -1,7 +1,7 @@
-﻿using JustDeclare.Models.Enums;
+﻿using dotValidate.Models.Enums;
 using System;
 
-namespace JustDeclare.Main.Helpers
+namespace dotValidate.Main.Helpers
 {
     internal static class StringComparisonHelper
     {

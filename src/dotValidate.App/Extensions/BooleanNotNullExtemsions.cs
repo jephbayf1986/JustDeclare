@@ -1,7 +1,7 @@
-﻿using JustDeclare.Conditions;
-using JustDeclare.Models;
+﻿using dotValidate.Conditions;
+using dotValidate.Models;
 
-namespace JustDeclare
+namespace dotValidate
 {
     public static partial class JustDeclareExtensions
     {

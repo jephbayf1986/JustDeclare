@@ -1,6 +1,6 @@
-﻿using JustDeclare.Models;
+﻿using dotValidate.Models;
 
-namespace JustDeclare
+namespace dotValidate
 {
     public static class JustDeclareExentensionStep1
     {

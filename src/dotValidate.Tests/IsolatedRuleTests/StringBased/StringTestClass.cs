@@ -1,6 +1,6 @@
-﻿using JustDeclare.Tests.TestHelpers;
+﻿using dotValidate.Tests.TestHelpers;
 
-namespace JustDeclare.Tests.IsolatedRuleTests.StringBased
+namespace dotValidate.Tests.IsolatedRuleTests.StringBased
 {
     public abstract class StringTestClass
     {

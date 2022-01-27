@@ -1,4 +1,4 @@
-﻿namespace JustDeclare.Main.ValidationChecks
+﻿namespace dotValidate.Main.ValidationChecks
 {
     internal class StringMinimumLength : ValidationCheck<string>
     {

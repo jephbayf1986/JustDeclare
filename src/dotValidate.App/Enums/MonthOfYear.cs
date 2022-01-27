@@ -1,4 +1,4 @@
-﻿namespace JustDeclare.Enums
+﻿namespace dotValidate.Enums
 {
     public enum MonthOfYear
     {

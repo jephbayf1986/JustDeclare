@@ -1,6 +1,7 @@
-﻿using JustDeclare.Models;
+﻿using dotValidate;
+using dotValidate.Models;
 
-namespace JustDeclare
+namespace dotValidate
 {
     public interface IValidator
     {

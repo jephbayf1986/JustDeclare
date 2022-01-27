@@ -1,7 +1,7 @@
-﻿using JustDeclare.Models;
+﻿using dotValidate.Models;
 using System;
 
-namespace JustDeclare.Main.Models
+namespace dotValidate.Main.Models
 {
     internal class ValidationTestContainer<TInput>
     {

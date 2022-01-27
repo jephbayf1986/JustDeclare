@@ -1,4 +1,4 @@
-﻿namespace JustDeclare.Models
+﻿namespace dotValidate.Models
 {
     public class ValidationFailure
     {

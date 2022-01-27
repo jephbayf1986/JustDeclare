@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 
-namespace JustDeclare.Models
+namespace dotValidate.Models
 {
     public class ValidationResult
     {

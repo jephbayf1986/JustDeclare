@@ -1,7 +1,7 @@
-﻿using JustDeclare.Models;
-using JustDeclare.Models.Enums;
+﻿using dotValidate.Models;
+using dotValidate.Models.Enums;
 
-namespace JustDeclare.Main.ValidationChecks
+namespace dotValidate.Main.ValidationChecks
 {
     internal abstract partial class ValidationCheck<T> : ValidationCheck
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace JustDeclare.Main.Conditions
+namespace dotValidate.Main.Conditions
 {
     internal class ValidationCondition<T>
     {

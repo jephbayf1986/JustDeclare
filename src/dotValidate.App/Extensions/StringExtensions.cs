@@ -1,9 +1,9 @@
-﻿using JustDeclare.Main.ValidationChecks;
-using JustDeclare.Models;
-using JustDeclare.Models.Enums;
+﻿using dotValidate.Main.ValidationChecks;
+using dotValidate.Models;
+using dotValidate.Models.Enums;
 using System;
 
-namespace JustDeclare
+namespace dotValidate
 {
     public static partial class JustDeclareExtensions
     {

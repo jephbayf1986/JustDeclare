@@ -1,9 +1,9 @@
-﻿using JustDeclare.Models.Enums;
-using JustDeclare.Tests.TestHelpers;
+﻿using dotValidate.Models.Enums;
+using dotValidate.Tests.TestHelpers;
 using Shouldly;
 using Xunit;
 
-namespace JustDeclare.Tests.IsolatedRuleTests.StringBased
+namespace dotValidate.Tests.IsolatedRuleTests.StringBased
 {
     public class MustNotBe : StringTestClass
     {

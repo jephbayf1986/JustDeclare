@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace JustDeclare.Main.ValidationChecks
+namespace dotValidate.Main.ValidationChecks
 {
     internal class NumericEqual<TValue> : ValidationCheck<TValue?>
         where TValue : struct, IComparable

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace JustDeclare.Main.ValidationChecks
+namespace dotValidate.Main.ValidationChecks
 {
     internal class DateMaximum : ValidationCheck<DateTime?>
     {

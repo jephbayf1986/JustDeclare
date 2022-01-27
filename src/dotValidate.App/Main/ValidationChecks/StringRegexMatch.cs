@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace JustDeclare.Main.ValidationChecks
+namespace dotValidate.Main.ValidationChecks
 {
     internal class StringRegexMatch : ValidationCheck<string>
     {

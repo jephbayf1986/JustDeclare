@@ -1,7 +1,7 @@
-﻿using JustDeclare.Main.Conditions;
+﻿using dotValidate.Main.Conditions;
 using System.Collections.Generic;
 
-namespace JustDeclare.Conditions
+namespace dotValidate.Conditions
 {
     public class ConditionChain<TValue>
     {

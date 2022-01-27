@@ -1,8 +1,8 @@
-﻿using JustDeclare.Tests.TestHelpers;
+﻿using dotValidate.Tests.TestHelpers;
 using Shouldly;
 using Xunit;
 
-namespace JustDeclare.Tests.IsolatedRuleTests.NumericBased
+namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
 {
     public class MustBeGreaterThanOrEqualTo : NumericTestClass
     {

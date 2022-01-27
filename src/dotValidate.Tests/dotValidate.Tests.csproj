@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\JustDeclare.App\JustDeclare.App.csproj" />
+    <ProjectReference Include="..\dotValidate.App\dotValidate.App.csproj" />
   </ItemGroup>
 
 </Project>

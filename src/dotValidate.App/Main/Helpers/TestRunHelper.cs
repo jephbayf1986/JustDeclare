@@ -1,8 +1,8 @@
-﻿using JustDeclare.Main.Models;
-using JustDeclare.Models;
+﻿using dotValidate.Main.Models;
+using dotValidate.Models;
 using System.Collections.Generic;
 
-namespace JustDeclare.Main.Helpers
+namespace dotValidate.Main.Helpers
 {
     internal static class TestRunHelper
     {

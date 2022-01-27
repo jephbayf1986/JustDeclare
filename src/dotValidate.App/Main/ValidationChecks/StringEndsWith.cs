@@ -1,7 +1,7 @@
-﻿using JustDeclare.Main.Helpers;
-using JustDeclare.Models.Enums;
+﻿using dotValidate.Main.Helpers;
+using dotValidate.Models.Enums;
 
-namespace JustDeclare.Main.ValidationChecks
+namespace dotValidate.Main.ValidationChecks
 {
     internal class StringEndsWith : ValidationCheck<string>
     {

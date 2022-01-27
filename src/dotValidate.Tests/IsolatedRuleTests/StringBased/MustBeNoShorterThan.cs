@@ -1,8 +1,8 @@
-﻿using JustDeclare.Tests.TestHelpers;
+﻿using dotValidate.Tests.TestHelpers;
 using Shouldly;
 using Xunit;
 
-namespace JustDeclare.Tests.IsolatedRuleTests.StringBased
+namespace dotValidate.Tests.IsolatedRuleTests.StringBased
 {
     public class MustBeNoShorterThan : StringTestClass
     {

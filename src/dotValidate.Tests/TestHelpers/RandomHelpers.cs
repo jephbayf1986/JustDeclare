@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace JustDeclare.Tests.TestHelpers
+namespace dotValidate.Tests.TestHelpers
 {
     internal static class RandomHelpers
     {

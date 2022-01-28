@@ -3,7 +3,7 @@
 namespace dotValidate.Main.ValidationChecks
 {
     internal class NumericZero<TValue> : ValidationCheck<TValue?>
-        where TValue : struct, IComparable, IConvertible
+        where TValue : struct, IComparable, IConvertible, IFormattable
     {
         public NumericZero(TValue? value)
             : base(value)

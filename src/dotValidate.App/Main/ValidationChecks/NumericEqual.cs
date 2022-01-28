@@ -4,7 +4,7 @@ using System;
 namespace dotValidate.Main.ValidationChecks
 {
     internal class NumericEqual<TValue, TTarget> : ValidationCheck<TValue?>
-        where TValue : struct, IComparable
+        where TValue : struct, IComparable, IFormattable
         where TTarget : struct, IComparable, IConvertible, IFormattable
     {
         public NumericEqual(TValue? value, TTarget target)

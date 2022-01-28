@@ -32,50 +32,60 @@ namespace dotValidate
             return conditional.CreateValidationCheck(MustNotBeZero);
         }
 
-        public static ValidationCheck MustBeNoMoreThan<T>(this NotNullCondition<T?> conditional, T maximum)
+        public static ValidationCheck MustBeNoMoreThan<T, TMaximum>(this NotNullCondition<T?> conditional, TMaximum maximum)
             where T : struct, IComparable, IFormattable
+            where TMaximum : struct, IComparable, IConvertible, IFormattable
         {
             return conditional.CreateValidationCheck(x => x.MustBeNoMoreThan(maximum));
         }
 
-        public static ValidationCheck MustBeNoLessThan<T>(this NotNullCondition<T?> conditional, T minimum)
+        public static ValidationCheck MustBeNoLessThan<T, TMinimum>(this NotNullCondition<T?> conditional, TMinimum minimum)
             where T : struct, IComparable, IFormattable
+            where TMinimum : struct, IComparable, IConvertible, IFormattable
         {
             return conditional.CreateValidationCheck(x => x.MustBeNoLessThan(minimum));
         }
 
-        public static ValidationCheck MustBeGreaterThan<T>(this NotNullCondition<T?> conditional, T target)
+        public static ValidationCheck MustBeGreaterThan<T, TTarget>(this NotNullCondition<T?> conditional, TTarget target)
             where T : struct, IComparable, IFormattable
+            where TTarget : struct, IComparable, IConvertible, IFormattable
         {
             return conditional.CreateValidationCheck(x => x.MustBeGreaterThan(target));
         }
 
-        public static ValidationCheck MustBeLessThan<T>(this NotNullCondition<T?> conditional, T target)
+        public static ValidationCheck MustBeLessThan<T, TTarget>(this NotNullCondition<T?> conditional, TTarget target)
             where T : struct, IComparable, IFormattable
+            where TTarget : struct, IComparable, IConvertible, IFormattable
         {
             return conditional.CreateValidationCheck(x => x.MustBeLessThan(target));
         }
 
-        public static ValidationCheck MustBeGreaterThanOrEqualTo<T>(this NotNullCondition<T?> conditional, T minimum)
+        public static ValidationCheck MustBeGreaterThanOrEqualTo<T, TMinimum>(this NotNullCondition<T?> conditional, TMinimum minimum)
             where T : struct, IComparable, IFormattable
+            where TMinimum : struct, IComparable, IConvertible, IFormattable
         {
             return conditional.CreateValidationCheck(x => x.MustBeGreaterThanOrEqualTo(minimum));
         }
 
-        public static ValidationCheck MustBeLessThanOrEqualTo<T>(this NotNullCondition<T?> conditional, T maximum)
+        public static ValidationCheck MustBeLessThanOrEqualTo<T, TMaximum>(this NotNullCondition<T?> conditional, TMaximum maximum)
             where T : struct, IComparable, IFormattable
+            where TMaximum : struct, IComparable, IConvertible, IFormattable
         {
             return conditional.CreateValidationCheck(x => x.MustBeLessThanOrEqualTo(maximum));
         }
 
-        public static ValidationCheck MustBeInRange<T>(this NotNullCondition<T?> conditional, T rangeStart, T rangeEnd)
+        public static ValidationCheck MustBeInRange<T, TRangeStart, TRangeEnd>(this NotNullCondition<T?> conditional, TRangeStart rangeStart, TRangeEnd rangeEnd)
             where T : struct, IComparable, IFormattable
+            where TRangeStart : struct, IComparable, IConvertible, IFormattable
+            where TRangeEnd : struct, IComparable, IConvertible, IFormattable
         {
             return conditional.CreateValidationCheck(x => x.MustBeInRange(rangeStart, rangeEnd));
         }
 
-        public static ValidationCheck MustNotBeInRange<T>(this NotNullCondition<T?> conditional, T rangeStart, T rangeEnd)
+        public static ValidationCheck MustNotBeInRange<T, TRangeStart, TRangeEnd>(this NotNullCondition<T?> conditional, TRangeStart rangeStart, TRangeEnd rangeEnd)
             where T : struct, IComparable, IFormattable
+            where TRangeStart : struct, IComparable, IConvertible, IFormattable
+            where TRangeEnd : struct, IComparable, IConvertible, IFormattable
         {
             return conditional.CreateValidationCheck(x => x.MustNotBeInRange(rangeStart, rangeEnd));
         }

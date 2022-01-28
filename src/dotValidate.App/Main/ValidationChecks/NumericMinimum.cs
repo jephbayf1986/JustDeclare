@@ -1,17 +1,19 @@
-﻿using System;
+﻿using dotValidate.Main.Helpers;
+using System;
 
 namespace dotValidate.Main.ValidationChecks
 {
-    internal class NumericMinimum<TValue> : ValidationCheck<TValue?>
+    internal class NumericMinimum<TValue, TMinimum> : ValidationCheck<TValue?>
         where TValue : struct, IComparable, IFormattable
+        where TMinimum : struct, IComparable, IConvertible, IFormattable
     {
-        public NumericMinimum(TValue? value, IComparable minValue)
+        public NumericMinimum(TValue? value, TMinimum minValue)
             : base(value)
         {
             _minValue = minValue;
         }
 
-        private readonly IComparable _minValue;
+        private readonly TMinimum _minValue;
 
         protected override string DefaultRuleBreakDescription
             => $"A value of {ValueProvidedDisplay} was provided for {PropertyName}, but this should be {GreaterThanOrEqualTo} {_minValue}.";
@@ -21,7 +23,12 @@ namespace dotValidate.Main.ValidationChecks
             if (!ValueProvided.HasValue)
                 return false;
 
-            return _minValue.CompareTo(ValueProvided.Value) <= 0;
+            var compatible = _minValue.TryChangeType(out TValue minValue);
+
+            if (!compatible)
+                return false;
+
+            return minValue.CompareTo(ValueProvided.Value) <= 0;
         }
     }
 }

@@ -11,13 +11,16 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
             public TestClassValidationRules()
             {
                 DeclareRules(
+                        x => x.TestNonNullableInt.MustNotBeZero(),
                         x => x.TestNullableInt.MustNotBeZero(),
                         x => x.TestUint.MustNotBeZero(),
                         x => x.TestLong.MustNotBeZero(),
                         x => x.TestShort.MustNotBeZero(),
                         x => x.TestByte.MustNotBeZero(),
-                        X => X.TestNullableDouble.MustNotBeZero(),
-                        X => X.TestNullableDecimal.MustNotBeZero()
+                        x => x.TestNonNullableDouble.MustNotBeZero(),
+                        x => x.TestNullableDouble.MustNotBeZero(),
+                        x => x.TestNonNullableDecimal.MustNotBeZero(),
+                        x => x.TestNullableDecimal.MustNotBeZero()
                     );
             }
         }
@@ -41,6 +44,8 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
         {
             // Arrange
             var request = new TestClass();
+            request.TestNonNullableInt = 1;
+
             var validator = new TestClassValidationRules();
 
             // Act

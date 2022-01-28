@@ -12,6 +12,8 @@
 
             public long? TestLong { get; set; }
 
+            public ulong? TestULong { get; set; }
+
             public short? TestShort { get; set; }
 
             public byte TestByte { get; set; }

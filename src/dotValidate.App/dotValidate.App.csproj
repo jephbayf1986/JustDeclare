@@ -5,4 +5,10 @@
     <RootNamespace>dotValidate</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Extensions\DateTimeExtensions.cs" />
+    <Compile Remove="Extensions\DateTimeNotNullExtensions.cs" />
+    <Compile Remove="Extensions\EnumerableExtensions.cs" />
+  </ItemGroup>
+
 </Project>

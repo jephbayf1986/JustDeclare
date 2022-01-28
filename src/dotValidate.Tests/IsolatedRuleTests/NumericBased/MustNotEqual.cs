@@ -1,5 +1,6 @@
 ﻿using dotValidate.Tests.TestHelpers;
 using Shouldly;
+using System;
 using Xunit;
 
 namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
@@ -15,13 +16,17 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
             public TestClassValidationRules()
             {
                 DeclareRules(
-                        x => x.TestNullableInt.MustNotEqual(TARGET_WHOLE),
+                        x => x.TestNonNullableInt.MustNotEqual(TARGET_WHOLE),
+                        x => x.TestNullableInt.MustNotEqual(TARGET_DOUBLE),
                         x => x.TestUint.MustNotEqual((uint)TARGET_WHOLE),
                         x => x.TestLong.MustNotEqual(TARGET_WHOLE),
-                        x => x.TestShort.MustNotEqual((short)TARGET_WHOLE),
-                        x => x.TestByte.MustNotEqual((byte)TARGET_WHOLE),
-                        X => X.TestNullableDouble.MustNotEqual(TARGET_DOUBLE),
-                        X => X.TestNullableDecimal.MustNotEqual(TARGET_DECIMAL)
+                        x => x.TestULong.MustNotEqual(TARGET_DECIMAL),
+                        x => x.TestShort.MustNotEqual(TARGET_WHOLE),
+                        x => x.TestByte.MustNotEqual(TARGET_WHOLE),
+                        X => X.TestNonNullableDouble.MustNotEqual(TARGET_DOUBLE),
+                        X => X.TestNullableDouble.MustNotEqual(TARGET_DECIMAL),
+                        X => X.TestNonNullableDecimal.MustNotEqual(TARGET_DECIMAL),
+                        X => X.TestNullableDecimal.MustNotEqual(TARGET_WHOLE)
                     );
             }
         }
@@ -55,11 +60,11 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
         }
 
         [Fact]
-        public void GivenAboveRules_WhenIntValueDiffersFromTarget_FailTestWithPropertyInMessage()
+        public void GivenAboveRules_WhenIntValueEqualToTarget_FailTestWithPropertyInMessage()
         {
             // Arrange
             var request = GetTestClass();
-            request.TestNullableInt = TARGET_WHOLE;
+            request.TestNonNullableInt = TARGET_WHOLE;
 
             var validator = new TestClassValidationRules();
 
@@ -68,13 +73,13 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
 
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
-                                              x => x.FailureSummary().ShouldContain(nameof(request.TestNullableInt), Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestNonNullableInt), Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain("equal to", Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain(TARGET_WHOLE.ToString()));
         }
 
         [Fact]
-        public void GivenAboveRules_WhenUintValueDiffersFromTarget_FailTestWithPropertyInMessage()
+        public void GivenAboveRules_WhenUintValueEqualToTarget_FailTestWithPropertyInMessage()
         {
             // Arrange
             var request = GetTestClass();
@@ -93,7 +98,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
         }
 
         [Fact]
-        public void GivenAboveRules_WhenLongValueDiffersFromTarget_FailTestWithPropertyInMessage()
+        public void GivenAboveRules_WhenLongValueEqualToTarget_FailTestWithPropertyInMessage()
         {
             // Arrange
             var request = GetTestClass();
@@ -112,7 +117,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
         }
 
         [Fact]
-        public void GivenAboveRules_WhenShortValueDiffersFromTarget_FailTestWithPropertyInMessage()
+        public void GivenAboveRules_WhenShortValueEqualToTarget_FailTestWithPropertyInMessage()
         {
             // Arrange
             var request = GetTestClass();
@@ -131,7 +136,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
         }
 
         [Fact]
-        public void GivenAboveRules_WhenByteValueDiffersFromTarget_FailTestWithPropertyInMessage()
+        public void GivenAboveRules_WhenByteValueEqualToTarget_FailTestWithPropertyInMessage()
         {
             // Arrange
             var request = GetTestClass();
@@ -150,11 +155,11 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
         }
 
         [Fact]
-        public void GivenAboveRules_WhenDoubleValueDiffersFromTarget_FailTestWithPropertyInMessage()
+        public void GivenAboveRules_WhenDoubleValueEqualToTarget_FailTestWithPropertyInMessage()
         {
             // Arrange
             var request = GetTestClass();
-            request.TestNullableDouble = TARGET_DOUBLE;
+            request.TestNonNullableDouble = TARGET_DOUBLE;
 
             var validator = new TestClassValidationRules();
 
@@ -163,17 +168,68 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
 
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
-                                              x => x.FailureSummary().ShouldContain(nameof(request.TestNullableDouble), Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestNonNullableDouble), Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain("equal to", Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain(TARGET_DOUBLE.ToString()));
         }
 
         [Fact]
-        public void GivenAboveRules_WhenDecimalValueDiffersFromTarget_FailTestWithPropertyInMessage()
+        public void GivenAboveRules_WhenDecimalValueEqualToTarget_FailTestWithPropertyInMessage()
         {
             // Arrange
             var request = GetTestClass();
-            request.TestNullableDecimal = TARGET_DECIMAL;
+            request.TestNonNullableDecimal = TARGET_DECIMAL;
+
+            var validator = new TestClassValidationRules();
+
+            // Act
+            var result = validator.Validate(request);
+
+            // Assert
+            result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestNonNullableDecimal), Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("equal to", Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(TARGET_DECIMAL.ToString()));
+        }
+
+        [Fact]
+        public void GivenAboveRules_WhenIntValueDiffersFromDoubleTargetByOnlyFraction_PassTest()
+        {
+            // Arrange
+            var request = GetTestClass();
+            request.TestNullableInt = ((int)TARGET_DOUBLE) + 1;
+
+            var validator = new TestClassValidationRules();
+
+            // Act
+            var result = validator.Validate(request);
+
+            // Assert
+            result.HasFailures.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void GivenAboveRules_WhenIntValueDiffersFromDecimalTargetByOnlyFraction_PassTest()
+        {
+            // Arrange
+            var request = GetTestClass();
+            request.TestULong = ((int)TARGET_DECIMAL) + 1;
+
+            var validator = new TestClassValidationRules();
+
+            // Act
+            var result = validator.Validate(request);
+
+            // Assert
+            result.HasFailures.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void GivenAboveRules_WhenDoubleValueEqualToIntTargetByOnlyFraction_FailTestWithPropertyInMessage()
+        {
+            // Arrange
+            var request = GetTestClass();
+            request.TestNullableDecimal = TARGET_WHOLE;
 
             var validator = new TestClassValidationRules();
 
@@ -184,6 +240,25 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
                                               x => x.FailureSummary().ShouldContain(nameof(request.TestNullableDecimal), Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain("equal to", Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(TARGET_WHOLE.ToString()));
+        }
+
+        [Fact]
+        public void GivenAboveRules_WhenDoubleValueEqualToDecimalTargetByOnlyFraction_FailTestWithPropertyInMessage()
+        {
+            // Arrange
+            var request = GetTestClass();
+            request.TestNullableDouble = Convert.ToDouble(TARGET_DECIMAL);
+
+            var validator = new TestClassValidationRules();
+
+            // Act
+            var result = validator.Validate(request);
+
+            // Assert
+            result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestNullableDouble), Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("equal to", Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain(TARGET_DECIMAL.ToString()));
         }
 
@@ -191,12 +266,16 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
         {
             return new TestClass()
             {
+                TestNonNullableInt = TARGET_WHOLE + RandomHelpers.IntBetween(1, 100),
                 TestNullableInt = TARGET_WHOLE + RandomHelpers.IntBetween(1, 100),
                 TestUint = (uint)(TARGET_WHOLE + RandomHelpers.IntBetween(1, 100)),
                 TestLong = TARGET_WHOLE + RandomHelpers.IntBetween(1, 100),
+                TestULong = (ulong)(TARGET_WHOLE + RandomHelpers.IntBetween(1, 100)),
                 TestShort = (short)(TARGET_WHOLE + RandomHelpers.IntBetween(1, 100)),
                 TestByte = (byte)(TARGET_WHOLE + RandomHelpers.IntBetween(1, 100)),
+                TestNonNullableDouble = TARGET_DOUBLE + RandomHelpers.IntBetween(1, 100),
                 TestNullableDouble = TARGET_DOUBLE + RandomHelpers.IntBetween(1, 100),
+                TestNonNullableDecimal = TARGET_DECIMAL + RandomHelpers.IntBetween(1, 100),
                 TestNullableDecimal = TARGET_DECIMAL + RandomHelpers.IntBetween(1, 100)
             };
         }

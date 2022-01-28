@@ -40,11 +40,15 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
         }
 
         [Fact]
-        public void GivenAboveRules_WhenAllValuesAreNull_PassTest()
+        public void GivenAboveRules_WhenAnyNullableValuesAreNull_PassTest()
         {
             // Arrange
-            var request = new TestClass();
-            request.TestNonNullableInt = 1;
+            var request = GetTestClass();
+            request.TestNullableInt = null;
+            request.TestNullableDouble = null;
+            request.TestNullableDecimal = null;
+            request.TestShort = null;
+            request.TestULong = null;
 
             var validator = new TestClassValidationRules();
 
@@ -185,12 +189,16 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
         {
             return new TestClass()
             {
+                TestNonNullableInt = RandomHelpers.IntBetween(1, 100),
                 TestNullableInt = RandomHelpers.IntBetween(1, 100),
                 TestUint = (uint)RandomHelpers.IntBetween(1, 100),
                 TestLong = RandomHelpers.IntBetween(1, 100),
+                TestULong = (ulong)RandomHelpers.IntBetween(1, 100),
                 TestShort = (short)RandomHelpers.IntBetween(1, 100),
                 TestByte = (byte)RandomHelpers.IntBetween(1, 100),
+                TestNonNullableDouble = RandomHelpers.IntBetween(1, 100),
                 TestNullableDouble = RandomHelpers.IntBetween(1, 100),
+                TestNonNullableDecimal = RandomHelpers.IntBetween(1, 100),
                 TestNullableDecimal = RandomHelpers.IntBetween(1, 100)
             };
         }

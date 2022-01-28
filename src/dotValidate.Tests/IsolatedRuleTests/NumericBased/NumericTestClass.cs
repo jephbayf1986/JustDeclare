@@ -10,7 +10,7 @@
 
             public uint TestUint { get; set; }
 
-            public long? TestLong { get; set; }
+            public long TestLong { get; set; }
 
             public ulong? TestULong { get; set; }
 

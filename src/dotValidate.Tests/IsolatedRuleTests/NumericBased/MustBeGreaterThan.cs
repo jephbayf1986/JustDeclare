@@ -137,25 +137,6 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
         }
 
         [Fact]
-        public void GivenAboveRules_WhenLongValueNull_FailTestWithPropertyInMessage()
-        {
-            // Arrange
-            var request = GetTestClass();
-            request.TestLong = null;
-
-            var validator = new TestClassValidationRules();
-
-            // Act
-            var result = validator.Validate(request);
-
-            // Assert
-            result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
-                                              x => x.FailureSummary().ShouldContain(nameof(request.TestLong), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("greater than", Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("null", Case.Insensitive));
-        }
-
-        [Fact]
         public void GivenAboveRules_WhenLongValueLessThanTarget_FailTestWithPropertyInMessage()
         {
             // Arrange

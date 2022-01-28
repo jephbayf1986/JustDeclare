@@ -15,12 +15,16 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
             {
                 DeclareRules(
                         x => x.TestNullableInt.MustEqual(TARGET_WHOLE),
+                        x => x.TestNonNullableInt.MustEqual(TARGET_WHOLE),
                         x => x.TestUint.MustEqual(TARGET_WHOLE),
                         x => x.TestLong.MustEqual(TARGET_WHOLE),
+                        x => x.TestULong.MustEqual(TARGET_WHOLE),
                         x => x.TestShort.MustEqual(TARGET_WHOLE),
                         x => x.TestByte.MustEqual(TARGET_WHOLE),
+                        x => x.TestNonNullableDouble.MustEqual(TARGET_DOUBLE),
                         X => X.TestNullableDouble.MustEqual(TARGET_DOUBLE),
-                        X => X.TestNullableDecimal.MustEqual(TARGET_DECIMAL)
+                        X => X.TestNullableDecimal.MustEqual(TARGET_DECIMAL),
+                        X => X.TestNonNullableDecimal.MustEqual(TARGET_DECIMAL)
                     );
             }
         }
@@ -40,7 +44,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
         }
 
         [Fact]
-        public void GivenAboveRules_WhenIntValueNull_FailTestWithPropertyInMessage()
+        public void GivenAboveRules_WhenNullableIntValueNull_FailTestWithPropertyInMessage()
         {
             // Arrange
             var request = GetTestClass();
@@ -64,7 +68,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
             // Arrange
             var request = GetTestClass();
             var actualValue = TARGET_WHOLE + 1;
-            request.TestNullableInt = actualValue;
+            request.TestNonNullableInt = actualValue;
 
             var validator = new TestClassValidationRules();
 
@@ -73,7 +77,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
 
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
-                                              x => x.FailureSummary().ShouldContain(nameof(request.TestNullableInt), Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestNonNullableInt), Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain("equal to", Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain(actualValue.ToString()));
         }
@@ -96,25 +100,6 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
                                               x => x.FailureSummary().ShouldContain(nameof(request.TestUint), Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain("equal to", Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain(actualValue.ToString()));
-        }
-
-        [Fact]
-        public void GivenAboveRules_WhenLongValueNull_FailTestWithPropertyInMessage()
-        {
-            // Arrange
-            var request = GetTestClass();
-            request.TestLong = null;
-
-            var validator = new TestClassValidationRules();
-
-            // Act
-            var result = validator.Validate(request);
-
-            // Assert
-            result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
-                                              x => x.FailureSummary().ShouldContain(nameof(request.TestLong), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("equal to", Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("null", Case.Insensitive));
         }
 
         [Fact]
@@ -279,11 +264,15 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
             return new TestClass()
             {
                 TestNullableInt = TARGET_WHOLE,
+                TestNonNullableInt = TARGET_WHOLE,
                 TestUint = TARGET_WHOLE,
                 TestLong = TARGET_WHOLE,
+                TestULong = TARGET_WHOLE,
                 TestShort = TARGET_WHOLE,
                 TestByte = TARGET_WHOLE,
+                TestNonNullableDouble = TARGET_DOUBLE,
                 TestNullableDouble = TARGET_DOUBLE,
+                TestNonNullableDecimal = TARGET_DECIMAL,
                 TestNullableDecimal = TARGET_DECIMAL
             };
         }

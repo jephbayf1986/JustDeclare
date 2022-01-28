@@ -15,13 +15,13 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
             public TestClassValidationRules()
             {
                 DeclareRules(
-                        x => x.TestInteger.MustNotEqual(TARGET_WHOLE),
+                        x => x.TestNullableInt.MustNotEqual(TARGET_WHOLE),
                         x => x.TestUint.MustNotEqual((uint)TARGET_WHOLE),
                         x => x.TestLong.MustNotEqual(TARGET_WHOLE),
                         x => x.TestShort.MustNotEqual((short)TARGET_WHOLE),
                         x => x.TestByte.MustNotEqual((byte)TARGET_WHOLE),
-                        X => X.TestDouble.MustNotEqual(TARGET_DOUBLE),
-                        X => X.TestDecimal.MustNotEqual(TARGET_DECIMAL)
+                        X => X.TestNullableDouble.MustNotEqual(TARGET_DOUBLE),
+                        X => X.TestNullableDecimal.MustNotEqual(TARGET_DECIMAL)
                     );
             }
         }
@@ -59,7 +59,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
         {
             // Arrange
             var request = GetTestClass();
-            request.TestInteger = TARGET_WHOLE;
+            request.TestNullableInt = TARGET_WHOLE;
 
             var validator = new TestClassValidationRules();
 
@@ -68,7 +68,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
 
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
-                                              x => x.FailureSummary().ShouldContain(nameof(request.TestInteger), Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestNullableInt), Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain("equal to", Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain(TARGET_WHOLE.ToString()));
         }
@@ -154,7 +154,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
         {
             // Arrange
             var request = GetTestClass();
-            request.TestDouble = TARGET_DOUBLE;
+            request.TestNullableDouble = TARGET_DOUBLE;
 
             var validator = new TestClassValidationRules();
 
@@ -163,7 +163,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
 
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
-                                              x => x.FailureSummary().ShouldContain(nameof(request.TestDouble), Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestNullableDouble), Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain("equal to", Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain(TARGET_DOUBLE.ToString()));
         }
@@ -173,7 +173,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
         {
             // Arrange
             var request = GetTestClass();
-            request.TestDecimal = TARGET_DECIMAL;
+            request.TestNullableDecimal = TARGET_DECIMAL;
 
             var validator = new TestClassValidationRules();
 
@@ -182,7 +182,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
 
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
-                                              x => x.FailureSummary().ShouldContain(nameof(request.TestDecimal), Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestNullableDecimal), Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain("equal to", Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain(TARGET_DECIMAL.ToString()));
         }
@@ -191,13 +191,13 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
         {
             return new TestClass()
             {
-                TestInteger = TARGET_WHOLE + RandomHelpers.IntBetween(1, 100),
+                TestNullableInt = TARGET_WHOLE + RandomHelpers.IntBetween(1, 100),
                 TestUint = (uint)(TARGET_WHOLE + RandomHelpers.IntBetween(1, 100)),
                 TestLong = TARGET_WHOLE + RandomHelpers.IntBetween(1, 100),
                 TestShort = (short)(TARGET_WHOLE + RandomHelpers.IntBetween(1, 100)),
                 TestByte = (byte)(TARGET_WHOLE + RandomHelpers.IntBetween(1, 100)),
-                TestDouble = TARGET_DOUBLE + RandomHelpers.IntBetween(1, 100),
-                TestDecimal = TARGET_DECIMAL + RandomHelpers.IntBetween(1, 100)
+                TestNullableDouble = TARGET_DOUBLE + RandomHelpers.IntBetween(1, 100),
+                TestNullableDecimal = TARGET_DECIMAL + RandomHelpers.IntBetween(1, 100)
             };
         }
     }

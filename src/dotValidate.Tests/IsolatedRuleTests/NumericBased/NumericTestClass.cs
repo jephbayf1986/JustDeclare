@@ -4,19 +4,25 @@
     {
         protected class TestClass
         {
-            public int? TestInteger { get; set; }
+            public int TestNonNullableInt { get; set; }
 
-            public uint? TestUint { get; set; }
+            public int? TestNullableInt { get; set; }
+
+            public uint TestUint { get; set; }
 
             public long? TestLong { get; set; }
 
             public short? TestShort { get; set; }
 
-            public byte? TestByte { get; set; }
+            public byte TestByte { get; set; }
 
-            public double? TestDouble { get; set; }
+            public double TestNonNullableDouble { get; set; }
 
-            public decimal? TestDecimal { get; set; }
+            public double? TestNullableDouble { get; set; }
+
+            public decimal TestNonNullableDecimal { get; set; }
+
+            public decimal? TestNullableDecimal { get; set; }
         }
     }
 }

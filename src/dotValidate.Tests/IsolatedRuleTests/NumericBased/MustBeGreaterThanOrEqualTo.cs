@@ -13,13 +13,13 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
             public TestClassValidationRules()
             {
                 DeclareRules(
-                        x => x.TestInteger.MustBeGreaterThanOrEqualTo(MINIMUM),
+                        x => x.TestNullableInt.MustBeGreaterThanOrEqualTo(MINIMUM),
                         x => x.TestUint.MustBeGreaterThanOrEqualTo((uint)MINIMUM),
                         x => x.TestLong.MustBeGreaterThanOrEqualTo(MINIMUM),
                         x => x.TestShort.MustBeGreaterThanOrEqualTo((short)MINIMUM),
                         x => x.TestByte.MustBeGreaterThanOrEqualTo((byte)MINIMUM),
-                        X => X.TestDouble.MustBeGreaterThanOrEqualTo(MINIMUM),
-                        X => X.TestDecimal.MustBeGreaterThanOrEqualTo(MINIMUM)
+                        X => X.TestNullableDouble.MustBeGreaterThanOrEqualTo(MINIMUM),
+                        X => X.TestNullableDecimal.MustBeGreaterThanOrEqualTo(MINIMUM)
                     );
             }
         }
@@ -43,7 +43,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
         {
             // Arrange
             var request = GetTestClass();
-            request.TestInteger = null;
+            request.TestNullableInt = null;
 
             var validator = new TestClassValidationRules();
 
@@ -52,7 +52,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
 
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
-                                              x => x.FailureSummary().ShouldContain(nameof(request.TestInteger), Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestNullableInt), Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain("greater than or equal to", Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain("null", Case.Insensitive));
         }
@@ -63,7 +63,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
             // Arrange
             var request = GetTestClass();
             var actualValue = RandomHelpers.IntBetween(int.MinValue, MINIMUM - 1);
-            request.TestInteger = actualValue;
+            request.TestNullableInt = actualValue;
 
             var validator = new TestClassValidationRules();
 
@@ -72,28 +72,9 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
 
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
-                                              x => x.FailureSummary().ShouldContain(nameof(request.TestInteger), Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestNullableInt), Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain("greater than or equal to", Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain(actualValue.ToString()));
-        }
-
-        [Fact]
-        public void GivenAboveRules_WhenUintValueNull_FailTestWithPropertyInMessage()
-        {
-            // Arrange
-            var request = GetTestClass();
-            request.TestUint = null;
-
-            var validator = new TestClassValidationRules();
-
-            // Act
-            var result = validator.Validate(request);
-
-            // Assert
-            result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
-                                              x => x.FailureSummary().ShouldContain(nameof(request.TestUint), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("greater than or equal to", Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("null", Case.Insensitive));
         }
 
         [Fact]
@@ -195,25 +176,6 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
         }
 
         [Fact]
-        public void GivenAboveRules_WhenByteValueNull_FailTestWithPropertyInMessage()
-        {
-            // Arrange
-            var request = GetTestClass();
-            request.TestByte = null;
-
-            var validator = new TestClassValidationRules();
-
-            // Act
-            var result = validator.Validate(request);
-
-            // Assert
-            result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
-                                              x => x.FailureSummary().ShouldContain(nameof(request.TestByte), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("greater than or equal to", Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("null", Case.Insensitive));
-        }
-
-        [Fact]
         public void GivenAboveRules_WhenByteValueLessThanMinimum_FailTestWithPropertyInMessage()
         {
             // Arrange
@@ -238,7 +200,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
         {
             // Arrange
             var request = GetTestClass();
-            request.TestDouble = null;
+            request.TestNullableDouble = null;
 
             var validator = new TestClassValidationRules();
 
@@ -247,7 +209,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
 
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
-                                              x => x.FailureSummary().ShouldContain(nameof(request.TestDouble), Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestNullableDouble), Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain("greater than or equal to", Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain("null", Case.Insensitive));
         }
@@ -258,7 +220,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
             // Arrange
             var request = GetTestClass();
             var actualValue = RandomHelpers.IntBetween(int.MinValue, MINIMUM - 1);
-            request.TestDouble = actualValue;
+            request.TestNullableDouble = actualValue;
 
             var validator = new TestClassValidationRules();
 
@@ -267,7 +229,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
 
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
-                                              x => x.FailureSummary().ShouldContain(nameof(request.TestDouble), Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestNullableDouble), Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain("greater than or equal to", Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain(actualValue.ToString()));
         }
@@ -277,7 +239,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
         {
             // Arrange
             var request = GetTestClass();
-            request.TestDecimal = null;
+            request.TestNullableDecimal = null;
 
             var validator = new TestClassValidationRules();
 
@@ -286,7 +248,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
 
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
-                                              x => x.FailureSummary().ShouldContain(nameof(request.TestDecimal), Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestNullableDecimal), Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain("greater than or equal to", Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain("null", Case.Insensitive));
         }
@@ -297,7 +259,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
             // Arrange
             var request = GetTestClass();
             var actualValue = RandomHelpers.IntBetween(int.MinValue, MINIMUM - 1);
-            request.TestDecimal = actualValue;
+            request.TestNullableDecimal = actualValue;
 
             var validator = new TestClassValidationRules();
 
@@ -306,7 +268,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
 
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
-                                              x => x.FailureSummary().ShouldContain(nameof(request.TestDecimal), Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestNullableDecimal), Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain("greater than or equal to", Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain(actualValue.ToString()));
         }
@@ -315,13 +277,13 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
         {
             return new TestClass()
             {
-                TestInteger = RandomHelpers.IntBetween(MINIMUM, int.MaxValue),
+                TestNullableInt = RandomHelpers.IntBetween(MINIMUM, int.MaxValue),
                 TestUint = (uint)RandomHelpers.IntBetween(MINIMUM, int.MaxValue),
                 TestLong = RandomHelpers.IntBetween(MINIMUM, int.MaxValue),
                 TestShort = (short)RandomHelpers.IntBetween(MINIMUM, short.MaxValue),
                 TestByte = (byte)RandomHelpers.IntBetween(MINIMUM, byte.MaxValue),
-                TestDouble = RandomHelpers.IntBetween(MINIMUM, int.MaxValue),
-                TestDecimal = RandomHelpers.IntBetween(MINIMUM, int.MaxValue)
+                TestNullableDouble = RandomHelpers.IntBetween(MINIMUM, int.MaxValue),
+                TestNullableDecimal = RandomHelpers.IntBetween(MINIMUM, int.MaxValue)
             };
         }
     }

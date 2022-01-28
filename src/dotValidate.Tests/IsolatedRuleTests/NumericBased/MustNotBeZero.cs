@@ -11,13 +11,13 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
             public TestClassValidationRules()
             {
                 DeclareRules(
-                        x => x.TestInteger.MustNotBeZero(),
+                        x => x.TestNullableInt.MustNotBeZero(),
                         x => x.TestUint.MustNotBeZero(),
                         x => x.TestLong.MustNotBeZero(),
                         x => x.TestShort.MustNotBeZero(),
                         x => x.TestByte.MustNotBeZero(),
-                        X => X.TestDouble.MustNotBeZero(),
-                        X => X.TestDecimal.MustNotBeZero()
+                        X => X.TestNullableDouble.MustNotBeZero(),
+                        X => X.TestNullableDecimal.MustNotBeZero()
                     );
             }
         }
@@ -55,7 +55,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
         {
             // Arrange
             var request = GetTestClass();
-            request.TestInteger = 0;
+            request.TestNullableInt = 0;
 
             var validator = new TestClassValidationRules();
 
@@ -64,7 +64,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
 
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
-                                              x => x.FailureSummary().ShouldContain(nameof(request.TestInteger), Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestNullableInt), Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain("zero", Case.Insensitive));
         }
 
@@ -145,7 +145,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
         {
             // Arrange
             var request = GetTestClass();
-            request.TestDouble = 0;
+            request.TestNullableDouble = 0;
 
             var validator = new TestClassValidationRules();
 
@@ -154,7 +154,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
 
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
-                                              x => x.FailureSummary().ShouldContain(nameof(request.TestDouble), Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestNullableDouble), Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain("zero", Case.Insensitive));
         }
 
@@ -163,7 +163,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
         {
             // Arrange
             var request = GetTestClass();
-            request.TestDecimal = 0;
+            request.TestNullableDecimal = 0;
 
             var validator = new TestClassValidationRules();
 
@@ -172,7 +172,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
 
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
-                                              x => x.FailureSummary().ShouldContain(nameof(request.TestDecimal), Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestNullableDecimal), Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain("zero", Case.Insensitive));
         }
 
@@ -180,13 +180,13 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
         {
             return new TestClass()
             {
-                TestInteger = RandomHelpers.IntBetween(1, 100),
+                TestNullableInt = RandomHelpers.IntBetween(1, 100),
                 TestUint = (uint)RandomHelpers.IntBetween(1, 100),
                 TestLong = RandomHelpers.IntBetween(1, 100),
                 TestShort = (short)RandomHelpers.IntBetween(1, 100),
                 TestByte = (byte)RandomHelpers.IntBetween(1, 100),
-                TestDouble = RandomHelpers.IntBetween(1, 100),
-                TestDecimal = RandomHelpers.IntBetween(1, 100)
+                TestNullableDouble = RandomHelpers.IntBetween(1, 100),
+                TestNullableDecimal = RandomHelpers.IntBetween(1, 100)
             };
         }
     }

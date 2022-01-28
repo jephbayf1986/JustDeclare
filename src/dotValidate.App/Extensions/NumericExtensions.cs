@@ -6,27 +6,31 @@ namespace dotValidate
 {
     public static partial class JustDeclareExtensions
     {
-        public static ValidationCheck MustEqual<T>(this T value, T target)
+        public static ValidationCheck MustEqual<T, TTarget>(this T value, TTarget target)
             where T : struct, IComparable, IFormattable
+            where TTarget : struct, IComparable, IConvertible, IFormattable
         {
-            return new NumericEqual<T>(value, target);
+            return new NumericEqual<T, TTarget>(value, target);
         }
 
-        public static ValidationCheck MustEqual<T>(this T? value, T target)
+        public static ValidationCheck MustEqual<T, TTarget>(this T? value, TTarget target)
             where T : struct, IComparable, IFormattable
+            where TTarget : struct, IComparable, IConvertible, IFormattable
         {
-            return new NumericEqual<T>(value, target);
+            return new NumericEqual<T, TTarget>(value, target);
         }
 
-        public static ValidationCheck MustNotEqual<T>(this T value, T target)
+        public static ValidationCheck MustNotEqual<T, TTarget>(this T value, TTarget target)
             where T : struct, IComparable, IFormattable
+            where TTarget : struct, IComparable, IConvertible, IFormattable
         {
             return value.MustEqual(target)
                         .Inverted();
         }
 
-        public static ValidationCheck MustNotEqual<T>(this T? value, T target)
+        public static ValidationCheck MustNotEqual<T, TTarget>(this T? value, TTarget target)
             where T : struct, IComparable, IFormattable
+            where TTarget : struct, IComparable, IConvertible, IFormattable
         {
             return value.MustEqual(target)
                         .Inverted();

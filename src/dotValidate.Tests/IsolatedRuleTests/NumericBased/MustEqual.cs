@@ -15,10 +15,10 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
             {
                 DeclareRules(
                         x => x.TestNullableInt.MustEqual(TARGET_WHOLE),
-                        x => x.TestUint.MustEqual((uint)TARGET_WHOLE),
+                        x => x.TestUint.MustEqual(TARGET_WHOLE),
                         x => x.TestLong.MustEqual(TARGET_WHOLE),
-                        x => x.TestShort.MustEqual((short)TARGET_WHOLE),
-                        x => x.TestByte.MustEqual((byte)TARGET_WHOLE),
+                        x => x.TestShort.MustEqual(TARGET_WHOLE),
+                        x => x.TestByte.MustEqual(TARGET_WHOLE),
                         X => X.TestNullableDouble.MustEqual(TARGET_DOUBLE),
                         X => X.TestNullableDecimal.MustEqual(TARGET_DECIMAL)
                     );

@@ -1,17 +1,19 @@
-﻿using System;
+﻿using dotValidate.Main.Helpers;
+using System;
 
 namespace dotValidate.Main.ValidationChecks
 {
-    internal class NumericEqual<TValue> : ValidationCheck<TValue?>
+    internal class NumericEqual<TValue, TTarget> : ValidationCheck<TValue?>
         where TValue : struct, IComparable
+        where TTarget : struct, IComparable, IConvertible, IFormattable
     {
-        public NumericEqual(TValue? value, TValue target)
+        public NumericEqual(TValue? value, TTarget target)
             : base(value)
         {
             _target = target;
         }
 
-        private readonly IComparable _target;
+        private readonly TTarget _target;
 
         protected override string DefaultRuleBreakDescription
             => $"The Value provided for {PropertyName} was {ValueProvidedDisplay}, but {Should} be equal to {_target}";
@@ -21,7 +23,12 @@ namespace dotValidate.Main.ValidationChecks
             if (!ValueProvided.HasValue)
                 return false;
 
-            return _target.CompareTo(ValueProvided.Value) == 0;
+            var compatible = _target.TryChangeType(out TValue target);
+
+            if (!compatible)
+                return false;
+
+            return target.CompareTo(ValueProvided.Value) == 0;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using dotValidate.Main.Helpers;
+﻿using dotValidate.Exceptions;
+using dotValidate.Main.Helpers;
 using System;
 
 namespace dotValidate.Main.ValidationChecks
@@ -25,10 +26,15 @@ namespace dotValidate.Main.ValidationChecks
 
             var compatible = _maxValue.TryChangeType(out TValue maxValue);
 
-            if (!compatible)
-                return false;
+            if (compatible)
+                return maxValue.CompareTo(ValueProvided.Value) >= 0;
 
-            return maxValue.CompareTo(ValueProvided.Value) >= 0;
+            compatible = ValueProvided.Value.TryChangeType(out TMaximum valueAsMaxType);
+
+            if (compatible)
+                return _maxValue.CompareTo(valueAsMaxType) >= 0;
+
+            throw ValidationArgumentException.IncompatibleNumericArguments(PropertyName, ValueProvided, _maxValue, LessThanOrEqualTo);
         }
     }
 }

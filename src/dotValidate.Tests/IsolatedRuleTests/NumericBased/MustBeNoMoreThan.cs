@@ -7,18 +7,22 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
     public class MustBeNoMoreThan : NumericTestClass
     {
         private const int MAXIMUM = 10;
+        private const double MAXIMUM_DOUBLE = 9.9;
 
         private class TestClassValidationRules : ValidationRules<TestClass>
         {
             public TestClassValidationRules()
             {
                 DeclareRules(
-                        x => x.TestNullableInt.MustBeNoMoreThan(MAXIMUM),
+                        x => x.TestNonNullableInt.MustBeNoMoreThan(MAXIMUM),
+                        x => x.TestNullableInt.MustBeNoMoreThan(MAXIMUM_DOUBLE),
                         x => x.TestUint.MustBeNoMoreThan((uint)MAXIMUM),
                         x => x.TestLong.MustBeNoMoreThan(MAXIMUM),
                         x => x.TestShort.MustBeNoMoreThan((short)MAXIMUM),
                         x => x.TestByte.MustBeNoMoreThan((byte)MAXIMUM),
+                        x => x.TestNonNullableDouble.MustBeNoMoreThan(MAXIMUM_DOUBLE),
                         X => X.TestNullableDouble.MustBeNoMoreThan(MAXIMUM),
+                        x => x.TestNonNullableDecimal.MustBeNoMoreThan(MAXIMUM_DOUBLE),
                         X => X.TestNullableDecimal.MustBeNoMoreThan(MAXIMUM)
                     );
             }
@@ -58,6 +62,26 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
             // Arrange
             var request = GetTestClass();
             var actualValue = RandomHelpers.IntBetween(MAXIMUM + 1, int.MaxValue);
+            request.TestNonNullableInt = actualValue;
+
+            var validator = new TestClassValidationRules();
+
+            // Act
+            var result = validator.Validate(request);
+
+            // Assert
+            result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestNonNullableInt), Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("less than or equal to", Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(actualValue.ToString()));
+        }
+
+        [Fact]
+        public void GivenAboveRules_WhenIntValueGreaterThanDecimalMaximum_FailTestWithPropertyInMessage()
+        {
+            // Arrange
+            var request = GetTestClass();
+            var actualValue = RandomHelpers.IntBetween((int)MAXIMUM_DOUBLE + 1, int.MaxValue);
             request.TestNullableInt = actualValue;
 
             var validator = new TestClassValidationRules();
@@ -153,6 +177,26 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
         }
 
         [Fact]
+        public void GivenAboveRules_WhenDoubleValueGreaterThanDoubleMaximum_FailTestWithPropertyInMessage()
+        {
+            // Arrange
+            var request = GetTestClass();
+            var actualValue = MAXIMUM_DOUBLE + 0.1;
+            request.TestNonNullableDouble = actualValue;
+
+            var validator = new TestClassValidationRules();
+
+            // Act
+            var result = validator.Validate(request);
+
+            // Assert
+            result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestNonNullableDouble), Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("less than or equal to", Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(actualValue.ToString()));
+        }
+
+        [Fact]
         public void GivenAboveRules_WhenDoubleValueGreaterThanMaximum_FailTestWithPropertyInMessage()
         {
             // Arrange
@@ -168,6 +212,26 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
                                               x => x.FailureSummary().ShouldContain(nameof(request.TestNullableDouble), Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("less than or equal to", Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(actualValue.ToString()));
+        }
+
+        [Fact]
+        public void GivenAboveRules_WhenDecimalValueGreaterThanDoubleMaximum_FailTestWithPropertyInMessage()
+        {
+            // Arrange
+            var request = GetTestClass();
+            var actualValue = MAXIMUM_DOUBLE + 0.1;
+            request.TestNonNullableDecimal = (decimal)actualValue;
+
+            var validator = new TestClassValidationRules();
+
+            // Act
+            var result = validator.Validate(request);
+
+            // Assert
+            result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestNonNullableDecimal), Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain("less than or equal to", Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain(actualValue.ToString()));
         }
@@ -196,12 +260,15 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
         {
             return new TestClass()
             {
-                TestNullableInt = RandomHelpers.IntBetween(int.MinValue, MAXIMUM),
+                TestNonNullableInt = RandomHelpers.IntBetween(int.MinValue, MAXIMUM),
+                TestNullableInt = RandomHelpers.IntBetween(int.MinValue, (int)MAXIMUM_DOUBLE - 1),
                 TestUint = (uint)RandomHelpers.IntBetween(0, MAXIMUM),
                 TestLong = RandomHelpers.IntBetween(int.MinValue, MAXIMUM),
                 TestShort = (short)RandomHelpers.IntBetween(short.MinValue, MAXIMUM),
                 TestByte = (byte)RandomHelpers.IntBetween(byte.MinValue, MAXIMUM),
+                TestNonNullableDouble = RandomHelpers.IntBetween(int.MinValue, (int)MAXIMUM_DOUBLE - 1),
                 TestNullableDouble = RandomHelpers.IntBetween(int.MinValue, MAXIMUM),
+                TestNonNullableDecimal = RandomHelpers.IntBetween(int.MinValue, (int)MAXIMUM_DOUBLE - 1),
                 TestNullableDecimal = RandomHelpers.IntBetween(int.MinValue, MAXIMUM)
             };
         }

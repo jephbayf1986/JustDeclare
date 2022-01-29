@@ -4,7 +4,7 @@ namespace dotValidate.Main.Helpers
 {
     internal static class TypeHelpers
     {
-        public static bool TryChangeType<TIn, TOut>(this TIn input, out TOut output, bool exact = true)
+        public static bool TryChangeType<TIn, TOut>(this TIn input, out TOut output)
             where TIn : struct
             where TOut : struct
         {
@@ -14,7 +14,7 @@ namespace dotValidate.Main.Helpers
             {
                 output = input.ChangeType<TIn, TOut>();
 
-                return !exact || input.Equals(output.ChangeType<TOut, TIn>());
+                return input.Equals(output.ChangeType<TOut, TIn>());
             }
             catch
             {

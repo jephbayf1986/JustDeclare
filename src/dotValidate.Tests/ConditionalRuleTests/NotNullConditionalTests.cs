@@ -42,7 +42,7 @@ namespace dotValidate.Tests.ConditionalRuleTests
                         x => x.TestInt.WhenNotNull()
                                       .MustBeGreaterThan(100),
                         x => x.TestByte.WhenNotNull()
-                                       .MustBeInRange((byte)20, (byte)30),
+                                       .MustBeInRange(20, 30),
                         x => x.TestDouble.WhenNotNull()
                                          .MustBeLessThan(10),
                         x => x.TestDecimal.WhenNotNull()
@@ -51,7 +51,7 @@ namespace dotValidate.Tests.ConditionalRuleTests
                                          .MustStartWith(TEXT_TARGET),
                         x => x.TestSubClass.WhenNotNull()
                                            .MustObeyTheseRules(
-                                                    //s => s.Id.MustBeGreaterThan(1)
+                                                    s => s.Id.MustBeGreaterThan(1)
                                                 )
 
                     );

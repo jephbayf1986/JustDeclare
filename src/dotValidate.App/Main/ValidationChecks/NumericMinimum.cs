@@ -29,10 +29,10 @@ namespace dotValidate.Main.ValidationChecks
             if (compatible)
                 return minValue.CompareTo(ValueProvided.Value) <= 0;
 
-            compatible = ValueProvided.Value.TryChangeType(out TMinimum valueAsMaxType);
+            compatible = ValueProvided.Value.TryChangeType(out TMinimum valueAsMinType);
 
             if (compatible)
-                return _minValue.CompareTo(valueAsMaxType) <= 0;
+                return _minValue.CompareTo(valueAsMinType) <= 0;
 
             throw ValidationArgumentException.IncompatibleNumericArguments(PropertyName, ValueProvided, _minValue, GreaterThanOrEqualTo);
         }

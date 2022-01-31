@@ -82,7 +82,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.NumericBased
         }
 
         [Fact]
-        public void GivenAboveRules_WhenIntValueLessThanDcimalMinimum_FailTestWithPropertyInMessage()
+        public void GivenAboveRules_WhenIntValueLessThanDecimalMinimum_FailTestWithPropertyInMessage()
         {
             // Arrange
             var request = GetTestClass();

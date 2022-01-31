@@ -1,22 +1,23 @@
-﻿using dotValidate.Main.Helpers;
+﻿using dotValidate.Exceptions;
+using dotValidate.Main.Helpers;
 using System;
 
 namespace dotValidate.Main.ValidationChecks
 {
-    internal class NumericRange<TValue, TMinimum, TMaximum> : ValidationCheck<TValue?>
+    internal class NumericRange<TValue, TRangeStart, TRangeEnd> : ValidationCheck<TValue?>
         where TValue : struct, IComparable, IFormattable
-        where TMinimum : struct, IComparable, IConvertible, IFormattable
-        where TMaximum : struct, IComparable, IConvertible, IFormattable
+        where TRangeStart : struct, IComparable, IConvertible, IFormattable
+        where TRangeEnd : struct, IComparable, IConvertible, IFormattable
     {
-        public NumericRange(TValue? value, TMinimum rangeStart, TMaximum rangeEnd) 
+        public NumericRange(TValue? value, TRangeStart rangeStart, TRangeEnd rangeEnd) 
             : base(value)
         {
             _rangeStart = rangeStart;
             _rangeEnd = rangeEnd;
         }
 
-        private readonly TMinimum _rangeStart;
-        private readonly TMaximum _rangeEnd;
+        private readonly TRangeStart _rangeStart;
+        private readonly TRangeEnd _rangeEnd;
 
         protected override string DefaultRuleBreakDescription 
             => $"A value of {ValueProvidedDisplay} was provided for {PropertyName}, but this {Should} fall within the range of between {_rangeStart} and {_rangeEnd}.";
@@ -26,16 +27,43 @@ namespace dotValidate.Main.ValidationChecks
             if (!ValueProvided.HasValue)
                 return false;
 
-            var startCompatible = _rangeStart.TryChangeType(out TValue rangeStart);
-            var endCompatible = _rangeEnd.TryChangeType(out TValue rangeEnd);
+            var compatible = _rangeEnd.TryChangeType(out TValue rangeEnd);
 
-            if (!(startCompatible && endCompatible))
-                return false;
+            if (compatible)
+            {
+                if (rangeEnd.CompareTo(ValueProvided.Value) < 0)
+                    return false;
+            }
+            else
+            {
+                compatible = ValueProvided.Value.TryChangeType(out TRangeEnd valueAsRangeEndType);
 
-            if (rangeEnd.CompareTo(ValueProvided.Value) <= 0)
-                return false;
+                if (compatible)
+                {
+                    if (_rangeEnd.CompareTo(valueAsRangeEndType) < 0)
+                        return false;
+                }
+                else
+                {
+                    throw ValidationArgumentException.IncompatibleNumericArguments(PropertyName, ValueProvided, _rangeEnd, "Range");
+                }
+            }
 
-            return rangeStart.CompareTo(ValueProvided.Value) <= 0;
+            compatible = _rangeStart.TryChangeType(out TValue rangeStart);
+
+            if (compatible)
+            {
+                return rangeStart.CompareTo(ValueProvided.Value) <= 0;
+            }
+            else
+            {
+                compatible = ValueProvided.Value.TryChangeType(out TRangeStart valueAsRangeStartType);
+
+                if (compatible)
+                    return _rangeStart.CompareTo(valueAsRangeStartType) <= 0;
+            }
+
+            throw ValidationArgumentException.IncompatibleNumericArguments(PropertyName, ValueProvided, _rangeStart, LessThanOrEqualTo);
         }
     }
 }

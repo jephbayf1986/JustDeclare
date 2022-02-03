@@ -55,6 +55,7 @@ namespace dotValidate
         {
             return conditional.CreateValidationCheck(x => x.MustContain(target, matchCase));
         }
+
         public static ValidationCheck MustNotContain(this NotNullCondition<string> conditional, string target)
         {
             return conditional.CreateValidationCheck(x => x.MustNotContain(target));

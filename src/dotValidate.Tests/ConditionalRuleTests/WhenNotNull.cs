@@ -151,11 +151,9 @@ namespace dotValidate.Tests.ConditionalRuleTests
         }
 
         [Theory]
-        //[InlineData(decimal.MinValue)]
-        //[InlineData(-0.00001M)]
-        //[InlineData(0.00001M)]
+        [InlineData(-0.00001)]
+        [InlineData(0.00001)]
         [InlineData(100)]
-        //[InlineData(decimal.MaxValue)]
         public void GivenAboveRules_WhenDecimalValueNotNullNotObeyingFollowUpRule_FailTestWithPropertyInMessage(decimal testValue)
         {
             // Arrange

@@ -4,31 +4,9 @@ using Xunit;
 
 namespace dotValidate.Tests.ConditionalRuleTests
 {
-    public class WhenNotNull
+    public class WhenNotNull : ConditionalTestClass
     {
         private const string TEXT_TARGET = "ABC";
-
-        private class TestClass
-        {
-            public bool? TestBool { get; set; }
-
-            public int? TestInt { get; set; }
-
-            public byte? TestByte { get; set; }
-
-            public double? TestDouble { get; set; }
-
-            public decimal? TestDecimal { get; set; }
-
-            public string? TestString { get; set; }
-
-            public TestSubClass? TestSubClass { get; set; }
-        }
-
-        private class TestSubClass
-        {
-            public int Id { get; set; }
-        }
 
         private class TestClassValidationRules : ValidationRules<TestClass>
         {

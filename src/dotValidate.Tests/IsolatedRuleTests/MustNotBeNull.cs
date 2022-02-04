@@ -5,24 +5,9 @@ using Xunit;
 
 namespace dotValidate.Tests.IsolatedRuleTests
 {
-    public class MustBeNull
+    public class MustBeNull : GeneralTestClass
     {
-        internal class TestClass
-        {
-            public int? TestInteger { get; set; }
-
-            public string? TestString { get; set; }
-
-            public double? TestDouble { get; set; }
-
-            public decimal? TestDecimal { get; set; }
-
-            public DateTime? TestDateTime { get; set; }
-
-            public TestClass? ChildObject { get; set; }
-        }
-
-        internal class TestClassValidationRules : ValidationRules<TestClass>
+        private class TestClassValidationRules : ValidationRules<TestClass>
         {
             public TestClassValidationRules()
             {

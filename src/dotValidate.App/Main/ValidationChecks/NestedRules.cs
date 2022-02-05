@@ -25,8 +25,8 @@ namespace dotValidate.Main.ValidationChecks
         protected override bool GetTestResult()
         {
             var result = _nestedTestFuncs.RunAllTestsFor(ValueProvided);
-
-            _generatedRuleBreakDescription = result.FailureSummary();
+            
+            _generatedRuleBreakDescription = result.NestedFailureSummary(PropertyName);
 
             return !result.HasFailures;
         }

@@ -37,17 +37,33 @@ namespace dotValidate.Models
 
         public string FailureSummary()
         {
+            return GetFailureSummary(
+                        $"The following validation error occurred while handling the request '{_requestName}'",
+                        $"There were {Failures.Count} validation errors while handling the request '{_requestName}'"
+                    );
+        }
+        
+        internal string NestedFailureSummary(string propertyName)
+        {
+            return GetFailureSummary(
+                        $"The following validation error occurred while handling the property '{propertyName}' which has type '{_requestName}'",
+                        $"There were {Failures.Count} validation errors while handling the property '{propertyName}' which has type '{_requestName}'"
+                    );
+        }
+
+        private string GetFailureSummary(string singleLineStart, string multiLineStart)
+        {
             if (!HasFailures)
                 return string.Empty;
 
             if (Failures.Count == 1)
-                return $"The following validation error when handling the request '{_requestName}': {Failures.First().FailureDescription}";
+                return $"{singleLineStart}: {Failures.First().FailureDescription}";
 
-            var summaryBuilder = new StringBuilder($"There were {Failures.Count} validation errors while handling the request '{_requestName}': ");
+            var summaryBuilder = new StringBuilder($"{multiLineStart}:");
 
             for (var i = 0; i < Failures.Count; i++)
             {
-                summaryBuilder.Append($"({i + 1}) {Failures[i].FailureDescription}");
+                summaryBuilder.Append($" ({i + 1}) {Failures[i].FailureDescription}");
             }
 
             return summaryBuilder.ToString();

@@ -46,8 +46,8 @@ namespace dotValidate.Models
         internal string NestedFailureSummary(string propertyName)
         {
             return GetFailureSummary(
-                        $"The following validation error occurred while handling the property '{propertyName}' which has type '{_requestName}'",
-                        $"There were {Failures.Count} validation errors while handling the property '{propertyName}' which has type '{_requestName}'"
+                        $"The data provided for {propertyName} had the following validation error",
+                        $"The data provided for {propertyName} had the following {Failures.Count} validation errors"
                     );
         }
 

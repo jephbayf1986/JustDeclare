@@ -29,7 +29,7 @@ namespace dotValidate
         /// </code>
         /// </para>
         /// </summary>
-        /// <param name="rules"></param>
+        /// <param name="rules">Expressions with Validation Check output</param>
         protected void DeclareRules(params Expression<Func<TRequest, ValidationCheck>>[] rules)
         {
             _validationTestFuncs = rules.CreateValidationTestFuncs();

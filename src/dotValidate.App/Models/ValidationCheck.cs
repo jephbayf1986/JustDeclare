@@ -84,6 +84,7 @@
                 FailureDescription = _useCustomMessage ? _customMessage : DefaultRuleBreakDescription
             };
         }
+
         /// <summary>
         /// Get Test Result
         /// </summary>

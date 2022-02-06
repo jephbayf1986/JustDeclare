@@ -4,24 +4,37 @@ using System.Text;
 
 namespace dotValidate.Models
 {
+    /// <summary>
+    /// <b>Validation Result</b><br/>
+    /// <i>dotValidate</i> container for details of a validation run, pass fail and details of any failures.
+    /// </summary>
     public class ValidationResult
     {
         private readonly string _requestName;
 
+        /// <summary>
+        /// Has Failures?
+        /// </summary>
         public bool HasFailures { get { return NumberOfFailures > 0; } }
 
+        /// <summary>
+        /// Number of Failures
+        /// </summary>
         public int NumberOfFailures { get { return Failures.Count; } }
 
+        /// <summary>
+        /// List of Validation Failures
+        /// </summary>
         public List<ValidationFailure> Failures { get; private set; }
 
-        public ValidationResult(string requestName)
+        internal ValidationResult(string requestName)
         {
             _requestName = requestName;
 
             Failures = new List<ValidationFailure>();
         }
 
-        public void AddFailure(ValidationFailure failure)
+        internal void AddFailure(ValidationFailure failure)
         {
             Failures.Add(failure);
         }
@@ -35,6 +48,10 @@ namespace dotValidate.Models
             return result;
         }
 
+        /// <summary>
+        /// Failure Summary
+        /// </summary>
+        /// <returns>String with complete details of each and every failure</returns>
         public string FailureSummary()
         {
             return GetFailureSummary(

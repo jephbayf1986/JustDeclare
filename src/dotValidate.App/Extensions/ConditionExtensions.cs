@@ -100,7 +100,7 @@ namespace dotValidate
         /// <typeparam name="T">Type of property subject to validation rule</typeparam>
         /// <param name="currentConditions">Condition Chain - An existing chain of conditions containing When() and optionally one or more AndWhen()</param>
         /// <param name="conditionFunc">Expression with Validation Check output</param>
-        /// <returns>Validation Check</returns>
+        /// <returns>Validation Check - <i>dotValidate</i> container for all input and output information for the validation rule</returns>
         public static ValidationCheck Then<T>(this ConditionChain<T> currentConditions, Func<T, ValidationCheck> conditionFunc)
         {
             if (!currentConditions.AllConditionsPassed())

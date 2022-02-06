@@ -12,7 +12,7 @@ namespace dotValidate
         /// Must Be True
         /// </summary>
         /// <param name="conditional">Not Null Condition - Returned from WhenNotNull()</param>
-        /// <returns>Validation Check</returns>
+        /// <returns>Validation Check - <i>dotValidate</i> container for all input and output information for the validation rule</returns>
         public static ValidationCheck MustBeTrue(this NotNullCondition<bool?> conditional)
         {
             return conditional.CreateValidationCheck(MustBeTrue);
@@ -22,7 +22,7 @@ namespace dotValidate
         /// Must Be False
         /// </summary>
         /// <param name="conditional">Not Null Condition - Returned from WhenNotNull()</param>
-        /// <returns>Validation Check</returns>
+        /// <returns>Validation Check - <i>dotValidate</i> container for all input and output information for the validation rule</returns>
         public static ValidationCheck MustBeFalse(this NotNullCondition<bool?> conditional)
         {
             return conditional.CreateValidationCheck(MustBeFalse);

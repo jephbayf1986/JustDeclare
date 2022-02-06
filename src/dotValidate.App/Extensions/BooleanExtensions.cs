@@ -12,7 +12,7 @@ namespace dotValidate
         /// Must Be True
         /// </summary>
         /// <param name="value">Boolean value to validate</param>
-        /// <returns>Validation Check</returns>
+        /// <returns>Validation Check - <i>dotValidate</i> container for all input and output information for the validation rule</returns>
         public static ValidationCheck MustBeTrue(this bool value)
         {
             return new BoolEqual(value, true);
@@ -22,7 +22,7 @@ namespace dotValidate
         /// Must Be True
         /// </summary>
         /// <param name="value">Nullable Boolean value to validate</param>
-        /// <returns>Validation Check</returns>
+        /// <returns>Validation Check - <i>dotValidate</i> container for all input and output information for the validation rule</returns>
         public static ValidationCheck MustBeTrue(this bool? value)
         {
             return new BoolEqual(value, true);
@@ -32,7 +32,7 @@ namespace dotValidate
         /// Must Be False
         /// </summary>
         /// <param name="value">Boolean value to validate</param>
-        /// <returns>Validation Check</returns>
+        /// <returns>Validation Check - <i>dotValidate</i> container for all input and output information for the validation rule</returns>
         public static ValidationCheck MustBeFalse(this bool value)
         {
             return new BoolEqual(value, false);
@@ -42,7 +42,7 @@ namespace dotValidate
         /// Must Be False
         /// </summary>
         /// <param name="value">Nullable Boolean value to validate</param>
-        /// <returns>Validation Check</returns>
+        /// <returns>Validation Check - <i>dotValidate</i> container for all input and output information for the validation rule</returns>
         public static ValidationCheck MustBeFalse(this bool? value)
         {
             return new BoolEqual(value, false);
@@ -52,7 +52,7 @@ namespace dotValidate
         /// Must Not Be True
         /// </summary>
         /// <param name="value">Nullable Boolean value to validate</param>
-        /// <returns>Validation Check</returns>
+        /// <returns>Validation Check - <i>dotValidate</i> container for all input and output information for the validation rule</returns>
         public static ValidationCheck MustNotBeTrue(this bool? value)
         {
             return value.MustBeTrue()
@@ -63,7 +63,7 @@ namespace dotValidate
         /// Must Not Be False
         /// </summary>
         /// <param name="value">Nullable Boolean value to validate</param>
-        /// <returns>Validation Check</returns>
+        /// <returns>Validation Check - <i>dotValidate</i> container for all input and output information for the validation rule</returns>
         public static ValidationCheck MustNotBeFalse(this bool? value)
         {
             return value.MustBeFalse()

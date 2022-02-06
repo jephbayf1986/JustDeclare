@@ -14,7 +14,7 @@ namespace dotValidate.Tests.PostCheckTests
             {
                 DeclareRules(
                         x => x.TestString.MustContain(TEXT_TARGET)
-                                         .EndValidationIfFails(),
+                                         .StopValidationOnFailure(),
                         x => x.TestString.MustStartWith(TEXT_TARGET)
                     );
             }

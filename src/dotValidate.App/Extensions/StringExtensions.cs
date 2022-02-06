@@ -5,7 +5,10 @@ using System;
 
 namespace dotValidate
 {
-    public static partial class JustDeclareExtensions
+    /// <summary>
+    /// Property Extensions for building Validation Rules with dotValidate
+    /// </summary>
+    public static partial class PropertyExtensions
     {
         public static ValidationCheck MustBe(this string value, string target)
         {

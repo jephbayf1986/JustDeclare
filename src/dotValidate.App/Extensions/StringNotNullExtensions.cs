@@ -4,7 +4,10 @@ using dotValidate.Models;
 
 namespace dotValidate
 {
-    public static partial class JustDeclareExtensions
+    /// <summary>
+    /// Property Extensions for building Validation Rules with dotValidate
+    /// </summary>
+    public static partial class PropertyExtensions
     {
         public static ValidationCheck MustBe(this NotNullCondition<string> conditional, string target)
         {

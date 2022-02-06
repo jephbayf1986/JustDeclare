@@ -6,7 +6,10 @@ using System;
 
 namespace dotValidate
 {
-    public static partial class JustDeclareExtensions
+    /// <summary>
+    /// Property Extensions for building Validation Rules with dotValidate
+    /// </summary>
+    public static partial class PropertyExtensions
     {
         public static NotNullCondition<T> WhenNotNull<T>(this T value)
         {
@@ -27,11 +30,6 @@ namespace dotValidate
             currentConditions.AddCondition(customCondition);
 
             return currentConditions;
-        }
-
-        private static ConditionChain<T> ExceptWhen<T>(this ConditionChain<T> currentConditions, Func<T, bool> condition)
-        {
-            throw new NotImplementedException();
         }
 
         public static ValidationCheck Then<T>(this ConditionChain<T> currentConditions, Func<T, ValidationCheck> conditionFunc)

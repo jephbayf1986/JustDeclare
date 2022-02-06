@@ -3,6 +3,11 @@ using System.Collections.Generic;
 
 namespace dotValidate.Conditions
 {
+    /// <summary>
+    /// Condition Chain<br/>
+    /// Used for chaining together When(), AndWhen() and Then() conditions.
+    /// </summary>
+    /// <typeparam name="TValue">Type to run conditions against</typeparam>
     public class ConditionChain<TValue>
     {
         private IList<ValidationCondition<TValue>> _validationConditions;

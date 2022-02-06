@@ -4,9 +4,14 @@ using System;
 
 namespace dotValidate.Conditions
 {
+    /// <summary>
+    /// Not Null Condition<br/>
+    /// Used for chaining WhenNotNull() condition.
+    /// </summary>
+    /// <typeparam name="TValue"></typeparam>
     public class NotNullCondition<TValue>
     {
-        public NotNullCondition(TValue carryOverValue)
+        internal NotNullCondition(TValue carryOverValue)
         {
             CarryOverValue = carryOverValue;
         }

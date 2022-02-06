@@ -1,11 +1,11 @@
-﻿using dotValidate.Models.Enums;
+﻿using dotValidate.Enums;
 using System;
 
 namespace dotValidate.Main.Helpers
 {
     internal static class StringComparisonHelper
     {
-        internal static StringComparison ToStringComparison(this MatchCase caseSensitivity)
-            => caseSensitivity == MatchCase.Insensitve ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
+        internal static StringComparison ToStringComparison(this Case caseSensitivity)
+            => caseSensitivity == Case.Insensitve ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
     }
 }

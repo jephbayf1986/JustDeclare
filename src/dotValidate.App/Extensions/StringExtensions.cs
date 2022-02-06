@@ -1,6 +1,6 @@
-﻿using dotValidate.Main.ValidationChecks;
+﻿using dotValidate.Enums;
+using dotValidate.Main.ValidationChecks;
 using dotValidate.Models;
-using dotValidate.Models.Enums;
 using System;
 
 namespace dotValidate
@@ -12,7 +12,7 @@ namespace dotValidate
             return new StringEqual(value, target);
         }
 
-        public static ValidationCheck MustBe(this string value, string target, MatchCase matchCase)
+        public static ValidationCheck MustBe(this string value, string target, Case matchCase)
         {
             return new StringEqual(value, target, matchCase);
         }
@@ -23,7 +23,7 @@ namespace dotValidate
                         .Inverted();
         }
 
-        public static ValidationCheck MustNotBe(this string value, string target, MatchCase matchCase)
+        public static ValidationCheck MustNotBe(this string value, string target, Case matchCase)
         {
             return value.MustBe(target, matchCase)
                         .Inverted();
@@ -55,7 +55,7 @@ namespace dotValidate
             return new StringContains(value, target);
         }
 
-        public static ValidationCheck MustContain(this string value, string target, MatchCase matchCase)
+        public static ValidationCheck MustContain(this string value, string target, Case matchCase)
         {
             return new StringContains(value, target, matchCase);
         }
@@ -65,7 +65,7 @@ namespace dotValidate
                         .Inverted();
         }
 
-        public static ValidationCheck MustNotContain(this string value, string target, MatchCase matchCase)
+        public static ValidationCheck MustNotContain(this string value, string target, Case matchCase)
         {
             return value.MustContain(target, matchCase)
                         .Inverted();
@@ -76,7 +76,7 @@ namespace dotValidate
             return new StringStartsWith(value, target);
         }
 
-        public static ValidationCheck MustStartWith(this string value, string target, MatchCase matchCase)
+        public static ValidationCheck MustStartWith(this string value, string target, Case matchCase)
         {
             return new StringStartsWith(value, target, matchCase);
         }
@@ -86,7 +86,7 @@ namespace dotValidate
                         .Inverted();
         }
 
-        public static ValidationCheck MustNotStartWith(this string value, string target, MatchCase matchCase)
+        public static ValidationCheck MustNotStartWith(this string value, string target, Case matchCase)
         {
             return value.MustStartWith(target, matchCase)
                         .Inverted();
@@ -97,7 +97,7 @@ namespace dotValidate
             return new StringEndsWith(value, target);
         }
 
-        public static ValidationCheck MustEndWith(this string value, string target, MatchCase matchCase)
+        public static ValidationCheck MustEndWith(this string value, string target, Case matchCase)
         {
             return new StringEndsWith(value, target, matchCase);
         }
@@ -108,7 +108,7 @@ namespace dotValidate
                         .Inverted();
         }
 
-        public static ValidationCheck MustNotEndWith(this string value, string target, MatchCase matchCase)
+        public static ValidationCheck MustNotEndWith(this string value, string target, Case matchCase)
         {
             return value.MustEndWith(target, matchCase)
                         .Inverted();

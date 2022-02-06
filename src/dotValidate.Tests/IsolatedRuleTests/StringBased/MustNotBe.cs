@@ -1,5 +1,4 @@
-﻿using dotValidate.Models.Enums;
-using dotValidate.Tests.TestHelpers;
+﻿using dotValidate.Tests.TestHelpers;
 using Shouldly;
 using Xunit;
 
@@ -15,7 +14,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.StringBased
             {
                 DeclareRules(
                         x => x.TestNullable.MustNotBe(TARGET),
-                        x => x.TestNonNullable.MustNotBe(TARGET, MatchCase.Insensitve)
+                        x => x.TestNonNullable.MustNotBe(TARGET, Enums.Case.Insensitve)
                     );
             }
         }
@@ -64,9 +63,9 @@ namespace dotValidate.Tests.IsolatedRuleTests.StringBased
 
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
-                                              x => x.FailureSummary().ShouldContain(nameof(request.TestNullable), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain(request.TestNullable, Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain(TARGET, Case.Insensitive));
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestNullable), Shouldly.Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(request.TestNullable, Shouldly.Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(TARGET, Shouldly.Case.Insensitive));
         }
 
         [Fact]
@@ -99,10 +98,10 @@ namespace dotValidate.Tests.IsolatedRuleTests.StringBased
 
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
-                                              x => x.FailureSummary().ShouldContain(nameof(request.TestNonNullable), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain(request.TestNonNullable, Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain(TARGET, Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("case-insensitive", Case.Insensitive));
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestNonNullable), Shouldly.Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(request.TestNonNullable, Shouldly.Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(TARGET, Shouldly.Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("case-insensitive", Shouldly.Case.Insensitive));
         }
         
         private static TestClass GetTestClass()

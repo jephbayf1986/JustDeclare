@@ -1,11 +1,11 @@
-﻿using dotValidate.Main.Helpers;
-using dotValidate.Models.Enums;
+﻿using dotValidate.Enums;
+using dotValidate.Main.Helpers;
 
 namespace dotValidate.Main.ValidationChecks
 {
     internal class StringContains : ValidationCheck<string>
     {
-        public StringContains(string value, string targetValue, MatchCase caseSensitivity = MatchCase.Sensitive)
+        public StringContains(string value, string targetValue, Case caseSensitivity = Case.Sensitive)
             : base(value)
         {
             _targetValue = targetValue;
@@ -13,7 +13,7 @@ namespace dotValidate.Main.ValidationChecks
         }
 
         private readonly string _targetValue;
-        private readonly MatchCase _caseSensitivity;
+        private readonly Case _caseSensitivity;
 
         protected override string DefaultRuleBreakDescription
             => GetRuleBreakMessage();

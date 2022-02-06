@@ -1,6 +1,6 @@
 ﻿using dotValidate.Conditions;
+using dotValidate.Enums;
 using dotValidate.Models;
-using dotValidate.Models.Enums;
 
 namespace dotValidate
 {
@@ -11,7 +11,7 @@ namespace dotValidate
             return conditional.CreateValidationCheck(x => x.MustBe(target));
         }
 
-        public static ValidationCheck MustBe(this NotNullCondition<string> conditional, string target, MatchCase matchCase)
+        public static ValidationCheck MustBe(this NotNullCondition<string> conditional, string target, Case matchCase)
         {
             return conditional.CreateValidationCheck(x => x.MustBe(target, matchCase));
         }
@@ -21,7 +21,7 @@ namespace dotValidate
             return conditional.CreateValidationCheck(x => x.MustNotBe(target));
         }
 
-        public static ValidationCheck MustNotBe(this NotNullCondition<string> conditional, string target, MatchCase matchCase)
+        public static ValidationCheck MustNotBe(this NotNullCondition<string> conditional, string target, Case matchCase)
         {
             return conditional.CreateValidationCheck(x => x.MustNotBe(target, matchCase));
         }
@@ -51,7 +51,7 @@ namespace dotValidate
             return conditional.CreateValidationCheck(x => x.MustContain(target));
         }
 
-        public static ValidationCheck MustContain(this NotNullCondition<string> conditional, string target, MatchCase matchCase)
+        public static ValidationCheck MustContain(this NotNullCondition<string> conditional, string target, Case matchCase)
         {
             return conditional.CreateValidationCheck(x => x.MustContain(target, matchCase));
         }
@@ -61,7 +61,7 @@ namespace dotValidate
             return conditional.CreateValidationCheck(x => x.MustNotContain(target));
         }
 
-        public static ValidationCheck MustNotContain(this NotNullCondition<string> conditional, string target, MatchCase matchCase)
+        public static ValidationCheck MustNotContain(this NotNullCondition<string> conditional, string target, Case matchCase)
         {
             return conditional.CreateValidationCheck(x => x.MustNotContain(target, matchCase));
         }
@@ -71,7 +71,7 @@ namespace dotValidate
             return conditional.CreateValidationCheck(x => x.MustStartWith(target));
         }
 
-        public static ValidationCheck MustStartWith(this NotNullCondition<string> conditional, string target, MatchCase matchCase)
+        public static ValidationCheck MustStartWith(this NotNullCondition<string> conditional, string target, Case matchCase)
         {
             return conditional.CreateValidationCheck(x => x.MustStartWith(target, matchCase));
         }
@@ -80,7 +80,7 @@ namespace dotValidate
             return conditional.CreateValidationCheck(x => x.MustNotStartWith(target));
         }
 
-        public static ValidationCheck MustNotStartWith(this NotNullCondition<string> conditional, string target, MatchCase matchCase)
+        public static ValidationCheck MustNotStartWith(this NotNullCondition<string> conditional, string target, Case matchCase)
         {
             return conditional.CreateValidationCheck(x => x.MustNotStartWith(target, matchCase));
         }
@@ -90,7 +90,7 @@ namespace dotValidate
             return conditional.CreateValidationCheck(x => x.MustEndWith(target));
         }
 
-        public static ValidationCheck MustEndWith(this NotNullCondition<string> conditional, string target, MatchCase matchCase)
+        public static ValidationCheck MustEndWith(this NotNullCondition<string> conditional, string target, Case matchCase)
         {
             return conditional.CreateValidationCheck(x => x.MustEndWith(target, matchCase));
         }
@@ -100,7 +100,7 @@ namespace dotValidate
             return conditional.CreateValidationCheck(x => x.MustNotEndWith(target));
         }
 
-        public static ValidationCheck MustNotEndWith(this NotNullCondition<string> conditional, string target, MatchCase matchCase)
+        public static ValidationCheck MustNotEndWith(this NotNullCondition<string> conditional, string target, Case matchCase)
         {
             return conditional.CreateValidationCheck(x => x.MustNotEndWith(target, matchCase));
         }

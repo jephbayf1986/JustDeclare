@@ -2,6 +2,10 @@
 
 namespace dotValidate.Exceptions
 {
+    /// <summary>
+    /// <b>dotValidate Validation Argument Exception</b> <br />
+    /// Thrown when an incompatible argument is passed into a validation rule
+    /// </summary>
     public class ValidationArgumentException : Exception
     {
         private ValidationArgumentException(string propertyName, string message)

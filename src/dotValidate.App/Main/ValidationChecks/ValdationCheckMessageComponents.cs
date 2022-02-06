@@ -1,5 +1,5 @@
-﻿using dotValidate.Models;
-using dotValidate.Models.Enums;
+﻿using dotValidate.Enums;
+using dotValidate.Models;
 
 namespace dotValidate.Main.ValidationChecks
 {
@@ -54,7 +54,7 @@ namespace dotValidate.Main.ValidationChecks
         }
             
 
-        protected string OrWithSensitivity(MatchCase caseSensitivity)
-            => caseSensitivity == MatchCase.Sensitive ? string.Empty : " or any case-insensitive match";
+        protected string OrWithSensitivity(Case caseSensitivity)
+            => caseSensitivity == Case.Sensitive ? string.Empty : " or any case-insensitive match";
     }
 }

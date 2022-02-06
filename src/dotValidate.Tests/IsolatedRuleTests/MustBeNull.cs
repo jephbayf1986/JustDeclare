@@ -1,5 +1,6 @@
 ﻿using dotValidate.Tests.TestHelpers;
 using Shouldly;
+using ShouldlyCase = Shouldly.Case;
 using Xunit;
 
 namespace dotValidate.Tests.IsolatedRuleTests
@@ -49,8 +50,8 @@ namespace dotValidate.Tests.IsolatedRuleTests
 
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
-                                              x => x.FailureSummary().ShouldContain(nameof(request.TestInteger), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("required", Case.Insensitive));
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestInteger), ShouldlyCase.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("required", ShouldlyCase.Insensitive));
         }
 
         [Fact]
@@ -67,8 +68,8 @@ namespace dotValidate.Tests.IsolatedRuleTests
 
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
-                                              x => x.FailureSummary().ShouldContain(nameof(request.TestString), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("required", Case.Insensitive));
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestString), ShouldlyCase.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("required", ShouldlyCase.Insensitive));
         }
 
         [Fact]
@@ -85,8 +86,8 @@ namespace dotValidate.Tests.IsolatedRuleTests
 
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
-                                              x => x.FailureSummary().ShouldContain(nameof(request.TestDouble), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("required", Case.Insensitive));
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestDouble), ShouldlyCase.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("required", ShouldlyCase.Insensitive));
         }
 
         [Fact]
@@ -103,8 +104,8 @@ namespace dotValidate.Tests.IsolatedRuleTests
 
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
-                                              x => x.FailureSummary().ShouldContain(nameof(request.TestDecimal), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("required", Case.Insensitive));
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestDecimal), ShouldlyCase.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("required", ShouldlyCase.Insensitive));
         }
 
         [Fact]
@@ -121,8 +122,8 @@ namespace dotValidate.Tests.IsolatedRuleTests
 
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
-                                              x => x.FailureSummary().ShouldContain(nameof(request.TestDateTime), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("required", Case.Insensitive));
+                                              x => x.FailureSummary().ShouldContain(nameof(request.TestDateTime), ShouldlyCase.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("required", ShouldlyCase.Insensitive));
         }
 
         [Fact]

@@ -7,10 +7,10 @@
         {
         }
 
-        protected override string DefaultRuleBreakDescription
+        protected internal override string DefaultRuleBreakDescription
             => $"A value of {ValueProvidedDisplay} was provided for {PropertyName}, which {ShouldBeBlank}.";
 
-        protected override bool GetTestResult()
+        protected internal override bool GetTestResult()
             => string.IsNullOrWhiteSpace(ValueProvided);
     }
 }

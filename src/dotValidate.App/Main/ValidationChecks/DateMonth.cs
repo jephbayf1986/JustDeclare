@@ -13,10 +13,10 @@ namespace dotValidate.Main.ValidationChecks
 
         private readonly MonthOfYear _month;
 
-        protected override string DefaultRuleBreakDescription 
+        protected internal override string DefaultRuleBreakDescription 
             => throw new NotImplementedException();
 
-        protected override bool GetTestResult()
+        protected internal override bool GetTestResult()
         {
             throw new NotImplementedException();
         }

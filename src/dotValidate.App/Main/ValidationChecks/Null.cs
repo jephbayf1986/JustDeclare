@@ -7,10 +7,10 @@
         {
         }
 
-        protected override string DefaultRuleBreakDescription
+        protected internal override string DefaultRuleBreakDescription
             => $"A value {Was} provided for {PropertyName}, which {ShouldBeNull}";
 
-        protected override bool GetTestResult()
+        protected internal override bool GetTestResult()
             => ValueProvided == null;
     }
 }

@@ -19,10 +19,10 @@ namespace dotValidate.Main.ValidationChecks
         private readonly TRangeStart _rangeStart;
         private readonly TRangeEnd _rangeEnd;
 
-        protected override string DefaultRuleBreakDescription 
+        protected internal override string DefaultRuleBreakDescription 
             => $"A value of {ValueProvidedDisplay} was provided for {PropertyName}, but this {Should} fall within the range of between {_rangeStart} and {_rangeEnd}.";
 
-        protected override bool GetTestResult()
+        protected internal override bool GetTestResult()
         {
             if (!ValueProvided.HasValue)
                 return false;

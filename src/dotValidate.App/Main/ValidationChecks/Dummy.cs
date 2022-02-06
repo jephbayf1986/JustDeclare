@@ -5,9 +5,9 @@ namespace dotValidate.Main.ValidationChecks
 {
     internal class Dummy : ValidationCheck
     {
-        protected override string DefaultRuleBreakDescription => throw new NotImplementedException();
-        
-        protected override bool GetTestResult()
+        protected internal override string DefaultRuleBreakDescription => throw new NotImplementedException();
+
+        protected internal override bool GetTestResult()
          => true;
     }
 }

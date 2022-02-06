@@ -10,10 +10,10 @@ namespace dotValidate.Main.ValidationChecks
         {
         }
 
-        protected override string DefaultRuleBreakDescription
+        protected internal override string DefaultRuleBreakDescription
             => $"The Value provided for {PropertyName} {Should} be equal to zero but {(Invert ? "was" : $"was {ValueProvidedDisplay}")}";
 
-        protected override bool GetTestResult()
+        protected internal override bool GetTestResult()
         {
             if (!ValueProvided.HasValue)
                 return false;

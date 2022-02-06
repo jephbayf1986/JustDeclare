@@ -15,10 +15,10 @@ namespace dotValidate.Main.ValidationChecks
         private readonly string _targetValue;
         private readonly Case _caseSensitivity;
 
-        protected override string DefaultRuleBreakDescription
+        protected internal override string DefaultRuleBreakDescription
             => $"The Value provided for {PropertyName} was {ValueProvidedDisplay}, but this {Should} start with the text '{_targetValue}'{OrWithSensitivity(_caseSensitivity)}.";
 
-        protected override bool GetTestResult()
+        protected internal override bool GetTestResult()
         {
             if (ValueProvided == null)
                 return false;

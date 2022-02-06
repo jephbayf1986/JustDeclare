@@ -12,10 +12,10 @@ namespace dotValidate.Main.ValidationChecks
 
         private Regex _regex;
 
-        protected override string DefaultRuleBreakDescription
+        protected internal override string DefaultRuleBreakDescription
             => $"A value of {ValueProvidedDisplay} was provided for {PropertyName}, which {Should} match the following text pattern '{_regex.ToString()}'";
 
-        protected override bool GetTestResult()
+        protected internal override bool GetTestResult()
         {
             if (ValueProvided == null)
                 return false;

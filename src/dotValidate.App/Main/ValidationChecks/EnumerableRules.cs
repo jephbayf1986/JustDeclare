@@ -19,12 +19,12 @@ namespace dotValidate.Main.ValidationChecks
         private bool _allMustObey;
         private IEnumerable<ValidationTestContainer<TSubEntity>> _nestedTestFuncs;
 
-        protected override string DefaultRuleBreakDescription
+        protected internal override string DefaultRuleBreakDescription
             => _generatedRuleBreakDescription;
 
         private string _generatedRuleBreakDescription;
 
-        protected override bool GetTestResult()
+        protected internal override bool GetTestResult()
         {
             throw new NotImplementedException();
         }

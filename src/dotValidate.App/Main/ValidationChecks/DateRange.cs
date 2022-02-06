@@ -14,9 +14,9 @@ namespace dotValidate.Main.ValidationChecks
         private readonly DateTime _rangeStart;
         private readonly DateTime _rangeEnd;
 
-        protected override string DefaultRuleBreakDescription => throw new NotImplementedException();
+        protected internal override string DefaultRuleBreakDescription => throw new NotImplementedException();
 
-        protected override bool GetTestResult()
+        protected internal override bool GetTestResult()
         {
             throw new NotImplementedException();
         }

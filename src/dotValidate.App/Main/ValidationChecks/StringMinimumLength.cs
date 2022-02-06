@@ -10,13 +10,13 @@
 
         private readonly int _minLength;
 
-        protected override string DefaultRuleBreakDescription
+        protected internal override string DefaultRuleBreakDescription
             => GetRuleBreakMessage();
 
         private string GetRuleBreakMessage()
             => $"A value of {ValueProvidedDisplay}{NumberOfCharacters} was provided for {PropertyName}, but the shortest allowed length is {_minLength} characters.";
 
-        protected override bool GetTestResult()
+        protected internal override bool GetTestResult()
         {
             if (ValueProvided == null)
                 return false;

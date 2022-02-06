@@ -15,10 +15,10 @@ namespace dotValidate.Main.ValidationChecks
 
         private readonly TTarget _target;
 
-        protected override string DefaultRuleBreakDescription
+        protected internal override string DefaultRuleBreakDescription
             => $"The Value provided for {PropertyName} was {ValueProvidedDisplay}, but {Should} be equal to {_target}";
 
-        protected override bool GetTestResult()
+        protected internal override bool GetTestResult()
         {
             if (!ValueProvided.HasValue)
                 return false;

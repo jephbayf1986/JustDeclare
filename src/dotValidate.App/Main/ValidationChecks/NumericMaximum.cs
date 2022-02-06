@@ -16,10 +16,10 @@ namespace dotValidate.Main.ValidationChecks
 
         private readonly TMaximum _maxValue;
 
-        protected override string DefaultRuleBreakDescription
+        protected internal override string DefaultRuleBreakDescription
             => $"A value of {ValueProvidedDisplay} was provided for {PropertyName}, but this should be {LessThanOrEqualTo} {_maxValue}.";
 
-        protected override bool GetTestResult()
+        protected internal override bool GetTestResult()
         {
             if (!ValueProvided.HasValue)
                 return true;

@@ -17,12 +17,12 @@ namespace dotValidate.Main.ValidationChecks
 
         private IEnumerable<ValidationTestContainer<TSubEntity>> _nestedTestFuncs;
 
-        protected override string DefaultRuleBreakDescription 
+        protected internal override string DefaultRuleBreakDescription 
             => _generatedRuleBreakDescription;
 
         private string _generatedRuleBreakDescription;
 
-        protected override bool GetTestResult()
+        protected internal override bool GetTestResult()
         {
             var result = _nestedTestFuncs.RunAllTestsFor(ValueProvided);
             

@@ -1,11 +1,11 @@
 ﻿namespace dotValidate.Models
 {
+    /// <summary>
+    /// Validation Check<br/>
+    /// Used for storing validation rule information
+    /// </summary>
     public abstract class ValidationCheck
     {
-        public ValidationCheck()
-        {
-        }
-
         internal void SetPropertyName(string propertyName)
         {
             PropertyName = propertyName;
@@ -27,9 +27,12 @@
             _stopOnFailure = true;
         }
 
-        protected abstract string DefaultRuleBreakDescription { get; }
+        /// <summary>
+        /// Default Rule Break Description
+        /// </summary>
+        protected internal abstract string DefaultRuleBreakDescription { get; }
 
-        public bool Passed
+        internal bool Passed
         {
             get
             {
@@ -40,7 +43,7 @@
             }
         }
 
-        public ValidationFailure Failure
+        internal ValidationFailure Failure
         {
             get
             {
@@ -51,7 +54,7 @@
             }
         }
 
-        public bool EndValidationOnFailure
+        internal bool EndValidationOnFailure
         {
             get
             {
@@ -63,8 +66,15 @@
         private string _customMessage;
         private bool _stopOnFailure = false;
 
-        protected bool Invert = false;
-        protected string PropertyName;
+        /// <summary>
+        /// Invert
+        /// </summary>
+        protected internal bool Invert = false;
+
+        /// <summary>
+        /// Property Name
+        /// </summary>
+        protected internal string PropertyName;
 
         private ValidationFailure GetFailureDetails()
         {
@@ -74,7 +84,9 @@
                 FailureDescription = _useCustomMessage ? _customMessage : DefaultRuleBreakDescription
             };
         }
-
-        protected abstract bool GetTestResult();
+        /// <summary>
+        /// Get Test Result
+        /// </summary>
+        protected internal abstract bool GetTestResult();
     }
 }

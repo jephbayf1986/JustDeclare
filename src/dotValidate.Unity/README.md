@@ -6,7 +6,7 @@ This project has a simple extension for registering dotValidate and it's depende
 
 ### Installation
 
-You can install dotValidate with Unity from Nuget Package Manager
+You can install dotValidate with Unity from Nuget Package Manager, or Nuget CLI:
 
 ```cli
 nuget install dotValidate.Unity

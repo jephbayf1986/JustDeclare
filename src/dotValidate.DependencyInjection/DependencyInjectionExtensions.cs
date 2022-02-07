@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace dotValidate.DependencyInjection
+namespace dotValidate.Registration
 {
     /// <summary>
     /// Dependency Injection Extensions for <i>dotValidate</i>/>

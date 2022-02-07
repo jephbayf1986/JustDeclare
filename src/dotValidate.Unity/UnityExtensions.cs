@@ -1,6 +1,6 @@
 ﻿using Unity;
 
-namespace dotValidate.Unity
+namespace dotValidate.Registration
 {
     /// <summary>
     /// Unity Extensions for <i>dotValidate</i>/>

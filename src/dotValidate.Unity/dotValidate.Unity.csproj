@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
 	<TargetFramework>netstandard2.0</TargetFramework>
@@ -18,13 +18,13 @@
 	<Copyright>2022 jephbayf1986</Copyright>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
-	
+
   <ItemGroup>
-    <PackageReference Include="Unity" Version="5.11.10" />
+	<PackageReference Include="Unity" Version="5.11.10" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\dotValidate.App\dotValidate.App.csproj" />
+	<PackageReference Include="dotValidate" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>

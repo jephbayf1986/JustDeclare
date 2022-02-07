@@ -8,6 +8,7 @@
 	<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
 	<PackageId>dotValidate.Unity</PackageId>
 	<Authors>Jeph Bayfield, Georgina Bayfield</Authors>
+	<Title>dotValidate Unity Extensions</Title>
 	<Product>dotValidate Unity Extensions</Product>
 	<Description>Unity Extensions for dotValidate - a syntactically simple way to declare validation rules in Dot Net!</Description>
 	<RepositoryUrl>https://github.com/jephbayf1986/dotVALIDATE/tree/main/src/dotValidate.Unity</RepositoryUrl>

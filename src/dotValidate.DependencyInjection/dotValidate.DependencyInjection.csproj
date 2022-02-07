@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\dotValidate.App\dotValidate.App.csproj" />
+	<PackageReference Include="dotValidate" Version="1.0.0" />
   </ItemGroup>
 
 </Project>

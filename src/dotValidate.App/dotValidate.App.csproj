@@ -1,15 +1,37 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>dotValidate</RootNamespace>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <PackageId>dotValidate</PackageId>
+    <Authors>Jeph Bayfield, Georgina Bayfield</Authors>
+    <Product>dotValidate</Product>
+	<Title>dotValidate</Title>
+    <Description>dotValidate is a syntactically simple way to declare validation rules in Dot Net!</Description>
+    <Copyright>2022 jephbayf1986</Copyright>
+    <PackageProjectUrl></PackageProjectUrl>
+    <RepositoryUrl>https://github.com/jephbayf1986/dotVALIDATE</RepositoryUrl>
+    <PackageTags>Validate;Validation;Declare;C#</PackageTags>
+    <PackageReleaseNotes>Initial release with string, numeric and boolean validation extensions</PackageReleaseNotes>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Company>jephbayf1986</Company>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="Extensions\DateTimeExtensions.cs" />
     <Compile Remove="Extensions\DateTimeNotNullExtensions.cs" />
     <Compile Remove="Extensions\EnumerableExtensions.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

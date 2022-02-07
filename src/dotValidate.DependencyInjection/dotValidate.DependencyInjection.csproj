@@ -1,7 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+	<TargetFramework>netstandard2.0</TargetFramework>
+	<RootNamespace>dotValidate.DependencyInjection</RootNamespace>
+	<GenerateDocumentationFile>True</GenerateDocumentationFile>
+	<IsPublishable>False</IsPublishable>
+	<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+	<PackageId>dotValidate.DependencyInjection</PackageId>
+	<Authors>Jeph Bayfield, Georgina Bayfield</Authors>
+	<Product>dotValidate Dependency Injection Extensions</Product>
+	<Description>Dependency Injection Extensions for dotValidate - a syntactically simple way to declare validation rules in Dot Net!</Description>
+	<RepositoryUrl>https://github.com/jephbayf1986/dotVALIDATE/tree/main/src/dotValidate.DependencyInjection</RepositoryUrl>
+	<PackageTags>Validate;Validation;Declare;Dependency Injection;C#</PackageTags>
+	<PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+	<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+	<Copyright>2022 jephbayf1986</Copyright>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>

@@ -10,7 +10,7 @@ namespace dotValidate.DependencyInjection
         /// <summary>
         /// Register <i>dotValidate</i>/> in your Startup class
         /// </summary>
-        public static void RegisterDrSproc(this IServiceCollection services)
+        public static void RegisterDotValidate(this IServiceCollection services)
         {
             services.AddScoped<IValidator, Validator>();
         }

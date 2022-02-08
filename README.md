@@ -56,6 +56,8 @@ var result = validator.Validate(request);
            .Using<SimpleRequestValidationRules>();
 ```
 
+### Validation Result
+
 ### Simple rules
 As already seen above, to declare a simple rule, just call the request property with any of the available Must___() extension methods. The below code includes some examples of the available extension methods, however this list is not exhaustive and more will be added in future versions:
 
@@ -131,8 +133,41 @@ DeclareRules(
 ```
 
 ### Custom Error Messages
+Every rule has a built in error message, such as the following from `MustNotBeNull()`:
+>A value was not provided for [PropertyName], which is required
+
+You can override this message however and return your own custom message, by using the `UseCustomMessage()` extension method after declaring the rule, as follows:
+```cs
+DeclareRules(
+              // Custom Message Example
+              x => x.Full Name.MustBeShorterThan(150)
+                              .UseCustomMessage("Full Name has a 150 character limit")
+          );
+```
 
 ### Preventing Cascading Errors
+Consider the following code, in the event that the property *PaymentDetails* is null:
+```cs
+DeclareRules(
+              // Preventing Cascading Errors Example
+              x => x.PaymentDetails.MustNotBeNull(),
+              x => x.PaymentDetails.CardHolderName.ShouldNotBeBlank()
+          );
+```
+By default the validator will fail the first test as the property is null, but then try to run the second as well, to give a complete list of validaiton failures. In this case you will receive a [NullReferenceException](https://docs.microsoft.com/en-us/dotnet/api/system.nullreferenceexception?view=net-6.0) as it tries to resolve a property within a null instance. As expressions are being used, a [null conditional operator](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/member-access-operators#null-conditional-operators--and-) is not valid.
+
+Instead, you can prevent the validator from contiuing by using the `StopValidationOnFailure()` extension method:
+```cs
+DeclareRules(
+              x => x.PaymentDetails.MustNotBeNull()
+                                   .StopValidationOnFailure(),
+              x => x.PaymentDetails?.CardHolderName.ShouldNotBeBlank()
+          );
+```
+
+*Notes:*
+1. *Using `WhenNotNull()` is alternative way of preventing the above unhandled exceptions, but note the difference in behavior - `WhenNotNull()` will prevent the single rule it's part of from running, whereas `StopValidationOnFailure()` will stop all subsequent rules from running.*
+2. *By default any request which is null and passed into the validator will fail validation. To prevent this, use `WhenNotNull()` extension method*
 
 ## License, Copyright etc
 dotValidate is created by Jeph & Georgina Bayfield and is licensed under the MIT license.

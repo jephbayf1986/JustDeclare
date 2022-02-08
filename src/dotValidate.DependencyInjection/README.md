@@ -20,7 +20,7 @@ dotnet add package dotValidate.DependencyInjection
 
 ### Usage
 
-Start by registering dotValidate in your startup class:
+Start by registering dotValidate in your `startup` class:
 
 ```cs
 

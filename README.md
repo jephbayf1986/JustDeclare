@@ -93,7 +93,7 @@ DeclareRules(
 *Note: The majority of extension methods have an opposite, eg. `MustNotBeNull()` and `MustBeNull()` are both available*
 
 ### Conditional Rules
-You can ensure a validation rule only runs on certain conditions. The available conditional methods are `WhenNotNull()`, `When()` and `AndWhen()`. See below for examples of their use:
+You can ensure a validation rule only runs when certain conditions are met. The available conditional methods are `WhenNotNull()`, `When()` and `AndWhen()`. See below for examples of their use:
 
 ```cs
 DeclareRules(

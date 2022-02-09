@@ -57,6 +57,11 @@ var result = validator.Validate(request);
 ```
 
 ### Validation Result
+The model `ValidationResult` returned by either `IValidator.Validate()` or `ValidationRules<>.Validate()` has the following public properties and methods which can be utilised by the user to determine how the failure might be handled:
+ - `HasFailures` Property indicates true or false as to whether the overrall test has failed or not.
+ - `NumberOfFailures` Property indicates the number, if any of failures that have caused the overrall test to fail.
+ - `FailureSummary()` Gathers the list of failures into 1 readable string.
+ - `Failures` Property contains a list of each individual failure, each one containing a `PropertyName` and `FailureDescription`.
 
 ### Simple rules
 As already seen above, to declare a simple rule, just call the request property with any of the available Must___() extension methods. The below code includes some examples of the available extension methods, however this list is not exhaustive and more will be added in future versions:

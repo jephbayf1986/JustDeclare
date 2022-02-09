@@ -176,5 +176,38 @@ DeclareRules(
 1. *Using `WhenNotNull()` is alternative way of preventing the above unhandled exceptions, but note the difference in behavior - `WhenNotNull()` will prevent the single rule it's part of from running, whereas `StopValidationOnFailure()` will stop all subsequent rules from running.*
 2. *By default any request which is null and passed into the validator will fail validation. To prevent this, use `WhenNotNull()` extension method*
 
+### Dependency Injection
+Dependency Injection is also available by through the interface `IValidator` and it's implementation class `Validator`.
+
+dotValidate has 2 extension libraries to register dependency injection:
+ - [dotValidate.DependencyInjection](https://www.nuget.org/packages/dotValidate.DependencyInjection/) for the Microsoft Dependency Injection library
+ - [dotValidate.Unity](https://www.nuget.org/packages/dotValidate.Unity/) for Unity Container
+
+For both the above, dotValidate is registered using the extension ```RegisterDotValidate()```.
+
+To inject dotValidate, use the `IValidator` interface in a similar way to the below:
+
+```cs
+private readonly IValidator validator;
+
+public MyService(IValidator validator)
+{
+    this.validator = validator;
+}
+
+public void MyInsertOrUpdate(MyRequest request)
+{
+    var result = connector.Validate(request)
+                          .Using<MyRequestValidationRules>();
+
+    if (result.HasFailures)
+    {
+        // Handle failed validation
+    }
+
+    //...
+}
+```
+
 ## License, Copyright etc
 dotValidate is created by Jeph & Georgina Bayfield and is licensed under the MIT license.

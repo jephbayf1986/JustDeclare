@@ -1,6 +1,8 @@
 # dotValidate
 dotValidate is a syntactically simple way to declare validation rules in Dot Net!
 
+The package is designed to create clear, human readable rules to help make code more manageable. The technical design was inspired by the way [Shouldly](https://github.com/shouldly/shouldly) uses expressions to handle multiple rule declarations. 
+
 ## How to Use
 
 ### Installation

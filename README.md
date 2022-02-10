@@ -1,6 +1,8 @@
 # dotValidate
 dotValidate is a syntactically simple way to declare validation rules in Dot Net!
 
+The package is designed to create clear, human readable rules to help make code more manageable. The technical design was inspired by the way [Shouldly](https://github.com/shouldly/shouldly) uses expressions to handle multiple rule declarations. 
+
 ## How to Use
 
 ### Installation
@@ -56,6 +58,13 @@ var result = validator.Validate(request);
            .Using<SimpleRequestValidationRules>();
 ```
 
+### Validation Result
+The model `ValidationResult` returned by either `IValidator.Validate()` or `ValidationRules<>.Validate()` has the following public properties and methods which can be utilised by the user to determine how the failure might be handled:
+ - `HasFailures` Property indicates true or false as to whether the overall test has failed or not.
+ - `NumberOfFailures` Property indicates the number, if any of failures that have caused the overall test to fail.
+ - `FailureSummary()` Gathers the list of failures into 1 readable string.
+ - `Failures` Property contains a list of each individual failure, each one containing a `PropertyName` and `FailureDescription`.
+
 ### Simple rules
 As already seen above, to declare a simple rule, just call the request property with any of the available Must___() extension methods. The below code includes some examples of the available extension methods, however this list is not exhaustive and more will be added in future versions:
 
@@ -84,7 +93,7 @@ DeclareRules(
 *Note: The majority of extension methods have an opposite, eg. `MustNotBeNull()` and `MustBeNull()` are both available*
 
 ### Conditional Rules
-You can ensure a validation rule only runs on certain conditions. The available conditional methods are `WhenNotNull()`, `When()` and `AndWhen()`. See below for examples of their use:
+You can ensure a validation rule only runs when certain conditions are met. The available conditional methods are `WhenNotNull()`, `When()` and `AndWhen()`. See below for examples of their use:
 
 ```cs
 DeclareRules(
@@ -131,8 +140,74 @@ DeclareRules(
 ```
 
 ### Custom Error Messages
+Every rule has a built in error message, such as the following from `MustNotBeNull()`:
+>A value was not provided for [PropertyName], which is required
+
+You can override this message however and return your own custom message, by using the `UseCustomMessage()` extension method after declaring the rule, as follows:
+```cs
+DeclareRules(
+              // Custom Message Example
+              x => x.Full Name.MustBeShorterThan(150)
+                              .UseCustomMessage("Full Name has a 150 character limit")
+          );
+```
 
 ### Preventing Cascading Errors
+Consider the following code, in the event that the property *PaymentDetails* is null:
+```cs
+DeclareRules(
+              // Preventing Cascading Errors Example
+              x => x.PaymentDetails.MustNotBeNull(),
+              x => x.PaymentDetails.CardHolderName.ShouldNotBeBlank()
+          );
+```
+By default the validator will fail the first test as the property is null, but then try to run the second as well, to give a complete list of validaiton failures. In this case you will receive a [NullReferenceException](https://docs.microsoft.com/en-us/dotnet/api/system.nullreferenceexception?view=net-6.0) as it tries to resolve a property within a null instance. As expressions are being used, a [null conditional operator](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/member-access-operators#null-conditional-operators--and-) is not valid.
+
+Instead, you can prevent the validator from contiuing by using the `StopValidationOnFailure()` extension method:
+```cs
+DeclareRules(
+              x => x.PaymentDetails.MustNotBeNull()
+                                   .StopValidationOnFailure(),
+              x => x.PaymentDetails?.CardHolderName.ShouldNotBeBlank()
+          );
+```
+
+*Notes:*
+1. *Using `WhenNotNull()` is alternative way of preventing the above unhandled exceptions, but note the difference in behavior - `WhenNotNull()` will prevent the single rule it's part of from running, whereas `StopValidationOnFailure()` will stop all subsequent rules from running.*
+2. *By default any request which is null and passed into the validator will fail validation. To prevent this, use `WhenNotNull()` extension method*
+
+### Dependency Injection
+Dependency Injection is also available by through the interface `IValidator` and it's implementation class `Validator`.
+
+dotValidate has 2 extension libraries to register dependency injection:
+ - [dotValidate.DependencyInjection](https://www.nuget.org/packages/dotValidate.DependencyInjection/) for the Microsoft Dependency Injection library
+ - [dotValidate.Unity](https://www.nuget.org/packages/dotValidate.Unity/) for Unity Container
+
+For both the above, dotValidate is registered using the extension ```RegisterDotValidate()```.
+
+To inject dotValidate, use the `IValidator` interface in a similar way to the below:
+
+```cs
+private readonly IValidator validator;
+
+public MyService(IValidator validator)
+{
+    this.validator = validator;
+}
+
+public void MyInsertOrUpdate(MyRequest request)
+{
+    var result = connector.Validate(request)
+                          .Using<MyRequestValidationRules>();
+
+    if (result.HasFailures)
+    {
+        // Handle failed validation
+    }
+
+    //...
+}
+```
 
 ## License, Copyright etc
 dotValidate is created by Jeph & Georgina Bayfield and is licensed under the MIT license.

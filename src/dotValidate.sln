@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotValidate.App", "dotValidate.App\dotValidate.App.csproj", "{C38C3262-D945-435E-A360-1B4AEBF7D2BF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotValidate.App.Tests", "dotValidate.Tests\dotValidate.App.Tests.csproj", "{583C7600-732E-4DB6-B17A-4DD622FCA54F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotValidate.App.Tests", "dotValidate.App.Tests\dotValidate.App.Tests.csproj", "{583C7600-732E-4DB6-B17A-4DD622FCA54F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotValidate.DependencyInjection", "dotValidate.DependencyInjection\dotValidate.DependencyInjection.csproj", "{A1EB1549-7467-4AA9-8C82-9C95F3185EF3}"
 EndProject

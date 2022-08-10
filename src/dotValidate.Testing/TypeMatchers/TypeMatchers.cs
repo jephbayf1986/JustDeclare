@@ -8,7 +8,13 @@ namespace dotValidate.Testing.TypeMatchers
     {
         bool ITypeMatcher.Matches(Type typeArgument)
         {
-            return typeof(T).IsAssignableFrom(typeArgument);
+            if (typeArgument.BaseType != typeof(ValidationRules<T>))
+                return false;
+
+            if (typeArgument.GenericTypeArguments.Length != 1)
+                return false;
+
+            return typeof(T).IsAssignableFrom(typeArgument.GenericTypeArguments[0]);
         }
     }
 }

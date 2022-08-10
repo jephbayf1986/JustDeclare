@@ -9,10 +9,16 @@ namespace dotValidate.Testing
     {
         internal Mock<IValidator> Mock = new Mock<IValidator>();
 
-        public SpecificRequestRuleStep1<TRequest> GivenRequest<TRequest>(TRequest request)
-            => new SpecificRequestRuleStep1<TRequest>(request, this);
+        public static SpecificRequestRuleStep1<TRequest> GivenRequest<TRequest>(TRequest request)
+            => new SpecificRequestRuleStep1<TRequest>(request, new MockValidator());
 
-        public AnyRequestRuleStep1<TRequest> GivenAnyRequest<TRequest>()
+        public static AnyRequestRuleStep1<TRequest> GivenAnyRequest<TRequest>()
+            => new AnyRequestRuleStep1<TRequest>(new MockValidator());
+
+        public SpecificRequestRuleStep1<TRequest> AndGivenRequest<TRequest>(TRequest request)
+            => new SpecificRequestRuleStep1<TRequest>(request, this);
+        
+        public AnyRequestRuleStep1<TRequest> AndGivenAnyRequest<TRequest>()
             => new AnyRequestRuleStep1<TRequest>(this);
 
         public static MockValidator AlwaysPasses()

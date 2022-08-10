@@ -28,6 +28,12 @@
   </ItemGroup>
 
   <ItemGroup>
+	<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+	  <_Parameter1>dotValidate.Testing</_Parameter1>
+	</AssemblyAttribute>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\..\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>

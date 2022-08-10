@@ -20,7 +20,7 @@ namespace dotValidate.Models
         /// <summary>
         /// Number of Failures
         /// </summary>
-        public int NumberOfFailures { get { return Failures.Count; } }
+        public virtual int NumberOfFailures { get { return Failures.Count; } }
 
         /// <summary>
         /// List of Validation Failures
@@ -52,7 +52,7 @@ namespace dotValidate.Models
         /// Failure Summary
         /// </summary>
         /// <returns>String with complete details of each and every failure</returns>
-        public string FailureSummary()
+        public virtual string FailureSummary()
         {
             return GetFailureSummary(
                         $"The following validation error occurred while handling the request '{_requestName}'",

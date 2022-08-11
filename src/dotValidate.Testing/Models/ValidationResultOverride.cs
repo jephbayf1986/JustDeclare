@@ -1,59 +1,47 @@
 ﻿using dotValidate.Models;
-using System.Text;
 
 namespace dotValidate.Testing.Models
 {
     internal class ValidationResultOverride : ValidationResult
     {
-        private int _numberOfFailures = 0;
         private string _failureMessage;
-        private string _overrideRequestName;
 
-        private ValidationResultOverride(string requestName, string failureMessage = null, int numberOfFailures = 0)
-            : base(requestName)
+        private ValidationResultOverride(string requestName = null, string failureMessage = null)
+            : base(requestName ?? UnknownRequestName)
         {
-            _overrideRequestName = requestName;
             _failureMessage = failureMessage;
-            _numberOfFailures = numberOfFailures;
         }
 
-        public override int NumberOfFailures => _numberOfFailures;
-
-        public override string FailureSummary() => _failureMessage ?? ErrorFailureSummary();
+        public override string FailureSummary() => _failureMessage ?? base.FailureSummary();
 
         public static ValidationResultOverride Pass(string requestName = null)
         {
-            return new ValidationResultOverride(requestName ?? "TestRequest");
+            return new ValidationResultOverride(requestName);
         }
 
         public static ValidationResultOverride Fail(string requestName = null, string customFailureMessage = null)
         {
-            return new ValidationResultOverride(requestName ?? "TestRequest", customFailureMessage, 1);
+            var result = new ValidationResultOverride(requestName, customFailureMessage);
+
+            result.AddFailure(new ValidationFailure { PropertyName = UnknownColumn, FailureDescription = TestFailMessage });
+
+            return result;
         }
 
         public static ValidationResultOverride MultipleFail(int numberOfFailures, string requestName = null, string customFailureMessage = null)
         {
-            return new ValidationResultOverride(requestName ?? "TestRequest", customFailureMessage, numberOfFailures);
-        }
+            var result = new ValidationResultOverride(requestName, customFailureMessage);
 
-        private string ErrorFailureSummary()
-        {
-            if (_numberOfFailures == 0)
-                return string.Empty;
-
-            if (_numberOfFailures == 1)
-                return $"The following validation error occurred while handling the request '{_overrideRequestName}': {TestFailMessage}";
-
-            var summaryBuilder = new StringBuilder($"The following validation error occurred while handling the request '{_overrideRequestName}': ");
-
-            for (var i = 0; i < Failures.Count; i++)
+            for(var i = 0; i < numberOfFailures; i++)
             {
-                summaryBuilder.Append($" ({i + 1}) {TestFailMessage}");
+                result.AddFailure(new ValidationFailure { PropertyName = UnknownColumn, FailureDescription = TestFailMessage });
             }
 
-            return summaryBuilder.ToString();
+            return result;
         }
 
+        private const string UnknownRequestName = "Any Request";
+        private const string UnknownColumn = "Any Column";
         private const string TestFailMessage = "The Mock Validator was instructed to fail this test";
     }
 }

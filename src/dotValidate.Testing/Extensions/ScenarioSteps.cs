@@ -60,20 +60,20 @@ namespace dotValidate.Testing.Extensions
             _mockValidator = mockValidator;
         }
 
-        public MockValidator PassesValidation()
+        public MockValidatorExtra PassesValidation()
         {
             _mockValidator.Mock.Setup(x => x.ValidateRequest<TValidator, TRequest>(_request))
                 .Returns(ValidationResultOverride.Pass(typeof(TRequest).Name));
 
-            return _mockValidator;
+            return new MockValidatorExtra(_mockValidator.Mock);
         }
 
-        public MockValidator FailsValidation(string failureMessage = null)
+        public MockValidatorExtra FailsValidation(string failureMessage = null)
         {
             _mockValidator.Mock.Setup(x => x.ValidateRequest<TValidator, TRequest>(_request))
                 .Returns(ValidationResultOverride.Fail(requestName: typeof(TRequest).Name, customFailureMessage: failureMessage));
 
-            return _mockValidator;
+            return new MockValidatorExtra(_mockValidator.Mock);
         }
     }
 
@@ -88,20 +88,20 @@ namespace dotValidate.Testing.Extensions
             _mockValidator = mockValidator;
         }
 
-        public MockValidator PassesValidation()
+        public MockValidatorExtra PassesValidation()
         {
-            _mockValidator.Mock.Setup(x => x.ValidateRequest<IsAnyValidationRules<TRequest>, TRequest>(_request))
+            _mockValidator.Mock.Setup(x => x.ValidateRequest<IsValidationPair<ValidationRules<TRequest>, TRequest>, TRequest>(_request))
                 .Returns(ValidationResultOverride.Pass(typeof(TRequest).Name));
 
-            return _mockValidator;
+            return new MockValidatorExtra(_mockValidator.Mock);
         }
 
-        public MockValidator FailsValidation(string failureMessage = null)
+        public MockValidatorExtra FailsValidation(string failureMessage = null)
         {
-            _mockValidator.Mock.Setup(x => x.ValidateRequest<IsAnyValidationRules<TRequest>, TRequest>(_request))
+            _mockValidator.Mock.Setup(x => x.ValidateRequest<IsValidationPair<ValidationRules<TRequest>, TRequest>, TRequest>(_request))
                 .Returns(ValidationResultOverride.Fail(requestName: typeof(TRequest).Name, customFailureMessage: failureMessage));
 
-            return _mockValidator;
+            return new MockValidatorExtra(_mockValidator.Mock);
         }
     }
 
@@ -115,20 +115,20 @@ namespace dotValidate.Testing.Extensions
             _mockValidator = mockValidator;
         }
 
-        public MockValidator PassesValidation()
+        public MockValidatorExtra PassesValidation()
         {
             _mockValidator.Mock.Setup(x => x.ValidateRequest<TValidator, TRequest>(It.IsAny<TRequest>()))
                 .Returns(ValidationResultOverride.Pass());
 
-            return _mockValidator;
+            return new MockValidatorExtra(_mockValidator.Mock);
         }
 
-        public MockValidator FailsValidation(string failureMessage = null)
+        public MockValidatorExtra FailsValidation(string failureMessage = null)
         {
             _mockValidator.Mock.Setup(x => x.ValidateRequest<TValidator, TRequest>(It.IsAny<TRequest>()))
                 .Returns(ValidationResultOverride.Fail(customFailureMessage: failureMessage));
 
-            return _mockValidator;
+            return new MockValidatorExtra(_mockValidator.Mock);
         }
     }
 
@@ -141,20 +141,20 @@ namespace dotValidate.Testing.Extensions
             _mockValidator = mockValidator;
         }
         
-        public MockValidator PassesValidation()
+        public MockValidatorExtra PassesValidation()
         {
-            _mockValidator.Mock.Setup(x => x.ValidateRequest<IsAnyValidationRules<TRequest>, TRequest>(It.IsAny<TRequest>()))
+            _mockValidator.Mock.Setup(x => x.ValidateRequest<IsValidationPair<ValidationRules<TRequest>, TRequest>, TRequest>(It.IsAny<TRequest>()))
                 .Returns(ValidationResultOverride.Pass());
 
-            return _mockValidator;
+            return new MockValidatorExtra(_mockValidator.Mock);
         }
 
-        public MockValidator FailsValidation(string failureMessage = null)
+        public MockValidatorExtra FailsValidation(string failureMessage = null)
         {
-            _mockValidator.Mock.Setup(x => x.ValidateRequest<IsAnyValidationRules<TRequest>, TRequest>(It.IsAny<TRequest>()))
+            _mockValidator.Mock.Setup(x => x.ValidateRequest<IsValidationPair<ValidationRules<TRequest>, TRequest>, TRequest>(It.IsAny<TRequest>()))
                 .Returns(ValidationResultOverride.Fail(customFailureMessage: failureMessage));
 
-            return _mockValidator;
+            return new MockValidatorExtra(_mockValidator.Mock);
         }
     }
 }

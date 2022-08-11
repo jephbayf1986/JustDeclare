@@ -4,17 +4,12 @@ using System;
 namespace dotValidate.Testing.TypeMatchers
 {
     [TypeMatcher]
-    public class IsAnyValidationRules<T> : ValidationRules<T>, ITypeMatcher
+    public class IsValidationPair<TValidator, TRequest> : ValidationRules<TRequest>, ITypeMatcher
+        where TValidator : ValidationRules<TRequest>
     {
         bool ITypeMatcher.Matches(Type typeArgument)
         {
-            if (typeArgument.BaseType != typeof(ValidationRules<T>))
-                return false;
-
-            if (typeArgument.GenericTypeArguments.Length != 1)
-                return false;
-
-            return typeof(T).IsAssignableFrom(typeArgument.GenericTypeArguments[0]);
+            return typeof(TValidator).IsAssignableFrom(typeArgument);
         }
     }
 }

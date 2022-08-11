@@ -20,7 +20,7 @@ namespace dotValidate.Models
         /// <summary>
         /// Number of Failures
         /// </summary>
-        public virtual int NumberOfFailures { get { return Failures.Count; } }
+        public int NumberOfFailures { get { return Failures.Count; } }
 
         /// <summary>
         /// List of Validation Failures

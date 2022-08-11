@@ -1,4 +1,4 @@
-﻿namespace dotValidate.Testing.Tests
+﻿namespace dotValidate.Testing.Tests.TestResources
 {
     internal class ARequest
     {

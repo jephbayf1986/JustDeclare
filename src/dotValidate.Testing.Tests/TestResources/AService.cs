@@ -1,4 +1,4 @@
-﻿namespace dotValidate.Testing.Tests
+﻿namespace dotValidate.Testing.Tests.TestResources
 {
     internal class AService
     {
@@ -14,8 +14,11 @@
             var result = _validator.Validate(request)
                                    .Using<ARequestValidator>();
 
+            if (result == null)
+                throw new NullReferenceException("No Validator Result Returned");
+
             if (result.HasFailures)
-                throw new Exception(result.FailureSummary());
+                throw new ArgumentException(result.FailureSummary());
         }
     }
 }

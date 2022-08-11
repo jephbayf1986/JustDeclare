@@ -75,6 +75,14 @@ namespace dotValidate.Testing.Extensions
 
             return new MockValidatorExtra(_mockValidator.Mock);
         }
+
+        public MockValidatorExtra MultipleFailsValidation(int numberOfFailures, string failureMessage = null)
+        {
+            _mockValidator.Mock.Setup(x => x.ValidateRequest<TValidator, TRequest>(_request))
+                .Returns(ValidationResultOverride.MultipleFail(numberOfFailures, requestName: typeof(TRequest).Name, customFailureMessage: failureMessage));
+
+            return new MockValidatorExtra(_mockValidator.Mock);
+        }
     }
 
     public class SpecificRequestRuleStep2<TRequest>
@@ -100,6 +108,14 @@ namespace dotValidate.Testing.Extensions
         {
             _mockValidator.Mock.Setup(x => x.ValidateRequest<IsValidationPair<ValidationRules<TRequest>, TRequest>, TRequest>(_request))
                 .Returns(ValidationResultOverride.Fail(requestName: typeof(TRequest).Name, customFailureMessage: failureMessage));
+
+            return new MockValidatorExtra(_mockValidator.Mock);
+        }
+
+        public MockValidatorExtra MultipleFailsValidation(int numberOfFailures, string failureMessage = null)
+        {
+            _mockValidator.Mock.Setup(x => x.ValidateRequest<IsValidationPair<ValidationRules<TRequest>, TRequest>, TRequest>(_request))
+                .Returns(ValidationResultOverride.MultipleFail(numberOfFailures, requestName: typeof(TRequest).Name, customFailureMessage: failureMessage));
 
             return new MockValidatorExtra(_mockValidator.Mock);
         }
@@ -130,6 +146,14 @@ namespace dotValidate.Testing.Extensions
 
             return new MockValidatorExtra(_mockValidator.Mock);
         }
+
+        public MockValidatorExtra MultipleFailsValidation(int numberOfFailures, string failureMessage = null)
+        {
+            _mockValidator.Mock.Setup(x => x.ValidateRequest<TValidator, TRequest>(It.IsAny<TRequest>()))
+                .Returns(ValidationResultOverride.MultipleFail(numberOfFailures, customFailureMessage: failureMessage));
+
+            return new MockValidatorExtra(_mockValidator.Mock);
+        }
     }
 
     public class AnyRequestRuleStep2<TRequest>
@@ -153,6 +177,14 @@ namespace dotValidate.Testing.Extensions
         {
             _mockValidator.Mock.Setup(x => x.ValidateRequest<IsValidationPair<ValidationRules<TRequest>, TRequest>, TRequest>(It.IsAny<TRequest>()))
                 .Returns(ValidationResultOverride.Fail(customFailureMessage: failureMessage));
+
+            return new MockValidatorExtra(_mockValidator.Mock);
+        }
+
+        public MockValidatorExtra MultipleFailsValidation(int numberOfFailures, string failureMessage = null)
+        {
+            _mockValidator.Mock.Setup(x => x.ValidateRequest<IsValidationPair<ValidationRules<TRequest>, TRequest>, TRequest>(It.IsAny<TRequest>()))
+                .Returns(ValidationResultOverride.MultipleFail(numberOfFailures, customFailureMessage: failureMessage));
 
             return new MockValidatorExtra(_mockValidator.Mock);
         }

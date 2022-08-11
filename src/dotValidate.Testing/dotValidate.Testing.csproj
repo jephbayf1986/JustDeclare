@@ -11,8 +11,8 @@
 	<Title>dotValidate Testing Tools</Title>
 	<Product>dotValidate Testing Tools</Product>
 	<Description>Testing Tools for dotValidate - a syntactically simple way to test your dotValidate code in Dot Net!</Description>
-	<RepositoryUrl>https://github.com/jephbayf1986/dotVALIDATE/tree/main/src/dotValidate.DependencyInjection</RepositoryUrl>
-	<PackageTags>Validate;Validation;Declare;Dependency Injection;C#</PackageTags>
+	<RepositoryUrl>https://github.com/jephbayf1986/dotVALIDATE/tree/main/src/dotValidate.Testing</RepositoryUrl>
+	<PackageTags>Validate;Validation;Declare;Unit Test;Test;Testing;C#</PackageTags>
 	<PackageReleaseNotes>Initial Release</PackageReleaseNotes>
 	<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>

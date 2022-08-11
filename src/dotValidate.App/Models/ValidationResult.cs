@@ -52,7 +52,7 @@ namespace dotValidate.Models
         /// Failure Summary
         /// </summary>
         /// <returns>String with complete details of each and every failure</returns>
-        public string FailureSummary()
+        public virtual string FailureSummary()
         {
             return GetFailureSummary(
                         $"The following validation error occurred while handling the request '{_requestName}'",

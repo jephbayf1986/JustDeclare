@@ -5,11 +5,15 @@ VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotValidate.App", "dotValidate.App\dotValidate.App.csproj", "{C38C3262-D945-435E-A360-1B4AEBF7D2BF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotValidate.Tests", "dotValidate.Tests\dotValidate.Tests.csproj", "{583C7600-732E-4DB6-B17A-4DD622FCA54F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotValidate.App.Tests", "dotValidate.App.Tests\dotValidate.App.Tests.csproj", "{583C7600-732E-4DB6-B17A-4DD622FCA54F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotValidate.DependencyInjection", "dotValidate.DependencyInjection\dotValidate.DependencyInjection.csproj", "{A1EB1549-7467-4AA9-8C82-9C95F3185EF3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotValidate.DependencyInjection", "dotValidate.DependencyInjection\dotValidate.DependencyInjection.csproj", "{A1EB1549-7467-4AA9-8C82-9C95F3185EF3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotValidate.Unity", "dotValidate.Unity\dotValidate.Unity.csproj", "{C96E5ECA-024B-4825-9225-1DCE239AEBA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotValidate.Unity", "dotValidate.Unity\dotValidate.Unity.csproj", "{C96E5ECA-024B-4825-9225-1DCE239AEBA5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dotValidate.Testing", "dotValidate.Testing\dotValidate.Testing.csproj", "{BC762BF2-7EC0-498D-A976-36B919B43687}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotValidate.Testing.Tests", "dotValidate.Testing.Tests\dotValidate.Testing.Tests.csproj", "{58E1CC46-B76D-4F1E-B414-840E2D6CBD74}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{C96E5ECA-024B-4825-9225-1DCE239AEBA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C96E5ECA-024B-4825-9225-1DCE239AEBA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C96E5ECA-024B-4825-9225-1DCE239AEBA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC762BF2-7EC0-498D-A976-36B919B43687}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC762BF2-7EC0-498D-A976-36B919B43687}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC762BF2-7EC0-498D-A976-36B919B43687}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC762BF2-7EC0-498D-A976-36B919B43687}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58E1CC46-B76D-4F1E-B414-840E2D6CBD74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58E1CC46-B76D-4F1E-B414-840E2D6CBD74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58E1CC46-B76D-4F1E-B414-840E2D6CBD74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58E1CC46-B76D-4F1E-B414-840E2D6CBD74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

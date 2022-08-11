@@ -10,6 +10,8 @@
 	<Title>dotValidate</Title>
     <Description>dotValidate is a syntactically simple way to declare validation rules in Dot Net!</Description>
     <Copyright>2022 jephbayf1986</Copyright>
+	<Version>1.0.1</Version>
+	<AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <PackageProjectUrl></PackageProjectUrl>
     <RepositoryUrl>https://github.com/jephbayf1986/dotVALIDATE</RepositoryUrl>
     <PackageTags>Validate;Validation;Declare;C#</PackageTags>

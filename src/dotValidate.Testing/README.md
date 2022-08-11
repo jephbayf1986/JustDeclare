@@ -1,0 +1,7 @@
+# dotValidate Testing Tools
+dotValidate is a syntactically simple way to declare validation rules in .Net!
+
+## Testing Tools
+This project provides simple classes and extensions to test your dotValidate code in Dot Net!
+
+More to follow... check back [here]() for updates: 

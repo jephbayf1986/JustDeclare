@@ -48,7 +48,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.DateTimeBased
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
                                               x => x.FailureSummary().ShouldContain(nameof(request.TestNullable), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("equal to", Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain("fall on the same date as", Case.Insensitive),
                                               x => x.FailureSummary().ShouldContain("null", Case.Insensitive));
         }
 
@@ -57,7 +57,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.DateTimeBased
         {
             // Arrange
             var request = GetTestClass();
-            var actualValue = new DateTime();
+            var actualValue = DateTime.Now;
             request.TestNonNullable = actualValue;
 
             var validator = new TestClassValidationRules();
@@ -68,8 +68,8 @@ namespace dotValidate.Tests.IsolatedRuleTests.DateTimeBased
             // Assert
             result.ShouldSatisfyAllConditions(x => x.HasFailures.ShouldBeTrue(),
                                               x => x.FailureSummary().ShouldContain(nameof(request.TestNonNullable), Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain("equal to", Case.Insensitive),
-                                              x => x.FailureSummary().ShouldContain(actualValue.ToString()));
+                                              x => x.FailureSummary().ShouldContain("fall on the same date as", Case.Insensitive),
+                                              x => x.FailureSummary().ShouldContain(actualValue.ToShortDateString()));
         }
 
         private static TestClass GetTestClass()
@@ -77,7 +77,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.DateTimeBased
             return new TestClass()
             {
                 TestNonNullable = TARGET.Date,
-                TestNullable = TARGET.AddHours(-10).AddMonths(-10).AddSeconds(-10)
+                TestNullable = TARGET.AddHours(-10).AddMinutes(-10).AddSeconds(-10)
             };
         }
     }

@@ -18,7 +18,7 @@ namespace dotValidate
         /// <returns>Validation Check - <i>dotValidate</i> container for all input and output information for the validation rule</returns>
         public static ValidationCheck MustBeSameDateAs(this DateTime value, DateTime target)
         {
-            return new DateEqual(value, target);
+            return new DatePartEqual(value, target);
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace dotValidate
         /// <returns>Validation Check - <i>dotValidate</i> container for all input and output information for the validation rule</returns>
         public static ValidationCheck MustBeSameDateAs(this DateTime? value, DateTime target)
         {
-            return new DateEqual(value, target);
+            return new DatePartEqual(value, target);
         }
 
         /// <summary>

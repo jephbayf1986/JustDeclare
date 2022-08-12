@@ -277,6 +277,19 @@ namespace dotValidate
             return value.MustBeEarlierThanOrSameDateAs(maximumDate);
         }
 
+        /// <summary>
+        /// Age Must Be Older Than
+        /// </summary>
+        /// <param name="value">Nullable DateTime value to validate</param>
+        /// <param name="minimumYears">Minimum Allowed Age in Years</param>
+        /// <returns>Validation Check - <i>dotValidate</i> container for all input and output information for the validation rule</returns>
+        public static ValidationCheck AgeMustBeOlderThan(this DateTime? value, int minimumYears)
+        {
+            var maximumDate = DateTime.Now.Date.AddYears(-minimumYears);
+
+            return value.MustBeEarlierThanOrSameDateAs(maximumDate);
+        }
+
 
 
 

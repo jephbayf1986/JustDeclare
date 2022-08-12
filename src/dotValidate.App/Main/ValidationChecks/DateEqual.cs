@@ -2,7 +2,7 @@
 
 namespace dotValidate.Main.ValidationChecks
 {
-    internal class DateEqual : ValidationCheck<DateTime?>
+    internal class DateEqual : ValidationCheck<IComparable<DateTime>>
     {
         public DateEqual(DateTime? value, DateTime target)
             : base(value)

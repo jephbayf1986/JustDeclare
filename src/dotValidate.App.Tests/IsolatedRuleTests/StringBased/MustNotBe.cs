@@ -20,7 +20,7 @@ namespace dotValidate.Tests.IsolatedRuleTests.StringBased
         }
 
         [Fact]
-        public void GivenAboveRules_WhenAllValuesAtTarget_PassTest()
+        public void GivenAboveRules_WhenNoValuesAtTarget_PassTest()
         {
             // Arrange
             var request = GetTestClass();
